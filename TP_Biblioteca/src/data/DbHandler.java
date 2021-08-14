@@ -36,7 +36,7 @@ private static DbHandler instancia;
 			if(conn==null || conn.isClosed()) {
 				conn=DriverManager.getConnection("jdbc:mysql://"+host+":"+port+"/"+db+options, user, password);
 				conectados=0;
-			}
+			}			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -47,7 +47,7 @@ private static DbHandler instancia;
 	public void releaseConn() {
 		conectados--;
 		try {
-			if (conectados<=0) {
+			if (conectados<=0) {				
 				conn.close();
 			}
 		} catch (SQLException e) {

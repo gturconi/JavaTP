@@ -16,12 +16,12 @@ public class DataLocalidad {
 		
 		try {
 			stmt= DbHandler.getInstancia().getConn().createStatement();
-			rs= stmt.executeQuery("select id,nombre from Localidad");			
+			rs= stmt.executeQuery("select id,nombre from localidad");			
 			if(rs!=null) {
 				while(rs.next()) {
 					Localidad l=new Localidad();					
 					l.setId(rs.getInt("id"));
-					l.setNombre(rs.getString("name"));															
+					l.setNombre(rs.getString("nombre"));															
 					list.add(l);
 				}
 			}
