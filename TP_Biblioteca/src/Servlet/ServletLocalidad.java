@@ -35,7 +35,7 @@ public class ServletLocalidad extends HttpServlet {
 		
 		Logic ctrl = new Logic(); 
 				
-		LinkedList<Localidad> localidades = ctrl.listado();
+		LinkedList<Localidad> localidades = ctrl.listadoLoc();
                            	
 		request.setAttribute("Localidades", localidades);
 	/*	for(Localidad loc : localidades) {
