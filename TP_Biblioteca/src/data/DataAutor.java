@@ -8,7 +8,6 @@ import java.util.LinkedList;
 
 import entities.Autor;
 
-
 public class DataAutor {
 
 	
@@ -77,6 +76,83 @@ public class DataAutor {
 			return a; 	 
 	  }
 	
+	  public void agregar(Autor a) {
+			PreparedStatement stmt= null;
+			ResultSet keyResultSet=null;
+			try {
+				stmt=DbHandler.getInstancia().getConn().
+						prepareStatement(
+								"insert into autor(nombre, apellido) values(?,?)",
+								PreparedStatement.RETURN_GENERATED_KEYS
+								);				
+				stmt.setString(1, a.getNombre());
+				stmt.setString(2, a.getApellido());
+				
+				stmt.executeUpdate();
+				
+				keyResultSet=stmt.getGeneratedKeys();
+		        if(keyResultSet!=null && keyResultSet.next()){
+		            a.setId(keyResultSet.getInt(1));
+		        }
+
+				
+			}  catch (SQLException e) {
+		        e.printStackTrace();
+			} finally {
+		        try {
+		            if(keyResultSet!=null)keyResultSet.close();
+		            if(stmt!=null)stmt.close();
+		            DbHandler.getInstancia().releaseConn();
+		        } catch (SQLException e) {
+		        	e.printStackTrace();
+		        }
+			}	
+		} 	
 	
-	
+	  public void borrar(int id) {
+			PreparedStatement stmt= null;	
+			try {
+				stmt=DbHandler.getInstancia().getConn().
+						prepareStatement("delete from autor where id=?");
+				stmt.setInt(1, id);
+				stmt.executeUpdate();				       
+				
+			}  catch (SQLException e) {
+		        e.printStackTrace();
+			} finally {
+		        try {           
+		            if(stmt!=null)stmt.close();
+		            DbHandler.getInstancia().releaseConn();
+		        } catch (SQLException e) {
+		        	e.printStackTrace();
+		        }
+			}			
+		}
+	  
+	  public void modificar(Autor a) {
+			PreparedStatement stmt= null;	
+			try {
+				stmt=DbHandler.getInstancia().getConn().
+						prepareStatement(
+								"update autor set nombre=?, apellido=?"
+								+ " where id=?");
+				stmt.setString(1, a.getNombre());
+				stmt.setString(2, a.getApellido());
+				stmt.setInt(3, a.getId());
+				stmt.executeUpdate();
+								
+			}  catch (SQLException e) {
+		        e.printStackTrace();
+			} finally {
+		        try {            
+		            if(stmt!=null)stmt.close();
+		            DbHandler.getInstancia().releaseConn();
+		        } catch (SQLException e) {
+		        	e.printStackTrace();
+		        }
+			}	
+		}
+
+	  
+
 }

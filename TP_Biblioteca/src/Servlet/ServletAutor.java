@@ -46,10 +46,48 @@ public class ServletAutor extends HttpServlet {
 			listar(request,response);				
 		}else if(accion.equalsIgnoreCase("buscar")) {
 			buscar(request,response);
+		}else if(accion.equalsIgnoreCase("agregar")) {
+			agregar(request,response);
+		}else if(accion.equalsIgnoreCase("borrar")) {
+			borrar(request,response);
+		}else if(accion.equalsIgnoreCase("modificar")) {
+			modificar(request,response);
 		}
 		
 	}
 		
+	private void modificar(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
+		Logic ctrl = new Logic();
+		int id = Integer.parseInt(request.getParameter("id"));
+		String nombre = request.getParameter("nombre");
+		String apellido = request.getParameter("apellido");
+		Autor a = new Autor();
+		a.setId(id);
+		a.setNombre(nombre);
+		a.setApellido(apellido);
+		ctrl.modificarAut(a);
+		request.getRequestDispatcher("WEB-INF/modificarAutor.jsp").forward(request, response);
+	}
+
+	private void borrar(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
+		Logic ctrl = new Logic();
+		int id = Integer.parseInt(request.getParameter("id"));
+	    ctrl.borrarAut(id);
+	    request.getRequestDispatcher("WEB-INF/borrarAutor.jsp").forward(request, response);
+	}
+
+	private void agregar(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
+		Logic ctrl = new Logic(); 
+		String nombre = request.getParameter("nombre");
+		String apellido = request.getParameter("apellido");
+		Autor a = new Autor();
+		a.setNombre(nombre);
+		a.setApellido(apellido);
+		ctrl.agregarAut(a);
+		request.setAttribute("Autor", a);
+		request.getRequestDispatcher("WEB-INF/añadirAutor.jsp").forward(request, response);
+	}
+
 	private void buscar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Logic ctrl = new Logic();
 	    int id = Integer.parseInt(request.getParameter("id"));
