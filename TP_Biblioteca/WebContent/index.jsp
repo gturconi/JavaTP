@@ -4,40 +4,22 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<link rel="stylesheet" type="text/css" href="estilos/login.css">
+
 <title>Bienvenido</title>
 </head>
 <body>
-
-<form action="ServletLocalidad" method="post">
-<button type="submit">Listar Localidades</button>
+<br />
+<br />
+<form class="form" action="ServletLogin" method="post">
+  <h2>Biblioteca</h2>
+  <p type="Usuario:"><input placeholder=" " name="user"></input></p>
+  <p type="Contraseña:"><input placeholder=" " name="pass"></input></p>
+  <button>Ingresar</button>
+  <div>    
+  </div>
 </form>
 
-<form action="ServletAutor?accion=listar" method="post">
-<button type="submit">Listar Autores</button>
-</form>
-
-<form action="ServletAutor?accion=buscar" method="post">
-<input type="text" placeholder="escribe el id del autor" maxlength="10" name="id"> 
-<button type="submit">Buscar Autor</button>
-</form>
-
-<form action="ServletAutor?accion=agregar" method="post">
-<input type="text" placeholder="nombre" maxlength="20" name="nombre">
-<input type="text" placeholder="apellid" maxlength="20" name="apellido"> 
-<button type="submit">Añadir Autor</button>
-</form>
-
-<form action="ServletAutor?accion=borrar" method="post">
-<input type="text" placeholder="escribe el id del autor" maxlength="10" name="id">
-<button type="submit">Borrar Autor</button>
-</form>
-
-<form action="ServletAutor?accion=modificar" method="post">
-<input type="text" placeholder="escribe el id del autor" maxlength="10" name="id">
-<input type="text" placeholder="escribe el nombre nuevo" maxlength="10" name="nombre">
-<input type="text" placeholder="escribe el apellido nuevo" maxlength="10" name="apellido">
-<button type="submit">Modificar Autor</button>
-</form>
 
 
 
