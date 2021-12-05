@@ -14,7 +14,7 @@ public class Cliente {
 	private String email;
 	private LocalDate fechaInscripcion;
 	private Localidad localidad;
-	
+	private int isAdmin;
 	
 	public int getId() {
 		return id;
@@ -104,6 +104,13 @@ public class Cliente {
 	
 	public Cliente() {
 		
+	}
+	
+	public int getisAdmin() {
+		return isAdmin;
+	}
+	public void setisAdmin(int isAdmin) {
+		this.isAdmin = isAdmin;
 	}
 
 }

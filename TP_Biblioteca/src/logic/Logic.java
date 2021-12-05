@@ -28,7 +28,11 @@ public class Logic {
 	public Localidad buscarLoc(int id) {
 		return dl.buscarLocalidad(id);		
 	}
-		
+	
+	public Localidad buscarLocPorNombre(String loc) {
+		return dl.buscarLocalidadPorNombre(loc);		
+	}
+	
 	public LinkedList<Autor> listadoAut() {
 		return da.listado();		
 	}
@@ -50,6 +54,10 @@ public class Logic {
 	
 	public Cliente buscarCliente(String user, String pass) {
 		return dc.buscarCliente(user,pass);		
+	}
+	
+	public void agregarCliente(Cliente c) {
+		dc.agregarCliente(c);
 	}
 	
 }

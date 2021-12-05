@@ -75,6 +75,35 @@ public class DataLocalidad {
 		return l; 	 
   }
 
+public Localidad buscarLocalidadPorNombre(String nombre) {	 
+		
+	    Localidad l=null;
+		PreparedStatement stmt=null;
+		ResultSet rs=null;
+		try {
+			stmt=DbHandler.getInstancia().getConn().prepareStatement(
+					"select id, nombre from localidad where nombre=?");
+			stmt.setString(1, nombre);			
+			rs=stmt.executeQuery();
+			
+			if(rs!=null && rs.next()) {
+				l=new Localidad();
+				l.setId(rs.getInt("id"));
+				l.setNombre(rs.getString("nombre"));																												
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs!=null) {rs.close();}
+				if(stmt!=null) {stmt.close();}
+				DbHandler.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}			
+		return l; 	 
+  }
 	
 	
 }
