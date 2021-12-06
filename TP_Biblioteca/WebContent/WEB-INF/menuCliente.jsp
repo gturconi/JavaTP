@@ -45,7 +45,9 @@
 <input type="text" placeholder="escribe el apellido nuevo" maxlength="10" name="apellido">
 <button type="submit">Modificar Autor</button>
 </form>
-
+<form class="formulario" action="ServletLogin" method="post">
+<input type="submit" name="logout" value="Cerrar Sesion">
+</form>
 
 
 </body>

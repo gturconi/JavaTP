@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import entities.Cliente;
 import logic.Logic;
@@ -48,8 +49,19 @@ public class ServletLogin extends HttpServlet {
 			registrar(request,response);
 		 }else if(request.getParameter("send") != null) {
 				altaCliente(request,response);
-			 }
-						                                                
+	     }else if(request.getParameter("logout") != null) {
+				cerrarSesion(request,response);
+	     }						                                                
+	}
+
+	private void cerrarSesion(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException {
+		
+		HttpSession session=request.getSession(false);
+				if (session != null) {
+		            session.removeAttribute("Cliente");
+				}		             	  
+        //session.invalidate();
+        request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 
 	private void altaCliente(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{

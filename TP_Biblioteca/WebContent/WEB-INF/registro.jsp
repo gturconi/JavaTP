@@ -4,60 +4,37 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<link rel="stylesheet" type="text/css" href="estilos/formulario.css">
-<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="estilos/registro.css">
+<link rel="icon" href="icons/libro.ico">
+<title>Registrarse</title>
 </head>
-<body>
+<body class="cuerpo">
 
 <div class="contenedor">
+ <section class="form-registrar">
       <div class="contacto">
-        <h3>REGISTRO</h3>
+        <h5> Regístrate</h5>
         </br>
         <form class="formulario" action="ServletLogin" method="post">
-          <p>
-            <label>Nombre</label>
-            <input type="text" name="name" required>
-          </p>
-          <p>
-            <label>Apellido</label>
-           <input type="text" name="surname" required>
-          </p>
-          <p>
-           <label>Domicilio</label>
-            <input type="text" name="address" required>
-          </p>
-          <p>
-           <label>Telefono</label>
-            <input type="text" name="tel" required>
-          </p>
-          <p>
-            <label>Email</label>
-            <input type="email" name="email" required>
-          </p>
-           <label>Localidad</label>           
-          <select name="city" id="">          
+        <input class="controlr" type="text" name="name" placeholder="Nombre" required>
+        <input class="controlr" type="text" name="surname" placeholder="Apellido" required >
+        <input class="controlr" type="text" name="address" placeholder="Domicilio" required >
+        <input class="controlr" type="text" name="tel" placeholder="Telefono" required >
+        <input class="controlr" type="text" name="email" placeholder="Email" required >                                
+          <select name="city" class="controlr" required>
+ <option style="display: none;" value="" selected>Localidad</option>                              
  <option value="Cañada de Gomez">Cañada de Gomez</option>
  <option value="Casilda">Casilda</option>
  <option value="Pujato">Pujato</option>
  <option value="Rosario">Rosario</option>     
 </select>
-<p>
-            <label>Usuario</label>
-            <input type="text" name="user" required>           
-          </p>
-          <p>
-            <label>Contraseña</label>
-            <input type="password" name="pass" required>
-          </p>
-   </textarea>
-   <br />
-          </p>
-          <p class="full">
-            <button class="boton-enviar" name="send">Enviar</button>
-          </p>
+<input class="controlr" type="text" name="user" placeholder="Usuario" required >
+<input class="controlr" type="password" name="pass" placeholder="Contraseña" required >                   
+  <input class="button1" type="submit" name="send" value="Registrar">                      
         </form>
       </div>
     </div>
+</section>    
   </div>
 <%if(null != request.getAttribute("altaMensaje")){
 	  out.println(request.getAttribute("altaMensaje"));  
