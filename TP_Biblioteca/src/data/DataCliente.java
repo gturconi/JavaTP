@@ -4,11 +4,12 @@ import java.sql.PreparedStatement;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
+import java.util.LinkedList;
 
-import entities.Autor;
+
 import entities.Cliente;
-import data.DataLocalidad;
 
 public class DataCliente {
 
@@ -92,5 +93,99 @@ public class DataCliente {
 			}	
 		}
 	 
+	 
+	 public LinkedList<Cliente> listado(){	
+		    DataLocalidad dl = new DataLocalidad();;
+			Statement stmt=null;
+			ResultSet rs=null;
+			LinkedList<Cliente> list= new LinkedList<>();
+			
+			try {
+				stmt= DbHandler.getInstancia().getConn().createStatement();
+				rs= stmt.executeQuery("select id,nombre, apellido, user, password, domicilio, telefono, email, fechaInscripcion, idLocalidad, isAdmin from cliente");			
+				if(rs!=null) {
+					while(rs.next()) {
+						Cliente c=new Cliente();					
+						c.setId(rs.getInt("id"));
+						c.setNombre(rs.getString("nombre"));
+						c.setApellido(rs.getString("apellido"));
+						c.setUser(rs.getString("user"));
+						c.setPassword(rs.getString("password"));
+						c.setDomicilio(rs.getString("domicilio"));
+						c.setTelefono(rs.getString("telefono"));
+						c.setEmail(rs.getString("email"));
+						c.setFechaInscripcion(rs.getObject("fechaInscripcion",LocalDate.class));
+						c.setLocalidad(dl.buscarLocalidad(rs.getInt("idLocalidad")));
+						c.setisAdmin(rs.getInt("isAdmin"));
+						list.add(c);
+					}
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+				
+			} finally {
+				try {
+					if(rs!=null) {rs.close();}
+					if(stmt!=null) {stmt.close();}
+					DbHandler.getInstancia().releaseConn();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}		
+			
+			return list;		
+		}
 	
+	 public void borrar(int id) {
+			PreparedStatement stmt= null;	
+			try {
+				stmt=DbHandler.getInstancia().getConn().
+						prepareStatement("delete from cliente where id=?");
+				stmt.setInt(1, id);
+				stmt.executeUpdate();				       
+				
+			}  catch (SQLException e) {
+		        e.printStackTrace();
+			} finally {
+		        try {           
+		            if(stmt!=null)stmt.close();
+		            DbHandler.getInstancia().releaseConn();
+		        } catch (SQLException e) {
+		        	e.printStackTrace();
+		        }
+			}			
+		}
+	 
+	 public void modificar(Cliente c) {
+			PreparedStatement stmt= null;	
+			try {
+				stmt=DbHandler.getInstancia().getConn().
+						prepareStatement(
+								"update cliente set nombre=?, apellido=?, user=?, password=?, domicilio=?, telefono=?, email=?, fechaInscripcion=?, idLocalidad=?, isAdmin=? where id=?");
+				stmt.setString(1, c.getNombre());
+				stmt.setString(2, c.getApellido());
+				stmt.setString(2, c.getApellido());
+				stmt.setString(3, c.getUser());
+				stmt.setString(4, c.getPassword());
+				stmt.setString(5, c.getDomicilio());
+				stmt.setString(6, c.getTelefono());
+				stmt.setString(7, c.getEmail());
+				stmt.setObject(8, c.getFechaInscripcion());
+				stmt.setInt(9, c.getLocalidad().getId());
+				stmt.setInt(10, c.getisAdmin());				
+				stmt.setInt(11, c.getId());
+				stmt.executeUpdate();
+								
+			}  catch (SQLException e) {
+		        e.printStackTrace();
+			} finally {
+		        try {            
+		            if(stmt!=null)stmt.close();
+		            DbHandler.getInstancia().releaseConn();
+		        } catch (SQLException e) {
+		        	e.printStackTrace();
+		        }
+			}	
+		}
 }

@@ -1,7 +1,7 @@
 package entities;
 
 import java.time.*;
-import java.util.Arrays;
+import java.util.LinkedList;
 
 public class Libro {
 	
@@ -16,7 +16,7 @@ public class Libro {
 	private double precio;
 	private Editorial editorial;
 	private Categoria categoria;
-	private Autor[] autor;
+	private LinkedList<Autor> autores;
 	
 	public int getId() {
 		return id;
@@ -24,16 +24,16 @@ public class Libro {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getTitle() {
+	public String getTitulo() {
 		return titulo;
 	}
-	public void setTitle(String titulo) {
+	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
 	public String getDescripcion() {
 		return descripcion;
 	}
-	public void setDescription(String descripcion) {
+	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
 	public int getNroEdicion() {
@@ -54,22 +54,22 @@ public class Libro {
 	public void setDimensiones(String dimensiones) {
 		this.dimensiones = dimensiones;
 	}
-	public int getNroPages() {
+	public int getNroPaginas() {
 		return nroPaginas;
 	}
-	public void setNroPages(int nroPaginas) {
+	public void setNroPaginas(int nroPaginas) {
 		this.nroPaginas = nroPaginas;
 	}
 	public int getExistencia() {
 		return existencia;
 	}
-	public void setExistence(int existencia) {
+	public void setExistencia(int existencia) {
 		this.existencia = existencia;
 	}
-	public double getPrice() {
+	public double getPrecio() {
 		return precio;
 	}
-	public void setPrice(double precio) {
+	public void setPrecio(double precio) {
 		this.precio = precio;
 	}
 	public Editorial getEditorial() {
@@ -84,23 +84,17 @@ public class Libro {
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
-	public Autor[] getAutor() {
-		return autor;
+	public LinkedList<Autor> getAutores() {
+		return autores;
 	}
-	public void setAutor(Autor[] autor) {
-		this.autor = autor;
+	public void setAutores(LinkedList<Autor> autores) {
+		this.autores = autores;
 	}
 	
-	@Override
-	public String toString() {
-		return "Libro [id=" + id + ", title=" + titulo + ", description=" + descripcion + ", nroEdicion=" + nroEdicion
-				+ ", fechaEdicion=" + fechaEdicion + ", dimensiones=" + dimensiones + ", nroPages=" + nroPaginas
-				+ ", existence=" + existencia + ", price=" + precio + ", editorial=" + editorial + ", categoria="
-				+ categoria + ", autor=" + Arrays.toString(autor) + "]";
-	}
+	
 	
 	public Libro(int id, String title, String description, int nroEdicion, LocalDate fechaEdicion, String dimensiones,
-			int nroPages, int existence, double price, Editorial editorial, Categoria categoria, Autor[] autor) {
+			int nroPages, int existence, double price, Editorial editorial, Categoria categoria, LinkedList<Autor> autores) {
 		this.id = id;
 		this.titulo = title;
 		this.descripcion = description;
@@ -112,7 +106,7 @@ public class Libro {
 		this.precio = price;
 		this.editorial = editorial;
 		this.categoria = categoria;
-		this.autor = autor;
+		this.autores = autores;
 	}
 	
 	public Libro() {

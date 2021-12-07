@@ -110,8 +110,13 @@ public class DataAutor {
 		} 	
 	
 	  public void borrar(int id) {
-			PreparedStatement stmt= null;	
+			PreparedStatement stmt= null;
+			PreparedStatement stmt1= null;
 			try {
+				stmt1=DbHandler.getInstancia().getConn().
+						prepareStatement("delete from autor_libro where id=?");
+				stmt1.setInt(1, id);
+				stmt1.executeUpdate();
 				stmt=DbHandler.getInstancia().getConn().
 						prepareStatement("delete from autor where id=?");
 				stmt.setInt(1, id);
@@ -121,7 +126,7 @@ public class DataAutor {
 		        e.printStackTrace();
 			} finally {
 		        try {           
-		            if(stmt!=null)stmt.close();
+		            if(stmt!=null && stmt1!=null)stmt.close(); stmt1.close();
 		            DbHandler.getInstancia().releaseConn();
 		        } catch (SQLException e) {
 		        	e.printStackTrace();

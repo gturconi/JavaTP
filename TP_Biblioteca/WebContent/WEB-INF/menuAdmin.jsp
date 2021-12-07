@@ -8,6 +8,8 @@
    Cliente cliente = (Cliente)session.getAttribute("Cliente");  
 %>
 <meta charset="ISO-8859-1">
+<link rel="stylesheet" type="text/css" href="estilos/menu.css">
+<link rel="icon" href="icons/libro.ico">
 <title>Bienvenido admin</title>
 </head>
 <body>

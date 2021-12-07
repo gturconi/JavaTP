@@ -6,25 +6,25 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.LinkedList;
 
+import entities.Editorial;
 
-import entities.Localidad;
+public class DataEditorial {
 
-public class DataLocalidad {
-
-	public LinkedList<Localidad> listado(){		
+	
+	public LinkedList<Editorial> listado(){		
 		Statement stmt=null;
 		ResultSet rs=null;
-		LinkedList<Localidad> list= new LinkedList<>();
+		LinkedList<Editorial> list= new LinkedList<>();
 		
 		try {
 			stmt= DbHandler.getInstancia().getConn().createStatement();
-			rs= stmt.executeQuery("select id,nombre from localidad");			
+			rs= stmt.executeQuery("select id,nombre from editorial");			
 			if(rs!=null) {
 				while(rs.next()) {
-					Localidad l=new Localidad();					
-					l.setId(rs.getInt("id"));
-					l.setNombre(rs.getString("nombre"));															
-					list.add(l);
+					Editorial e=new Editorial();					
+					e.setId(rs.getInt("id"));
+					e.setNombre(rs.getString("nombre"));					
+					list.add(e);
 				}
 			}
 			
@@ -39,27 +39,25 @@ public class DataLocalidad {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-		}		
-		
-		return list;		
+		}
+		return list;	
 	}
 	
-	
-	public Localidad buscarLocalidad(int id) {	 
+public Editorial buscar(int id) {	 
 		
-	    Localidad l=null;
+	    Editorial ed=null;
 		PreparedStatement stmt=null;
 		ResultSet rs=null;
 		try {
 			stmt=DbHandler.getInstancia().getConn().prepareStatement(
-					"select id, nombre from localidad where id=?");
+					"select id, nombre from editorial where id=?");
 			stmt.setInt(1, id);			
 			rs=stmt.executeQuery();
 			
 			if(rs!=null && rs.next()) {
-				l=new Localidad();
-				l.setId(rs.getInt("id"));
-				l.setNombre(rs.getString("nombre"));																												
+				ed=new Editorial();
+				ed.setId(rs.getInt("id"));
+				ed.setNombre(rs.getString("nombre"));																												
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -72,55 +70,25 @@ public class DataLocalidad {
 				e.printStackTrace();
 			}
 		}			
-		return l; 	 
-  }
-
-public Localidad buscarLocalidadPorNombre(String nombre) {	 
-		
-	    Localidad l=null;
-		PreparedStatement stmt=null;
-		ResultSet rs=null;
-		try {
-			stmt=DbHandler.getInstancia().getConn().prepareStatement(
-					"select id, nombre from localidad where nombre=?");
-			stmt.setString(1, nombre);			
-			rs=stmt.executeQuery();
-			
-			if(rs!=null && rs.next()) {
-				l=new Localidad();
-				l.setId(rs.getInt("id"));
-				l.setNombre(rs.getString("nombre"));																												
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally {
-			try {
-				if(rs!=null) {rs.close();}
-				if(stmt!=null) {stmt.close();}
-				DbHandler.getInstancia().releaseConn();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}			
-		return l; 	 
-  }
+		return ed; 	 
+  }	
 	
-public void agregar(Localidad l) {
+public void agregar(Editorial ed) {
 	PreparedStatement stmt= null;
 	ResultSet keyResultSet=null;
 	try {
 		stmt=DbHandler.getInstancia().getConn().
 				prepareStatement(
-						"insert into localidad(nombre) values(?)",
+						"insert into editorial(nombre) values(?)",
 						PreparedStatement.RETURN_GENERATED_KEYS
 						);				
-		stmt.setString(1, l.getNombre());		
+		stmt.setString(1, ed.getNombre());		
 		
 		stmt.executeUpdate();
 		
 		keyResultSet=stmt.getGeneratedKeys();
         if(keyResultSet!=null && keyResultSet.next()){
-            l.setId(keyResultSet.getInt(1));
+            ed.setId(keyResultSet.getInt(1));
         }
 
 		
@@ -141,7 +109,7 @@ public void borrar(int id) {
 	PreparedStatement stmt= null;	
 	try {
 		stmt=DbHandler.getInstancia().getConn().
-				prepareStatement("delete from localidad where id=?");
+				prepareStatement("delete from editorial where id=?");
 		stmt.setInt(1, id);
 		stmt.executeUpdate();				       
 		
@@ -157,14 +125,14 @@ public void borrar(int id) {
 	}			
 }
 
-public void modificar(Localidad l) {
+public void modificar(Editorial ed) {
 	PreparedStatement stmt= null;	
 	try {
 		stmt=DbHandler.getInstancia().getConn().
 				prepareStatement(
-						"update localidad set nombre=? where id=?");
-		stmt.setString(1, l.getNombre());		
-		stmt.setInt(2, l.getId());
+						"update editorial set nombre=? where id=?");
+		stmt.setString(1, ed.getNombre());		
+		stmt.setInt(2, ed.getId());
 		stmt.executeUpdate();
 						
 	}  catch (SQLException e) {
@@ -180,5 +148,6 @@ public void modificar(Localidad l) {
 }
 
 
-	
+
+
 }
