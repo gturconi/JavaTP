@@ -52,7 +52,7 @@ public class DataCliente {
 			return c; 	 
 	  }
 	
-	 public void agregarCliente(Cliente c) {
+	 public int agregarCliente(Cliente c) {
 			PreparedStatement stmt= null;
 			ResultSet keyResultSet=null;
 			try {
@@ -81,16 +81,18 @@ public class DataCliente {
 
 				
 			}  catch (SQLException e) {
-		        e.printStackTrace();
+		        e.printStackTrace();		        
 			} finally {
 		        try {
 		            if(keyResultSet!=null)keyResultSet.close();
-		            if(stmt!=null)stmt.close();
-		            DbHandler.getInstancia().releaseConn();
+		            if(stmt!=null)stmt.close();		            
+		            DbHandler.getInstancia().releaseConn();		            
 		        } catch (SQLException e) {
 		        	e.printStackTrace();
+		        	return 1;
 		        }
-			}	
+			}
+			return 0;
 		}
 	 
 	 

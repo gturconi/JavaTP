@@ -11,7 +11,7 @@
 <body class="cuerpo">
 <br />
 <br />
-HOLAAAAAAA
+
 <form class="form-login" action="ServletLogin" method="post">
   <h5>Biblioteca</h5>
   <input class="controls" type="text" name="user" placeholder="Usuario" >

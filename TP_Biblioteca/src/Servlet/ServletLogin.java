@@ -90,7 +90,17 @@ public class ServletLogin extends HttpServlet {
         
         c.setLocalidad(ctrl.buscarLocPorNombre(city));
         
-        ctrl.agregarCliente(c);
+        
+        /*VERIFICAR QUE EL USUARIO NO EXISTA*/
+        if(ctrl.buscarCliente(user, pass)!=null) {
+        	request.setAttribute("errorMensaje", "Ya existe un usuario con ese nombre!");
+        	request.getRequestDispatcher("WEB-INF/registro.jsp").forward(request, response);
+        }
+        
+        if(ctrl.agregarCliente(c)== 0) {
+        	request.setAttribute("errorConexion", "No se pudo conectar con la base de datos");
+        	request.getRequestDispatcher("WEB-INF/registro.jsp").forward(request, response);
+        };
         
         request.setAttribute("altaMensaje", "Usuario registrado con exito!");
     	request.getRequestDispatcher("WEB-INF/registro.jsp").forward(request, response);
