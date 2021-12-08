@@ -38,6 +38,10 @@
   </div>
 <%if(null != request.getAttribute("altaMensaje")){
 	  out.println(request.getAttribute("altaMensaje"));  
+  }else if(null != request.getAttribute("errorMensaje")){
+	  out.println(request.getAttribute("errorMensaje"));
+  }else if(null != request.getAttribute("errorConexion")){
+	  out.println(request.getAttribute("errorConexion"));
   }     
   %>
 

@@ -81,8 +81,8 @@ public class Logic {
 		return dc.buscarCliente(user,pass);		
 	}
 	
-	public void agregarCliente(Cliente c) {
-		dc.agregarCliente(c);
+	public int agregarCliente(Cliente c) {
+		return dc.agregarCliente(c);
 	}
 	
 	public void borrarCliente(int id) {
