@@ -1,0 +1,39 @@
+body{
+    background-color: #FFDEAD;
+    font-family: arial;
+}
+
+#tabla{
+width: 600px;
+margin: 150px auto;
+}
+
+table{
+    width: 100%;
+    background-color: white;
+    text-align: left;
+    border-collapse: collapse;
+}
+
+th, td{
+    border: solid 2px black;
+    padding: 10px;
+}
+
+thead{
+    background-color:#411023;
+    color: white ;
+    border-bottom: solid 5px #4e4d4d;
+}
+
+tr:hover td{
+    background-color: #ef8354;
+    color: white;
+}
+
+p{
+    font-family: arial;
+    color: #411023;
+    font-size: large;
+    text-align: center;
+}
