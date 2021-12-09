@@ -15,7 +15,7 @@
 </head>
 <body>
 
-<h1>¡¡ Bienvenido <%=cliente.getNombre()%> <%=cliente.getApellido()%> de <%=cliente.getLocalidad().getNombre()%> !!</h1>
+<h1>ï¿½ï¿½ Bienvenido <%=cliente.getNombre()%> <%=cliente.getApellido()%> de <%=cliente.getLocalidad().getNombre()%> !!</h1>
 
 <header>
 		<nav class="navegacion">
@@ -34,9 +34,7 @@
 				<li><a href="#">Consultas</a>
 					<ul class = "subMenu">
 						<li><a href="#">Libros</a></li>
-						<li>
-
-						</li>
+						<li><a href="#">Autores</a></li></li>
 						<li><a href="#">Categorias</a></li>
 						<li><a href="#">Editoriales</a></li>
 					</ul>
@@ -67,7 +65,7 @@
 			<form action="ServletAutor?accion=agregar" method="post">
 				<input class="controlr" type="text" placeholder="Ingrese nombre del autor" maxlength="20" name="nombre"required>
 				<input class="controlr" type="text" placeholder="Ingrese apellido del autor" maxlength="20" name="apellido" required> 
-				<button class="button" type="submit">Añadir Autor</button>
+				<button class="button" type="submit">Aï¿½adir Autor</button>
 			</form>
 			<form action="ServletAutor?accion=borrar" method="post">
 				<input class="controlr" type="text" placeholder="Ingrese id del autor" maxlength="10" name="id"required>
