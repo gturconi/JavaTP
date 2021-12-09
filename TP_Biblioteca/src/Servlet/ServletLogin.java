@@ -95,15 +95,14 @@ public class ServletLogin extends HttpServlet {
         if(ctrl.buscarCliente(user, pass)!=null) {
         	request.setAttribute("errorMensaje", "Ya existe un usuario con ese nombre!");
         	request.getRequestDispatcher("WEB-INF/registro.jsp").forward(request, response);
-        }
-        
-        if(ctrl.agregarCliente(c)== 0) {
+        }        
+        else if(ctrl.agregarCliente(c)== 0) {
         	request.setAttribute("errorConexion", "No se pudo conectar con la base de datos");
         	request.getRequestDispatcher("WEB-INF/registro.jsp").forward(request, response);
-        };
-        
-        request.setAttribute("altaMensaje", "Usuario registrado con exito!");
-    	request.getRequestDispatcher("WEB-INF/registro.jsp").forward(request, response);
+        }else {
+        	request.setAttribute("altaMensaje", "Usuario registrado con exito!");
+        	request.getRequestDispatcher("WEB-INF/registro.jsp").forward(request, response);	
+        }                
 	}
 
 	private void registrar(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
