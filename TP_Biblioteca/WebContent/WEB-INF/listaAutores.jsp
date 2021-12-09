@@ -8,18 +8,25 @@
 <%
    LinkedList<Autor> autores = (LinkedList<Autor>)request.getAttribute("Autores");  
 %>
+
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Autores</title>
+<link rel="stylesheet" href="estilos/tabla.css">
 </head>
 <body>
-<table>
-<%for(Autor aut : autores){ %>
- <tr>
-  <td> <%=aut.getId()%></td>
-  <td> <%=aut.getNombre()%></td>  
-  <td> <%=aut.getApellido()%></td>   
- </tr> 
-<%}%>
-</table>
+    <div id="tabla">
+        <table>
+            <thead>
+                <tr>
+                    <th>Numero</th><th>Nombre</th><th>Apellido</th>
+                </tr>
+            </thead>
+            <tr>
+            <%for(Autor aut : autores){ %>
+                <td> <%=aut.getId()%></td><td> <%=aut.getNombre()%></td><td> <%=aut.getApellido()%></td>  
+            </tr>
+            <%}%>
+        </table>
+    </div>
 </body>
 </html>
