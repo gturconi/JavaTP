@@ -10,16 +10,24 @@
 %>
 
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Localidades</title>
+<link rel="stylesheet" href="estilos/tabla.css">
+<link rel="icon" href="icons/localidad.ico">
 </head>
 <body>
-<table>
-<%for(Localidad loc : localidades){ %>
- <tr>
-  <td> <%=loc.getId()%></td>
-  <td> <%=loc.getNombre()%></td>   
- </tr> 
-<%}%>
-</table>
+    <div id="tabla">
+        <table>
+             <thead>
+                <tr>
+                  <th>Numero</th><th>Nombre</th>
+              </tr>
+             </thead>
+            <tr>
+            <%for(Localidad loc : localidades){ %>
+                <td> <%=loc.getId()%></td><td> <%=loc.getNombre()%></td> 
+            </tr> 
+             <%}%>
+        </table>
+    </div>
 </body>
 </html>
