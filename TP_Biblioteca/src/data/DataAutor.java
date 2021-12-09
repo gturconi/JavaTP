@@ -4,9 +4,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.LinkedList;
 
 import entities.Autor;
+import entities.Cliente;
 import entities.Libro;
 
 public class DataAutor {
@@ -120,18 +122,19 @@ public class DataAutor {
 				
 				//BORRAMOS LOS LIBROS DE LA TABLA AUTOR_LIBRO
 				stmt1=DbHandler.getInstancia().getConn().
-						prepareStatement("delete from autor_libro where id=?");
+						prepareStatement("delete from autor_libro where idAutor=?");
 				stmt1.setInt(1, id);
 				stmt1.executeUpdate();
 				
 				//BORRAMOS LOS LIBROS DE LA TABLA LIBRO
-				for (Libro libro : libros) {
-					stmt2=DbHandler.getInstancia().getConn().
-							prepareStatement("delete from libro where id=?");
-					stmt2.setInt(1,libro.getId());
-					stmt2.executeUpdate();
-				}
-												
+				if(!libros.isEmpty()) {
+					for (Libro libro : libros) {
+						stmt2=DbHandler.getInstancia().getConn().
+								prepareStatement("delete from libro where id=?");
+						stmt2.setInt(1,libro.getId());
+						stmt2.executeUpdate();
+					}
+				}															
 				stmt=DbHandler.getInstancia().getConn().
 						prepareStatement("delete from autor where id=?");
 				stmt.setInt(1, id);
@@ -141,21 +144,34 @@ public class DataAutor {
 		        e.printStackTrace();
 			} finally {
 		        try {           
-		            if(stmt!=null && stmt1!=null)stmt.close(); stmt1.close();
-		            DbHandler.getInstancia().releaseConn();
+		            if(stmt!=null && stmt1!=null && stmt2!=null) {
+		            	stmt.close(); stmt1.close(); stmt2.close();
+			            DbHandler.getInstancia().releaseConn();	
+		            }		            
 		        } catch (SQLException e) {
 		        	e.printStackTrace();
+		        	
 		        }
-			}			
+			}
+			
 		}
 	  
 	  private LinkedList<Libro> buscaLibros(int id) {
-		  PreparedStatement stmt= null;
 		  
+		  LinkedList<Libro> list= new LinkedList<>();
+		  PreparedStatement stmt= null;
+		  ResultSet rs=null;
 		  try{ stmt=DbHandler.getInstancia().getConn().
 					prepareStatement("select idLibro from autor_libro where idAutor=?");
 			stmt.setInt(1, id);
-			stmt.executeUpdate();
+			rs= stmt.executeQuery();;
+			if(rs!=null) {
+				while(rs.next()) {
+					Libro l=new Libro ();					
+					l.setId(rs.getInt("idLibro"));					
+					list.add(l);
+				}
+			}	
 	     } catch (SQLException e) {
 	        e.printStackTrace();
 		} finally {
@@ -166,7 +182,7 @@ public class DataAutor {
 	        	e.printStackTrace();
 	        }
 		}
-		return null;
+		return list;
 	}
 
 	public void modificar(Autor a) {
@@ -188,11 +204,37 @@ public class DataAutor {
 		            if(stmt!=null)stmt.close();
 		            DbHandler.getInstancia().releaseConn();
 		        } catch (SQLException e) {
-		        	e.printStackTrace();
+		        	e.printStackTrace();		        	
 		        }
-			}	
+			}			
 		}
 
-	  
+	public int buscarAutor(String nombre, String apellido) {	 			  	  
+		PreparedStatement stmt=null;
+		ResultSet rs=null;
+		try {
+			stmt=DbHandler.getInstancia().getConn().prepareStatement(
+					"select id,nombre, apellido from autor where nombre=? and apellido=?");
+			stmt.setString(1, nombre);
+			stmt.setString(2, apellido);
+			rs=stmt.executeQuery();
+			
+			if(rs!=null && rs.next()) {
+				return 1;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs!=null) {rs.close();}
+				if(stmt!=null) {stmt.close();}
+				DbHandler.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}			
+		return 0; 	 
+  }
+
 
 }

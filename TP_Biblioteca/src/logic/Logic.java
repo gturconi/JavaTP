@@ -62,6 +62,11 @@ public class Logic {
 		return da.buscar(id);		
 	}
 	
+	public int buscarAutPorNombre(String nombre, String apellido) {
+		return da.buscarAutor(nombre, apellido);		
+	}
+	
+	
 	public void agregarAut(Autor a) {
 		da.agregar(a);
 	}

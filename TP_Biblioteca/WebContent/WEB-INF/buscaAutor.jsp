@@ -12,8 +12,17 @@
 <title>Autor</title>
 <link rel="stylesheet" href="estilos/tabla.css">
 </head>
-<body>
-    <!--<%=autor.toString()%> ¿Para que sive? lo comente porque quizas no es necesario--> 
+<body>     
+    
+    <form action="ServletAutor?accion=buscar" method="post">
+				<input class="controlr" type="text" placeholder="Ingrese id del autor" maxlength="10" name="id" required> 
+				<button class="button" type="submit">Buscar Autor</button>
+	</form>
+<%if(null != request.getAttribute("error")){
+	  out.println(request.getAttribute("error"));    
+  }	  
+  %>	
+<% if(autor!=null){%>	
     <div id="tabla">
         <table>
             <thead>
@@ -28,5 +37,6 @@
             </tr>
         </table>
     </div>
+<%}%> 
 </body>
 </html>

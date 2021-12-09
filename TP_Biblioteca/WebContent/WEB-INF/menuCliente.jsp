@@ -58,23 +58,16 @@
 			<form action="ServletAutor?accion=listar" method="post">
 				<button class="button" type="submit">Listar Autores</button>
 			</form>
-			<form action="ServletAutor?accion=buscar" method="post">
-				<input class="controlr" type="text" placeholder="Ingrese id del autor" maxlength="10" name="id" required> 
+			<form action="ServletMenu?accion=buscarAutor" method="post">				 
 				<button class="button" type="submit">Buscar Autor</button>
 			</form>
-			<form action="ServletAutor?accion=agregar" method="post">
-				<input class="controlr" type="text" placeholder="Ingrese nombre del autor" maxlength="20" name="nombre"required>
-				<input class="controlr" type="text" placeholder="Ingrese apellido del autor" maxlength="20" name="apellido" required> 
-				<button class="button" type="submit">Aï¿½adir Autor</button>
+			<form action="ServletMenu?accion=agregarAutor" method="post">				 
+				<button class="button" type="submit">Añadir Autor</button>
 			</form>
-			<form action="ServletAutor?accion=borrar" method="post">
-				<input class="controlr" type="text" placeholder="Ingrese id del autor" maxlength="10" name="id"required>
-				<button class="button" type="submit">Borrar Autor</button>
-			</form>
-			<form action="ServletAutor?accion=modificar" method="post">
-				<input class="controlr" type="text" placeholder="Ingrese el nuevo id del autor" maxlength="10" name="id"required>
-				<input class="controlr" type="text" placeholder="Ingrese el nuevo nombre del autor" maxlength="10" name="nombre"required>
-				<input class="controlr" type="text" placeholder="Ingrese el nuevo apellido del autor" maxlength="10" name="apellido"required>
+            <form action="ServletMenu?accion=borrarAutor" method="post">
+                   <button class="button" type="submit">Borrar Autor</button>
+            </form>						
+				<form action="ServletMenu?accion=modificarAutor" method="post">				
 				<button class="button" type="submit">Modificar Autor</button>
 			</form>	
 	   </section>

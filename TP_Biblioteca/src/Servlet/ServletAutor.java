@@ -65,14 +65,24 @@ public class ServletAutor extends HttpServlet {
 		a.setId(id);
 		a.setNombre(nombre);
 		a.setApellido(apellido);
-		ctrl.modificarAut(a);
+		if(ctrl.buscarAut(id)!=null) {
+			ctrl.modificarAut(a);
+			request.setAttribute("exito", "El autor fue actualizado exitosamente");	
+		}else {
+			request.setAttribute("error", "El id no corresponde a ningun autor");
+		}
 		request.getRequestDispatcher("WEB-INF/modificarAutor.jsp").forward(request, response);
 	}
 
 	private void borrar(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
 		Logic ctrl = new Logic();
 		int id = Integer.parseInt(request.getParameter("id"));
-	    ctrl.borrarAut(id);
+		if(ctrl.buscarAut(id)!= null) {
+			ctrl.borrarAut(id);
+			request.setAttribute("exito", "El autor fue eliminado exitosamente");	
+		}else {
+			request.setAttribute("error", "El id no corresponde a ningun autor");
+		}	    	    
 	    request.getRequestDispatcher("WEB-INF/borrarAutor.jsp").forward(request, response);
 	}
 
@@ -83,17 +93,27 @@ public class ServletAutor extends HttpServlet {
 		Autor a = new Autor();
 		a.setNombre(nombre);
 		a.setApellido(apellido);
-		ctrl.agregarAut(a);
-		request.setAttribute("Autor", a);
+		if(ctrl.buscarAutPorNombre(nombre, apellido)==1) {
+        	request.setAttribute("error", "Ya existe un autor con ese nombre y apellido!");
+        	request.getRequestDispatcher("WEB-INF/añadirAutor.jsp").forward(request, response);
+        }else {
+        	ctrl.agregarAut(a);
+    		request.setAttribute("Autor", a);	
+        }		
 		request.getRequestDispatcher("WEB-INF/añadirAutor.jsp").forward(request, response);
 	}
 
 	private void buscar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Logic ctrl = new Logic();
-	    int id = Integer.parseInt(request.getParameter("id"));
-	    Autor autor = ctrl.buscarAut(id);	    
+	    int id = Integer.parseInt(request.getParameter("id"));	    
+	    Autor autor = ctrl.buscarAut(id);
+	    if(autor != null) {
+	    	request.setAttribute("Autor", autor);	
+	    }else {
+	    	request.setAttribute("error", "El id no corresponde a ningun autor!");
+	    }
 		//response.getWriter().append(String.valueOf(autor.getId()));
-	    request.setAttribute("Autor", autor);
+	    
 	    request.getRequestDispatcher("WEB-INF/buscaAutor.jsp").forward(request, response);
 	}
 
