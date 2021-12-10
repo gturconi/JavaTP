@@ -31,28 +31,3 @@ h1{
 	background: #ef8354;
 }
 
-.form-listado{
-	width: 400px;
-	height: 140px;
-	background: #4e4d4d ;
-	margin: auto;
-	margin-top: 80px;
-	padding: 20px 30px;
-	border-top: 4px solid #411023;
-	color: white;
-}
-
-.controlr {
-	width: 100%;
-	border: 1px solid #411023;
-	margin-bottom: 15px;
-	padding: 11px 10px;
-	background: #252323;
-	font-size:  14px;
-	font-weight: bold;
-	color: #ef8354;;
-}
-
-
-
-
