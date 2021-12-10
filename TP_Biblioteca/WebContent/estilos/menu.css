@@ -24,11 +24,6 @@
 	text-decoration: none;
 }
 
-.menu li a:hover{
-background: #ef8354;
-transition: all .5s;
-}
-
 
 .menu > li > form{
 	display: block;
@@ -37,12 +32,6 @@ transition: all .5s;
 	font-family: arial;
 	text-decoration: none;
 }
-
-.menu li form:hover{
-background: #ef8354;
-transition: all .5s;
-}
-
 
 
 /*SUB-MENU CLIENTE Y ADMINISTRADOR*/
@@ -58,23 +47,21 @@ transition: all .5s;
 
 .subMenu li a {
 	display: block;
-	padding: 15 px;
+	padding: 0 px;
 	color: white;
 	font-family: arial;
 	text-decoration: none;
-	padding: 10px 20px; 
+	padding: 0px 0px; 
 }
 
 .subMenu li form {
 	display: block;
-	padding: 15 px;
+	padding: 0 px;
 	color: white;
 	font-family: arial;
 	text-decoration: none;
-	padding: 10px 20px; 
+	padding: 0px 0px; 
 }
-
-
 
 
 .menu li:hover .subMenu {
