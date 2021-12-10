@@ -14,6 +14,9 @@
 <link rel="stylesheet" href="estilos/tabla.css">
 </head>
 <body>
+    <h1>
+        Listado de autores
+    </h1>
     <div id="tabla">
         <table>
             <thead>
