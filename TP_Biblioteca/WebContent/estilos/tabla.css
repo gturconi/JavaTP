@@ -5,7 +5,7 @@ body{
 
 #tabla{
 width: 600px;
-margin: 150px auto;
+margin: 80px auto;
 }
 
 table{
@@ -31,9 +31,11 @@ tr:hover td{
     color: white;
 }
 
-p{
-    font-family: arial;
-    color: #411023;
+
+h1{
+    margin-top: 41px;
+    color:#411023;
     font-size: large;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
     text-align: center;
-}
+ }
