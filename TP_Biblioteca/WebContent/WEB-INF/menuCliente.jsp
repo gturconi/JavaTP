@@ -11,15 +11,15 @@
 <link rel="stylesheet" type="text/css" href="estilos/menu.css">
 <link rel="stylesheet" type="text/css" href="estilos/botonesListar.css">
 <link rel="icon" href="icons/libro.ico">
-<title>Bienvenido</title>
+<title>Bienvenido Cliente</title>
 </head>
 <body>
 
-<h1>Bienvenido <%=cliente.getNombre()%> <%=cliente.getApellido()%> de <%=cliente.getLocalidad().getNombre()%></h1>
+<h1>Bienvenido Cliente <%=cliente.getNombre()%> <%=cliente.getApellido()%> de <%=cliente.getLocalidad().getNombre()%></h1>
 
 <header>
 		<nav class="navegacion">
-			<ul class = "menu">
+			<ul class = "nav">
 				<li><a href="#">Cuenta</a>
 					<ul class = "subMenu">
 						<li>
@@ -40,7 +40,7 @@
 					</ul>
 				</li>
 				<li><a href="#">Listados</a>
-					<ul class = "subMenu">
+					<ul>
 						<li>
 							<form action="ServletAutor?accion=listar" method="post">
 								<button id="button" type="submit">Autores</button>
@@ -68,7 +68,7 @@
 						</li>
 					</ul>
 				<li><a href="#">Busquedas</a>
-					<ul class = "subMenu">
+					<ul>
 						<li>
 							<form action="ServletMenu?accion=buscarAutor" method="post">				 
 								<button id="button" type="submit">Autor</button>
@@ -76,29 +76,29 @@
 						</li>
 						<li>
 							<form> <!-- llamar servlet para buscar categoria-->
-								<button id="button" type="submit">Categorias</button>
+								<button id="button" type="submit">Categoria</button>
 							</form>
 						</li>
 						<li>
 							<form> <!-- llamar servlet para buscar editorial-->
-								<button id="button" type="submit">Editoriales</button>
+								<button id="button" type="submit">Editorial</button>
 							</form>
 						</li>
 						<li>
 							<form> <!-- llamar servlet para buscar libro-->
-								<button id="button" type="submit">Libros</button>
+								<button id="button" type="submit">Libro</button>
 							</form>
 						</li>
 						<li>
 							<form> <!-- llamar servlet para buscar pedido-->
-								<button id="button" type="submit">Pedidos</button>
+								<button id="button" type="submit">Pedido</button>
 							</form>
 						</li>
 					</ul>
 				</li>
 				</li>
 				<li><a href="#">Pedido</a>
-					<ul class = "subMenu">
+					<ul>
 						<li>
 							<form> <!-- llamar servlet para realizar pedido-->
 								<button id="button" type="submit">Realizar</button>
