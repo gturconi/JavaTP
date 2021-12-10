@@ -15,61 +15,99 @@
 </head>
 <body>
 
-<h1>ï¿½ï¿½ Bienvenido <%=cliente.getNombre()%> <%=cliente.getApellido()%> de <%=cliente.getLocalidad().getNombre()%> !!</h1>
+<h1>Bienvenido <%=cliente.getNombre()%> <%=cliente.getApellido()%> de <%=cliente.getLocalidad().getNombre()%></h1>
 
 <header>
 		<nav class="navegacion">
 			<ul class = "menu">
 				<li><a href="#">Cuenta</a>
 					<ul class = "subMenu">
-						<li><a href="#">Modificar Cuenta</a></li>
-						<li><a href="#">Eliminar Cuenta</a></li>
+						<li>
+							<form> <!-- llamar servlet para modificar/editar cuenta-->
+								<button id="button" type="submit">Editar</button>
+							</form>
+						</li>
+						<li>
+							<form> <!-- llamar servlet para mostrar eliminar cuenta-->
+								<button id="button" type="submit">Eliminar</button>
+							</form>
+						</li>
 						<li>							   					   						   
 							<form  action="ServletLogin" method="post">
-								<input id="button1" type="submit" name="logout" value="Cerrar Sesion">
+								<input id="button" type="submit" name="logout" value="Cerrar Sesion">
 							</form>				
 						</li>
 					</ul>
 				</li>
-				<li><a href="#">Consultas</a>
+				<li><a href="#">Listados</a>
 					<ul class = "subMenu">
-						<li><a href="#">Libros</a></li>
-						<li><a href="#">Autores</a></li></li>
-						<li><a href="#">Categorias</a></li>
-						<li><a href="#">Editoriales</a></li>
+						<li>
+							<form action="ServletAutor?accion=listar" method="post">
+								<button id="button" type="submit">Autores</button>
+							</form>
+						</li></li>
+						<li>
+							<form> <!-- llamar servlet para mostrar listado de categorias-->
+								<button id="button" type="submit">Categorias</button>
+							</form>
+						</li>
+						<li>
+							<form> <!-- llamar servlet para mostrar listado de editoriales-->
+								<button id="button" type="submit">Editoriales</button>
+							</form>
+						</li>
+						<li>
+							<form> <!-- llamar servlet para mostrar listado de libros-->
+								<button id="button" type="submit">Libros</button>
+							</form>
+						</li>
+						<li>
+							<form> <!-- llamar servlet para mostrar listado de pedidos-->
+								<button id="button" type="submit">Pedidos</button>
+							</form>
+						</li>
 					</ul>
+				<li><a href="#">Busquedas</a>
+					<ul class = "subMenu">
+						<li>
+							<form action="ServletMenu?accion=buscarAutor" method="post">				 
+								<button id="button" type="submit">Autor</button>
+							</form>
+						</li>
+						<li>
+							<form> <!-- llamar servlet para buscar categoria-->
+								<button id="button" type="submit">Categorias</button>
+							</form>
+						</li>
+						<li>
+							<form> <!-- llamar servlet para buscar editorial-->
+								<button id="button" type="submit">Editoriales</button>
+							</form>
+						</li>
+						<li>
+							<form> <!-- llamar servlet para buscar libro-->
+								<button id="button" type="submit">Libros</button>
+							</form>
+						</li>
+						<li>
+							<form> <!-- llamar servlet para buscar pedido-->
+								<button id="button" type="submit">Pedidos</button>
+							</form>
+						</li>
+					</ul>
+				</li>
 				</li>
 				<li><a href="#">Pedido</a>
 					<ul class = "subMenu">
-						<li><a href="#">RealizarPedido</a></li>
+						<li>
+							<form> <!-- llamar servlet para realizar pedido-->
+								<button id="button" type="submit">Realizar</button>
+							</form>
+						</li>
 					</ul>
 				</li>
 			</ul>
 		</nav>
 	</header>
-
-
-		<section class="form-listado">
-			   <form action="ServletLocalidad" method="post">
-			   <button class="button" type="submit">Listar Localidades</button>
-			   </form>
-		</section>
-		<section class="form-listado">
-			<form action="ServletAutor?accion=listar" method="post">
-				<button class="button" type="submit">Listar Autores</button>
-			</form>
-			<form action="ServletMenu?accion=buscarAutor" method="post">				 
-				<button class="button" type="submit">Buscar Autor</button>
-			</form>
-			<form action="ServletMenu?accion=agregarAutor" method="post">				 
-				<button class="button" type="submit">Añadir Autor</button>
-			</form>
-            <form action="ServletMenu?accion=borrarAutor" method="post">
-                   <button class="button" type="submit">Borrar Autor</button>
-            </form>						
-				<form action="ServletMenu?accion=modificarAutor" method="post">				
-				<button class="button" type="submit">Modificar Autor</button>
-			</form>	
-	   </section>
 </body>
 </html>
