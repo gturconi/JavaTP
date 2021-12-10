@@ -4,14 +4,16 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="estilos/modificar.css">
+<title>Editar Autor</title>
 </head>
 <body>
-<form action="ServletAutor?accion=modificar" method="post">
-				<input class="controlr" type="text" placeholder="Ingrese el id del autor" maxlength="10" name="id"required>
-				<input class="controlr" type="text" placeholder="Ingrese el nuevo nombre del autor" maxlength="10" name="nombre"required>
-				<input class="controlr" type="text" placeholder="Ingrese el nuevo apellido del autor" maxlength="10" name="apellido"required>
-				<button class="button" type="submit">Modificar Autor</button>
+	<h1>Modificacion de autor</h1>
+<form class="formularioModificar" action="ServletAutor?accion=modificar" method="post">
+				<input id="campoTexto" type="text" placeholder="Ingrese el id del autor" maxlength="10" name="id"required>
+				<input id="campoTexto" type="text" placeholder="Ingrese el nuevo nombre del autor" maxlength="20" name="nombre"required>
+				<input id="campoTexto" type="text" placeholder="Ingrese el nuevo apellido del autor" maxlength="20" name="apellido"required>
+				<button id="botonModificar" type="submit">Modificar Autor</button>
 			</form>
 <%if(null != request.getAttribute("exito")){
 	  out.println(request.getAttribute("exito"));  
