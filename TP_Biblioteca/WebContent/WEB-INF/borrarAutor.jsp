@@ -4,12 +4,14 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="estilos/borrar.css">
+<title>Eliminar Autor</title>
 </head>
 <body>
-<form action="ServletAutor?accion=borrar" method="post">
-				<input class="controlr" type="text" placeholder="Ingrese id del autor" maxlength="10" name="id"required>
-				<button class="button" type="submit">Borrar Autor</button>
+	<h1>Eliminacion de autor</h1>
+<form class="formularioEliminar" action="ServletAutor?accion=borrar" method="post">
+				<input id="campoTexto" type="text" placeholder="Ingrese id del autor" maxlength="10" name="id"required>
+				<button id="botonEliminar" class="button" type="submit">Borrar Autor</button>
 			</form>
 <%if(null != request.getAttribute("exito")){
 	  out.println(request.getAttribute("exito"));  
