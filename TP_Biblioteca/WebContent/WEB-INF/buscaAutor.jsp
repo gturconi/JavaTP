@@ -9,15 +9,15 @@
    Autor autor = (Autor)request.getAttribute("Autor");  
 %>
 <meta charset="ISO-8859-1">
-<title>Autor</title>
+<title>Buscar Autor</title>
 <link rel="stylesheet" href="estilos/tabla.css">
-<link rel="stylesheet" href="estilos/botonesListar.css">
+<link rel="stylesheet" href="estilos/buscar.css">
 </head>
 <body>     
-    <h1>Busqueda de autor</h1>
-    <form class="form-listado" action="ServletAutor?accion=buscar" method="post">
-				<input class="controlr" type="text" placeholder="Ingrese id del autor " maxlength="10" name="id" required> 
-				<button id= "button" type="submit">Buscar Autor</button>
+    <h1>Busqueda de Autor</h1>
+    <form class="formularioBusqueda" action="ServletAutor?accion=buscar" method="post">
+				<input id="campoTexto" type="text" placeholder="Ingrese id del autor " maxlength="10" name="id" required> 
+				<button id= "botonBuscar" type="submit">Buscar Autor</button>
 	</form>
 <%if(null != request.getAttribute("error")){
 	  out.println(request.getAttribute("error"));    
