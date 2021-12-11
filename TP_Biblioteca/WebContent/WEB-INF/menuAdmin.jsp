@@ -14,7 +14,7 @@ pageEncoding="ISO-8859-1"%>
 <title>Bienvenido Admin</title>
 </head>
 	<body>
-	<h1>Bienvenido Aministrador <%=cliente.getNombre()%> <%=cliente.getApellido()%></h1>
+	<h1>Bienvenido Administrador <%=cliente.getNombre()%> <%=cliente.getApellido()%></h1>
 	
 		<nav class="navegacion">
 			<ul class="nav">
@@ -40,7 +40,7 @@ pageEncoding="ISO-8859-1"%>
 				<li><a href="#">Listados</a>
 					<ul>
 						<li>
-							<form action="ServletLocalidad" method="post">
+							<form action="ServletLocalidad?accion=listar" method="post">
                                 <button id="button" type="submit">Localidades</button>
                             </form>
 						</li>
@@ -74,9 +74,9 @@ pageEncoding="ISO-8859-1"%>
 				<li><a href="#">Busquedas</a>
 					<ul>
 						<li>
-							<form> <!-- llamar servlet para buscar localidades-->
-								<button id="button" type="submit">Localidad</button>
-							</form>
+						    <form action="ServletMenu?accion=buscarLocalidad" method="post">
+                                <button id="button" type="submit">Localidad</button>
+                            </form>																			
 						</li>
 						<li>
 							<form action="ServletMenu?accion=buscarAutor" method="post">				 
@@ -107,10 +107,29 @@ pageEncoding="ISO-8859-1"%>
 				</li>
 				<li><a href="#">Modificaciones</a>
 					<ul>
+					<li><a href="#">Localidad</a>
+							<ul>
+								<li>
+								    <form action="ServletMenu?accion=anadirLocalidad" method="post">				 
+								<button id="button" type="submit">Añadir Localidad</button>
+							        </form>																	
+								</li>
+								<li>
+								     <form action="ServletMenu?accion=modificarLocalidad" method="post">				 
+								<button id="button" type="submit">Modificar Localidad</button>
+							        </form>									
+								</li>
+								<li>
+								    <form action="ServletMenu?accion=borrarLocalidad" method="post">				 
+								<button id="button" type="submit">Eliminar Localidad</button>
+							        </form> 									
+								</li>
+							</ul>
+						</li>
 						<li><a href="#">Autor</a>
 							<ul>
 								<li>
-									<form action="ServletMenu?accion=añadirAutor" method="post">				 
+									<form action="ServletMenu?accion=anadirAutor" method="post">				 
                                         <button id="button" type="submit">Añadir Autor</button>
                                     </form>
 								</li>

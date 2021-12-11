@@ -9,6 +9,7 @@
    Autor autor = (Autor)request.getAttribute("Autor");  
 %>
 <meta charset="ISO-8859-1">
+
 <title>AutorNuevo</title>
 <link rel="stylesheet" href="estilos/tabla.css">
 

@@ -37,7 +37,7 @@ public class ServletMenu extends HttpServlet {
 		String accion = request.getParameter("accion");
 		if(accion.equalsIgnoreCase("buscarAutor")) {
 			request.getRequestDispatcher("WEB-INF/buscaAutor.jsp").forward(request, response);
-		}else if(accion.equalsIgnoreCase("agregarAutor")) {
+		}else if(accion.equalsIgnoreCase("anadirAutor")) {			
 			request.getRequestDispatcher("WEB-INF/añadirAutor.jsp").forward(request, response);
 		}else if(accion.equalsIgnoreCase("borrarAutor")) {
 			request.getRequestDispatcher("WEB-INF/borrarAutor.jsp").forward(request, response);
@@ -45,6 +45,14 @@ public class ServletMenu extends HttpServlet {
 			request.getRequestDispatcher("WEB-INF/modificarAutor.jsp").forward(request, response);
 		}else if(accion.equalsIgnoreCase("modificarCuenta")) {
 			request.getRequestDispatcher("WEB-INF/modificarCuenta.jsp").forward(request, response);
+		}else if(accion.equalsIgnoreCase("buscarLocalidad")) {
+			request.getRequestDispatcher("WEB-INF/buscaLocalidad.jsp").forward(request, response);
+		}else if(accion.equalsIgnoreCase("anadirLocalidad")) {
+			request.getRequestDispatcher("WEB-INF/añadirLocalidad.jsp").forward(request, response);			
+		}else if(accion.equalsIgnoreCase("modificarLocalidad")) {
+			request.getRequestDispatcher("WEB-INF/modificarLocalidad.jsp").forward(request, response);			
+		}else if(accion.equalsIgnoreCase("borrarLocalidad")) {
+			request.getRequestDispatcher("WEB-INF/borrarLocalidad.jsp").forward(request, response);			
 		}						
 	}
 
