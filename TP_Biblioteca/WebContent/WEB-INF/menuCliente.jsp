@@ -23,9 +23,9 @@
 				<li><a href="#">Cuenta</a>
 					<ul class = "subMenu">
 						<li>
-							<form> <!-- llamar servlet para modificar/editar cuenta-->
-								<button id="button" type="submit">Editar</button>
-							</form>
+						<form action="ServletMenu?accion=modificarCuenta" method="post">
+							<button id="button" type="submit">Editar</button>
+						</form>							
 						</li>
 						<li>
 							<form> <!-- llamar servlet para mostrar eliminar cuenta-->

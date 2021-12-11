@@ -38,10 +38,7 @@ public class ServletLocalidad extends HttpServlet {
 		LinkedList<Localidad> localidades = ctrl.listadoLoc();
                            	
 		request.setAttribute("Localidades", localidades);
-	/*	for(Localidad loc : localidades) {
-			response.getWriter().append(loc.getNombre());
-		}*/
-        
+	    
 		request.getRequestDispatcher("WEB-INF/listaLocalidades.jsp").forward(request, response);
 	}
 

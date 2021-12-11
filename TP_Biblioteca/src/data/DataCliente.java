@@ -164,19 +164,16 @@ public class DataCliente {
 			try {
 				stmt=DbHandler.getInstancia().getConn().
 						prepareStatement(
-								"update cliente set nombre=?, apellido=?, user=?, password=?, domicilio=?, telefono=?, email=?, fechaInscripcion=?, idLocalidad=?, isAdmin=? where id=?");
+								"update cliente set nombre=?, apellido=?, user=?, password=?, domicilio=?, telefono=?, email=?, idLocalidad=? where id=?");
 				stmt.setString(1, c.getNombre());
-				stmt.setString(2, c.getApellido());
-				stmt.setString(2, c.getApellido());
+				stmt.setString(2, c.getApellido());				
 				stmt.setString(3, c.getUser());
 				stmt.setString(4, c.getPassword());
 				stmt.setString(5, c.getDomicilio());
 				stmt.setString(6, c.getTelefono());
-				stmt.setString(7, c.getEmail());
-				stmt.setObject(8, c.getFechaInscripcion());
-				stmt.setInt(9, c.getLocalidad().getId());
-				stmt.setInt(10, c.getisAdmin());				
-				stmt.setInt(11, c.getId());
+				stmt.setString(7, c.getEmail());				
+				stmt.setInt(8, c.getLocalidad().getId());							
+				stmt.setInt(9, c.getId());
 				stmt.executeUpdate();
 								
 			}  catch (SQLException e) {
@@ -190,4 +187,34 @@ public class DataCliente {
 		        }
 			}	
 		}
+	 
+	 
+	 public int validaCliente(String user) {	 					    
+			PreparedStatement stmt=null;
+			ResultSet rs=null;
+			try {
+				stmt=DbHandler.getInstancia().getConn().prepareStatement(
+						"select id,nombre, apellido, domicilio, telefono, email, fechaInscripcion, idLocalidad, isAdmin from cliente where user=?");
+				stmt.setString(1, user);				
+				rs=stmt.executeQuery();
+				
+				if(rs!=null && rs.next()) {
+					return 1;
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				try {
+					if(rs!=null) {rs.close();}
+					if(stmt!=null) {stmt.close();}
+					DbHandler.getInstancia().releaseConn();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}			
+			return 0; 	 
+	  }
+	 
 }
+
+

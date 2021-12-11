@@ -86,6 +86,11 @@ public class Logic {
 		return dc.buscarCliente(user,pass);		
 	}
 	
+	public int validarCliente(String user) {
+		return dc.validaCliente(user);		
+	}
+	
+	
 	public int agregarCliente(Cliente c) {
 		return dc.agregarCliente(c);
 	}

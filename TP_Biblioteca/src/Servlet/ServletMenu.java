@@ -43,6 +43,8 @@ public class ServletMenu extends HttpServlet {
 			request.getRequestDispatcher("WEB-INF/borrarAutor.jsp").forward(request, response);
 		}else if(accion.equalsIgnoreCase("modificarAutor")) {
 			request.getRequestDispatcher("WEB-INF/modificarAutor.jsp").forward(request, response);
+		}else if(accion.equalsIgnoreCase("modificarCuenta")) {
+			request.getRequestDispatcher("WEB-INF/modificarCuenta.jsp").forward(request, response);
 		}
 						
 	}
