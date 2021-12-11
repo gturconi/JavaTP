@@ -81,7 +81,7 @@ public class ServletAutor extends HttpServlet {
 			ctrl.borrarAut(id);
 			request.setAttribute("exito", "El autor fue eliminado exitosamente");	
 		}else {
-			request.setAttribute("error", "El id no corresponde a ningun autor");
+			request.setAttribute("baja", "El id no corresponde a ningun autor");
 		}	    	    
 	    request.getRequestDispatcher("WEB-INF/borrarAutor.jsp").forward(request, response);
 	}

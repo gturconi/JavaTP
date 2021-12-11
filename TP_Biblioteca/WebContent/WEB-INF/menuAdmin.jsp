@@ -21,14 +21,14 @@ pageEncoding="ISO-8859-1"%>
 				<li><a href="#">Cuenta</a>
 					<ul >
 						<li>
-							<form> <!-- llamar servlet para modificar/editar cuenta-->
-								<button id="button" type="submit">Editar</button>
-							</form>
+							<form action="ServletMenu?accion=modificarCuenta" method="post">
+							<button id="button" type="submit">Editar</button>
+						    </form>
 						</li>
 						<li>
-							<form> <!-- llamar servlet para mostrar eliminar cuenta-->
-								<button id="button" type="submit">Eliminar</button>
-							</form>
+						<form action="ServletCliente?accion=eliminarCuenta" method="post">
+							<button id="button" type="submit">Eliminar</button>
+						</form>
 						</li>
 						<li>
 							<form  action="ServletLogin" method="post">

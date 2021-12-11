@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import entities.Cliente;
 import logic.Logic;
@@ -41,8 +42,26 @@ public class ServletCliente extends HttpServlet {
 		String accion = request.getParameter("accion");
 		if(accion.equalsIgnoreCase("actualizar")) {
 			actualizar(request,response);				
+		}else if(accion.equalsIgnoreCase("eliminarCuenta")) {
+			borrar(request,response);			
 		}
 		
+	}
+
+	private void borrar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Logic ctrl = new Logic();
+		
+		//Eliminamos al cliente
+		ctrl.borrarCliente(((Cliente) request.getSession().getAttribute("Cliente")).getId());
+		
+		//Cerramos la sesion
+		HttpSession session=request.getSession(false);
+		if (session != null) {
+            session.removeAttribute("Cliente");
+		}
+		
+		request.setAttribute("exito", "Cuenta eliminada exitosamente");				
+		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 
 	private void actualizar(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {

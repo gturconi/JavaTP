@@ -19,6 +19,8 @@
     
   <%if(null != request.getAttribute("errorMensaje")){
 	  out.println(request.getAttribute("errorMensaje"));  
+  }else if(null != request.getAttribute("baja")){
+	  out.println(request.getAttribute("baja"));  
   }     
   %>
   

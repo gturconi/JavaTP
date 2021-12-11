@@ -28,9 +28,9 @@
 						</form>							
 						</li>
 						<li>
-							<form> <!-- llamar servlet para mostrar eliminar cuenta-->
-								<button id="button" type="submit">Eliminar</button>
-							</form>
+						<form action="ServletCliente?accion=eliminarCuenta" method="post">
+							<button id="button" type="submit">Eliminar</button>
+						</form>													
 						</li>
 						<li>							   					   						   
 							<form  action="ServletLogin" method="post">
