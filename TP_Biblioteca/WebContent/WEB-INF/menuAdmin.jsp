@@ -50,7 +50,7 @@ pageEncoding="ISO-8859-1"%>
                             </form>
 						</li>
 						<li>
-							<form> <!-- llamar servlet para mostrar listado de categorias-->
+							<form action="ServletCategoria?accion=listar" method="post">
 								<button id="button" type="submit">Categorias</button>
 							</form>
 						</li>
@@ -84,7 +84,7 @@ pageEncoding="ISO-8859-1"%>
 							</form>
 						</li>
 						<li>
-							<form> <!-- llamar servlet para buscar categoria-->
+							<form action="ServletMenu?accion=buscarCategoria" method="post">				 
 								<button id="button" type="submit">Categoria</button>
 							</form>
 						</li>
@@ -148,19 +148,19 @@ pageEncoding="ISO-8859-1"%>
 						<li><a href="#">Categoria</a>
 							<ul>
 								<li>
-									<form> <!-- llamar servlet para añadir categoria -->				 
+								    <form action="ServletMenu?accion=anadirCategoria" method="post">				 
                                         <button id="button" type="submit">Añadir Categoria</button>
-                                    </form>
+                                    </form> 									
 								</li>
 								<li>
-									<form> <!-- llamar servlet para modificar categoria -->				 
+								    <form action="ServletMenu?accion=modificarCategoria" method="post">				 
                                         <button id="button" type="submit">Modificar Categoria</button>
-                                    </form>
+                                    </form>									
 								</li>
 								<li>
-									<form> <!-- llamar servlet para borrar categoria -->				 
+								    <form action="ServletMenu?accion=borrarCategoria" method="post">				 
                                         <button id="button" type="submit">Eliminar Categoria</button>
-                                    </form>
+                                    </form>									
 								</li>
 							</ul>
 						</li>

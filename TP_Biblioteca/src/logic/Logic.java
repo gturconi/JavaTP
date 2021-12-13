@@ -111,6 +111,10 @@ public class Logic {
 		return dcat.buscar(id);		
 	}	
 	
+	public int buscarCatPorDescripcion(String desc) {
+		return dcat.buscarCategoriaPorDescripcion(desc);		
+	}
+	
 	public void agregarCategoria(Categoria c) {
 		dcat.agregar(c);
 	}

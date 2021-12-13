@@ -53,6 +53,14 @@ public class ServletMenu extends HttpServlet {
 			request.getRequestDispatcher("WEB-INF/modificarLocalidad.jsp").forward(request, response);			
 		}else if(accion.equalsIgnoreCase("borrarLocalidad")) {
 			request.getRequestDispatcher("WEB-INF/borrarLocalidad.jsp").forward(request, response);			
+		}else if(accion.equalsIgnoreCase("buscarCategoria")) {
+			request.getRequestDispatcher("WEB-INF/buscaCategoria.jsp").forward(request, response);			
+		}else if(accion.equalsIgnoreCase("modificarCategoria")) {
+			request.getRequestDispatcher("WEB-INF/modificarCategoria.jsp").forward(request, response);			
+		}else if(accion.equalsIgnoreCase("anadirCategoria")) {
+			request.getRequestDispatcher("WEB-INF/añadirCategoria.jsp").forward(request, response);			
+		}else if(accion.equalsIgnoreCase("borrarCategoria")) {
+			request.getRequestDispatcher("WEB-INF/borrarCategoria.jsp").forward(request, response);			
 		}						
 	}
 

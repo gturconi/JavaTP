@@ -10,6 +10,7 @@ import entities.Categoria;
 
 
 
+
 public class DataCategoria {
 
 	
@@ -77,6 +78,34 @@ public Categoria buscar(int id) {
 		return c; 	 
   }
 	
+public int buscarCategoriaPorDescripcion(String des) {	 
+		
+	PreparedStatement stmt=null;
+	ResultSet rs=null;
+	try {
+		stmt=DbHandler.getInstancia().getConn().prepareStatement(
+				"select id, descripcion from categoria where descripcion=?");
+		stmt.setString(1, des);			
+		rs=stmt.executeQuery();
+		
+		if(rs!=null && rs.next()) {
+			return 1;																												
+		}
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}finally {
+		try {
+			if(rs!=null) {rs.close();}
+			if(stmt!=null) {stmt.close();}
+			DbHandler.getInstancia().releaseConn();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}			
+	return 0; 	 
+}
+
+
 public void agregar(Categoria c) {
 	PreparedStatement stmt= null;
 	ResultSet keyResultSet=null;

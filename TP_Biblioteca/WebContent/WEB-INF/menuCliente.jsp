@@ -47,9 +47,9 @@
 							</form>
 						</li></li>
 						<li>
-							<form> <!-- llamar servlet para mostrar listado de categorias-->
+						     <form action="ServletCategoria?accion=listar" method="post">
 								<button id="button" type="submit">Categorias</button>
-							</form>
+							</form>							
 						</li>
 						<li>
 							<form> <!-- llamar servlet para mostrar listado de editoriales-->
@@ -75,9 +75,9 @@
 							</form>
 						</li>
 						<li>
-							<form> <!-- llamar servlet para buscar categoria-->
+						    <form action="ServletMenu?accion=buscarCategoria" method="post">				 
 								<button id="button" type="submit">Categoria</button>
-							</form>
+							</form>													
 						</li>
 						<li>
 							<form> <!-- llamar servlet para buscar editorial-->
