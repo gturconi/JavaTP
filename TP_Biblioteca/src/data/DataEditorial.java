@@ -147,7 +147,35 @@ public void modificar(Editorial ed) {
 	}	
 }
 
-
+public Editorial buscarEditorialPorNombre(String nombre) {	 
+	
+	Editorial ed=null;
+	PreparedStatement stmt=null;
+	ResultSet rs=null;
+	try {
+		stmt=DbHandler.getInstancia().getConn().prepareStatement(
+				"select id, nombre from editorial where nombre=?");
+		stmt.setString(1, nombre);			
+		rs=stmt.executeQuery();
+		
+		if(rs!=null && rs.next()) {
+			ed=new Editorial();
+			ed.setId(rs.getInt("id"));
+			ed.setNombre(rs.getString("nombre"));																												
+		}
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}finally {
+		try {
+			if(rs!=null) {rs.close();}
+			if(stmt!=null) {stmt.close();}
+			DbHandler.getInstancia().releaseConn();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}			
+	return ed; 	 
+}
 
 
 }

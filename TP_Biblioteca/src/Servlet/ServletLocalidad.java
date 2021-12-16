@@ -51,14 +51,8 @@ public class ServletLocalidad extends HttpServlet {
 	private void borrar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Logic ctrl = new Logic();
 		int id = Integer.parseInt(request.getParameter("id"));
-		
-		if(ctrl.buscarLoc(id) != null) {
-			ctrl.borrarLoc(id);
-			request.setAttribute("exito", "La localidad fue eliminada exitosamente");	
-		}else {
-			request.setAttribute("error", "El id no corresponde a ninguna localidad");
-		}	    	    
-	    request.getRequestDispatcher("WEB-INF/borrarLocalidad.jsp").forward(request, response);
+		ctrl.borrarLoc(id);
+		listar(request,response);
 		
 	}
 
@@ -71,14 +65,8 @@ public class ServletLocalidad extends HttpServlet {
 		Localidad l = new Localidad();
 		l.setId(id);
 		l.setNombre(nombre);
-		
-		if(ctrl.buscarLoc(id) != null) {
-			ctrl.modificarLoc(l);
-			request.setAttribute("exito", "La localidad fue actualizada exitosamente");	
-		}else {
-			request.setAttribute("error", "El id no corresponde a ninguna localidad");
-		}
-		request.getRequestDispatcher("WEB-INF/modificarLocalidad.jsp").forward(request, response);
+		ctrl.modificarLoc(l);
+		listar(request,response);
 		
 	}
 

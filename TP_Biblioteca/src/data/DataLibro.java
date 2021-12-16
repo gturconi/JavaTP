@@ -41,6 +41,7 @@ public class DataLibro {
 				l.setPrecio(rs.getDouble("precio"));
 				l.setEditorial(de.buscar(rs.getInt("idEditorial")));
 				l.setCategoria(dc.buscar(rs.getInt("idCategoria")));
+				//l.setImagen(rs.getBlob("imagen"));
 			    l.setAutores(buscaAutores(id));
 			}
 		} catch (SQLException e) {
@@ -98,7 +99,7 @@ public class DataLibro {
 		try {
 			stmt=DbHandler.getInstancia().getConn().
 					prepareStatement(
-							"insert into libro(titulo, descripcion, nroEdicion, fechaEdicion, dimensiones, paginas, stock, precio, idEditorial, idCategoria) values(?,?,?,?,?,?,?,?,?,?)",
+							"insert into libro(titulo, descripcion, nroEdicion, fechaEdicion, dimensiones, paginas, stock, precio, idEditorial, idCategoria) values(?,?,?,?,?,?,?,?,?,?,?)",
 							PreparedStatement.RETURN_GENERATED_KEYS
 							);				
 			stmt.setString(1, l.getTitulo());
@@ -111,7 +112,8 @@ public class DataLibro {
 			stmt.setDouble(8, l.getPrecio());
 			stmt.setObject(9, l.getEditorial());
 			stmt.setObject(10, l.getCategoria());
-								
+			//stmt.setBlob(11,l.getImagen());
+			
 			stmt.executeUpdate();
 			
 			keyResultSet=stmt.getGeneratedKeys();
@@ -187,7 +189,7 @@ public class DataLibro {
 					l.setEditorial(de.buscar(rs.getInt("idEditorial")));
 					l.setCategoria(dc.buscar(rs.getInt("idCategoria")));
 					l.setAutores(buscaAutores(l.getId()));
-					
+					//l.setImagen(rs.getBlob("imagen"));
 					list.add(l);
 				}
 			}
@@ -247,6 +249,7 @@ public class DataLibro {
 				stmt.setInt(9, l.getEditorial().getId());
 				stmt.setInt(10, l.getCategoria().getId());								
 				stmt.setInt(11, l.getId());
+	//			stmt.setBlob(12,l.getImagen());
 				stmt.executeUpdate();
 								
 				actualizaAutores(l.getAutores(),l.getId());

@@ -61,29 +61,21 @@ public class ServletAutor extends HttpServlet {
 		int id = Integer.parseInt(request.getParameter("id"));
 		String nombre = request.getParameter("nombre");
 		String apellido = request.getParameter("apellido");
+		
 		Autor a = new Autor();
 		a.setId(id);
 		a.setNombre(nombre);
 		a.setApellido(apellido);
-		if(ctrl.buscarAut(id)!=null) {
-			ctrl.modificarAut(a);
-			request.setAttribute("exito", "El autor fue actualizado exitosamente");	
-		}else {
-			request.setAttribute("error", "El id no corresponde a ningun autor");
-		}
-		request.getRequestDispatcher("WEB-INF/modificarAutor.jsp").forward(request, response);
+		ctrl.modificarAut(a);
+		listar(request,response);
+		
 	}
 
 	private void borrar(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
 		Logic ctrl = new Logic();
 		int id = Integer.parseInt(request.getParameter("id"));
-		if(ctrl.buscarAut(id)!= null) {
-			ctrl.borrarAut(id);
-			request.setAttribute("exito", "El autor fue eliminado exitosamente");	
-		}else {
-			request.setAttribute("baja", "El id no corresponde a ningun autor");
-		}	    	    
-	    request.getRequestDispatcher("WEB-INF/borrarAutor.jsp").forward(request, response);
+		ctrl.borrarAut(id);
+		listar(request,response);
 	}
 
 	private void agregar(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {

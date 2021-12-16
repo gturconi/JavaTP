@@ -6,11 +6,13 @@ import data.DataAutor;
 import data.DataCategoria;
 import data.DataCliente;
 import data.DataEditorial;
+import data.DataLibro;
 import data.DataLocalidad;
 import entities.Autor;
 import entities.Categoria;
 import entities.Cliente;
 import entities.Editorial;
+import entities.Libro;
 import entities.Localidad;
 
 
@@ -20,7 +22,7 @@ public class Logic {
 	private DataCliente dc;
 	private DataCategoria dcat;
 	private DataEditorial de;
-	
+	private DataLibro dlib;
 	
 	public Logic() {
 		dl = new DataLocalidad();		
@@ -28,6 +30,7 @@ public class Logic {
 		dc = new DataCliente();
 		dcat = new DataCategoria();
 		de = new DataEditorial();
+		dlib = new DataLibro();
 	}
 	
 	public LinkedList<Localidad> listadoLoc() {
@@ -115,6 +118,11 @@ public class Logic {
 		return dcat.buscarCategoriaPorDescripcion(desc);		
 	}
 	
+	public Categoria buscarCatPorNombre(String desc) {
+		return dcat.buscarCategoriaPorNombre(desc);		
+	}
+	
+	
 	public void agregarCategoria(Categoria c) {
 		dcat.agregar(c);
 	}
@@ -143,4 +151,28 @@ public class Logic {
 		de.modificar(e);
 	}
 	
+	public Editorial buscarEdPorNombre(String ed) {
+		return de.buscarEditorialPorNombre(ed);		
+	}
+	
+	public void agregarLibro(Libro l) {
+		dlib.agregar(l);
+	}
+	
+	public LinkedList<Libro> listadoLib() {
+		return dlib.listado();
+	}	
+	
+	public Libro buscarLib(int id) {
+		return dlib.buscar(id);		
+	}
+
+	public void borrarLib(int id) {
+		dlib.borrar(id);
+	}
+	
+	public void modificarLib(Libro l) {
+		dlib.modificar(l);
+	}
 }
+

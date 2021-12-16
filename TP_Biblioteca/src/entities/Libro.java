@@ -1,5 +1,6 @@
 package entities;
 
+import java.sql.Blob;
 import java.time.*;
 import java.util.LinkedList;
 
@@ -17,6 +18,7 @@ public class Libro {
 	private Editorial editorial;
 	private Categoria categoria;
 	private LinkedList<Autor> autores;
+	//private Blob imagen;
 	
 	public int getId() {
 		return id;
@@ -112,5 +114,12 @@ public class Libro {
 	public Libro() {
 		
 	}
+	
+/*	public Blob getImagen() {
+		return imagen;
+	}
+	public void setImagen(Blob imagen) {
+		this.imagen = imagen;
+	}*/
 
 }

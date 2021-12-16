@@ -17,15 +17,27 @@
         <table>
              <thead>
                 <tr>
-                  <th>Numero</th><th>Descripcion</th>
+                  <th>Numero</th><th>Descripcion</th><th>Eliminar</th><th>Modificar</th>
               </tr>
              </thead>
             <tr>
             <%for(Categoria c : categorias){ %>
-                <td> <%=c.getId()%></td><td> <%=c.getDescripcion()%></td> 
+                <td> <%=c.getId()%></td><td> <%=c.getDescripcion()%></td>
+                     <td>
+                      <form class="formularioEliminar" action="ServletCategoria?accion=borrar" method="post">				
+				           <button id="botonEliminar" class="button" type="submit">Borrar Categoria</button>
+				           <input type="hidden" value=<%=String.valueOf(c.getId())%> name="id">  </input>
+			          </form>                                                  
+                     </td> 
+                     <td>
+                       <form action="ServletMenu?accion=modificarCategoria" method="post">				 
+								<button id="button" type="submit">Modificar Categoria</button>
+								 <input type="hidden" value=<%=String.valueOf(c.getId())%> name="id">  </input>					
+			            </form>
+                     <td>
             </tr> 
              <%}%>
         </table>
-    </div>
+    </div>           
 </body>
 </html>

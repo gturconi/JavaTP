@@ -19,12 +19,24 @@
         <table>
              <thead>
                 <tr>
-                  <th>Numero</th><th>Nombre</th>
+                  <th>Numero</th><th>Nombre</th><th>Eliminar</th><th>Modificar</th>
               </tr>
              </thead>
             <tr>
             <%for(Localidad loc : localidades){ %>
-                <td> <%=loc.getId()%></td><td> <%=loc.getNombre()%></td> 
+                <td> <%=loc.getId()%></td><td> <%=loc.getNombre()%></td>
+                <td>
+                      <form class="formularioEliminar" action="ServletLocalidad?accion=borrar" method="post">				
+				           <button id="botonEliminar" class="button" type="submit">Borrar Localidad</button>
+				           <input type="hidden" value=<%=String.valueOf(loc.getId())%> name="id">  </input>
+			          </form>                                                  
+                     </td> 
+                     <td>
+                       <form action="ServletMenu?accion=modificarLocalidad" method="post">				 
+								<button id="button" type="submit">Modificar Localidad</button>
+								 <input type="hidden" value=<%=String.valueOf(loc.getId())%> name="id">  </input>					
+			            </form>
+                     </td> 
             </tr> 
              <%}%>
         </table>

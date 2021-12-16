@@ -39,9 +39,8 @@ public class ServletMenu extends HttpServlet {
 			request.getRequestDispatcher("WEB-INF/buscaAutor.jsp").forward(request, response);
 		}else if(accion.equalsIgnoreCase("anadirAutor")) {			
 			request.getRequestDispatcher("WEB-INF/añadirAutor.jsp").forward(request, response);
-		}else if(accion.equalsIgnoreCase("borrarAutor")) {
-			request.getRequestDispatcher("WEB-INF/borrarAutor.jsp").forward(request, response);
 		}else if(accion.equalsIgnoreCase("modificarAutor")) {
+			request.setAttribute("id", request.getParameter("id"));
 			request.getRequestDispatcher("WEB-INF/modificarAutor.jsp").forward(request, response);
 		}else if(accion.equalsIgnoreCase("modificarCuenta")) {
 			request.getRequestDispatcher("WEB-INF/modificarCuenta.jsp").forward(request, response);
@@ -50,17 +49,15 @@ public class ServletMenu extends HttpServlet {
 		}else if(accion.equalsIgnoreCase("anadirLocalidad")) {
 			request.getRequestDispatcher("WEB-INF/añadirLocalidad.jsp").forward(request, response);			
 		}else if(accion.equalsIgnoreCase("modificarLocalidad")) {
+			request.setAttribute("id", request.getParameter("id"));
 			request.getRequestDispatcher("WEB-INF/modificarLocalidad.jsp").forward(request, response);			
-		}else if(accion.equalsIgnoreCase("borrarLocalidad")) {
-			request.getRequestDispatcher("WEB-INF/borrarLocalidad.jsp").forward(request, response);			
 		}else if(accion.equalsIgnoreCase("buscarCategoria")) {
 			request.getRequestDispatcher("WEB-INF/buscaCategoria.jsp").forward(request, response);			
 		}else if(accion.equalsIgnoreCase("modificarCategoria")) {
+			request.setAttribute("id", request.getParameter("id"));
 			request.getRequestDispatcher("WEB-INF/modificarCategoria.jsp").forward(request, response);			
 		}else if(accion.equalsIgnoreCase("anadirCategoria")) {
 			request.getRequestDispatcher("WEB-INF/añadirCategoria.jsp").forward(request, response);			
-		}else if(accion.equalsIgnoreCase("borrarCategoria")) {
-			request.getRequestDispatcher("WEB-INF/borrarCategoria.jsp").forward(request, response);			
 		}						
 	}
 

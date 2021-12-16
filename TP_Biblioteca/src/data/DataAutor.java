@@ -4,11 +4,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDate;
 import java.util.LinkedList;
 
 import entities.Autor;
-import entities.Cliente;
 import entities.Libro;
 
 public class DataAutor {

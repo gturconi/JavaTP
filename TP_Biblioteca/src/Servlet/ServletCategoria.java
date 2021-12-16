@@ -42,29 +42,23 @@ public class ServletCategoria extends HttpServlet {
 		
 		String accion = request.getParameter("accion");
 		if(accion.equalsIgnoreCase("listar")) {
-			listar(request,response);				
-	    }else if(accion.equalsIgnoreCase("buscar")) {
-			buscar(request,response);
-	    }else if(accion.equalsIgnoreCase("modificar")) {
-			modificar(request,response);
-		}else if(accion.equalsIgnoreCase("agregar")) {
-			agregar(request,response);
+			listar(request,response);	
+		}else if(accion.equalsIgnoreCase("modificar")) {
+			modificar(request,response);		
 		}else if(accion.equalsIgnoreCase("borrar")) {
 			borrar(request,response);
-		}
+		}else if(accion.equalsIgnoreCase("buscar")) {
+			buscar(request,response);
+		}else if(accion.equalsIgnoreCase("agregar")) {
+			agregar(request,response);
+		}			    				
 }
 
 	private void borrar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Logic ctrl = new Logic();
 		int id = Integer.parseInt(request.getParameter("id"));
-		if(ctrl.buscarCategoria(id)!=null) {
-			ctrl.borrarCategoria(id);
-			request.setAttribute("exito", "La categoria fue eliminada exitosamente");	
-		}else {
-			request.setAttribute("error", "El id no corresponde a ninguna categoria");
-		}	    	    
-	    request.getRequestDispatcher("WEB-INF/borrarCategoria.jsp").forward(request, response); 
-		
+		ctrl.borrarCategoria(id);
+        listar(request,response); 		
 	}
 
 	private void agregar(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
@@ -91,14 +85,8 @@ public class ServletCategoria extends HttpServlet {
 		Categoria c = new Categoria();
 		c.setId(id);
 		c.setDescripcion(descripcion);
-		
-		if(ctrl.buscarCategoria(id)!=null) {
-			ctrl.modificarCategoria(c);
-			request.setAttribute("exito", "La categoria fue actualizada exitosamente");	
-		}else {
-			request.setAttribute("error", "El id no corresponde a ninguna categoria");
-		}
-		request.getRequestDispatcher("WEB-INF/modificarCategoria.jsp").forward(request, response);		
+		ctrl.modificarCategoria(c);		
+		listar(request,response);		
 	}
 
 	private void buscar(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {

@@ -11,6 +11,7 @@ import entities.Categoria;
 
 
 
+
 public class DataCategoria {
 
 	
@@ -178,6 +179,37 @@ public void modificar(Categoria c) {
         	e.printStackTrace();
         }
 	}	
+}
+
+
+public Categoria buscarCategoriaPorNombre(String des) {	 
+	
+	Categoria cat=null;
+	PreparedStatement stmt=null;
+	ResultSet rs=null;
+	try {
+		stmt=DbHandler.getInstancia().getConn().prepareStatement(
+				"select id, descripcion from categoria where descripcion=?");
+		stmt.setString(1, des);			
+		rs=stmt.executeQuery();
+		
+		if(rs!=null && rs.next()) {
+			cat=new Categoria();
+			cat.setId(rs.getInt("id"));
+			cat.setDescripcion(rs.getString("descripcion"));
+		}
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}finally {
+		try {
+			if(rs!=null) {rs.close();}
+			if(stmt!=null) {stmt.close();}
+			DbHandler.getInstancia().releaseConn();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}			
+	return cat; 	 
 }
 
 	
