@@ -73,19 +73,17 @@ public class ServletLocalidad extends HttpServlet {
 
 	private void agregar(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
 		Logic ctrl = new Logic(); 
-		String nombre = request.getParameter("nombre");
-		
+		String nombre = request.getParameter("nombre");		
 		Localidad l = new Localidad();
 		l.setNombre(nombre);
 		
 		if(ctrl.buscarLocPorNombre(nombre)!=null) {
-        	request.setAttribute("error", "Ya existe una localidad con ese nombre!");        	
+        	request.setAttribute("error", "Ya existe una localidad con ese nombre!");
+        	request.getRequestDispatcher("WEB-INF/añadirLocalidad.jsp").forward(request, response);
         }else {
         	ctrl.agregarLoc(l);
-    		request.setAttribute("Localidad", l);	
-        }		
-		request.getRequestDispatcher("WEB-INF/añadirLocalidad.jsp").forward(request, response);
-		
+        	listar(request,response);	
+        }						
 	}
 
 

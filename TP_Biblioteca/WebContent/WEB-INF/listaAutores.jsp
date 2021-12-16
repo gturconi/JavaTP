@@ -14,6 +14,10 @@
 <link rel="stylesheet" href="estilos/tabla.css">
 </head>
 <body>
+     <form class="formularioBusqueda" action="ServletAutor?accion=buscar" method="post">
+				<input id="campoTexto" type="text" placeholder="Ingrese id del autor " maxlength="10" name="id" required> 
+				<button id= "botonBuscar" type="submit">Buscar Autor</button>
+	</form>
     <h1>
         Listado de autores
     </h1>
@@ -43,5 +47,8 @@
             <%}%>
         </table>
     </div>
+                                    <form action="ServletMenu?accion=anadirAutor" method="post">				 
+                                        <button id="button" type="submit">Añadir Autor</button>
+                                    </form>
 </body>
 </html>

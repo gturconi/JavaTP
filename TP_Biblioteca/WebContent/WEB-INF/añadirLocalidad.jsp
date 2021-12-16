@@ -4,9 +4,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%
-   Localidad localidad = (Localidad)request.getAttribute("Localidad");  
-%>
 <meta charset="ISO-8859-1">
 
 <title>Añadir Localidad</title>
@@ -21,22 +18,5 @@
 	  out.println(request.getAttribute("error"));    
   }	  
   %>
-<% if(localidad!=null){%>
-    <div id="tabla">
-        <p>Se añadio exitosamente la localidad:</p>
-        <table>
-            <thead>
-                <tr>
-                    <th>Numero</th><th>Localidad</th> 
-                </tr>
-            </thead>
-            <tr>
-                <td> <%=localidad.getId()%></td>
-                <td> <%=localidad.getNombre()%></td>                    
-            </tr>
-        </table>
-    </div>
-<%}%>    
-
 </body>
 </html>

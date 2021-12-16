@@ -15,6 +15,10 @@
 <link rel="icon" href="icons/localidad.ico">
 </head>
 <body>
+    <form class="formularioBusqueda" action="ServletLocalidad?accion=buscar" method="post">
+				<input id="campoTexto" type="text" placeholder="Ingrese id de la localidad " maxlength="10" name="id" required> 
+				<button id= "botonBuscar" type="submit">Buscar Localidad</button>
+	</form>                           
     <div id="tabla">
         <table>
              <thead>
@@ -41,5 +45,8 @@
              <%}%>
         </table>
     </div>
+                                    <form action="ServletMenu?accion=anadirLocalidad" method="post">				 
+								      <button id="button" type="submit">Añadir Localidad</button>
+							        </form>
 </body>
 </html>

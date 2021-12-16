@@ -28,12 +28,24 @@
         <table>
             <thead>
                 <tr>
-                    <th>Id</th><th>Localidad</th> 
+                    <th>Id</th><th>Localidad</th><th>Eliminar</th><th>Modificar</th> 
                 </tr>
             </thead>
             <tr>
                 <td> <%=String.valueOf(localidad.getId())%></td>
-                <td> <%=localidad.getNombre()%></td>                    
+                <td> <%=localidad.getNombre()%></td>  
+                <td>
+                      <form class="formularioEliminar" action="ServletLocalidad?accion=borrar" method="post">				
+				           <button id="botonEliminar" class="button" type="submit">Borrar Localidad</button>
+				           <input type="hidden" value=<%=String.valueOf(localidad.getId())%> name="id">  </input>
+			          </form>                                                  
+                     </td> 
+                     <td>
+                       <form action="ServletMenu?accion=modificarLocalidad" method="post">				 
+								<button id="button" type="submit">Modificar Localidad</button>
+								 <input type="hidden" value=<%=String.valueOf(localidad.getId())%> name="id">  </input>					
+			            </form>
+                     </td>                  
             </tr>
         </table>
     </div>

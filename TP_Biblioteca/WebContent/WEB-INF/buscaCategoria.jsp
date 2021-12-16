@@ -26,12 +26,24 @@
         <table>
             <thead>
                 <tr>
-                    <th>Id</th><th>Categoria</th> 
+                    <th>Id</th><th>Categoria</th><th>Eliminar</th><th>Modificar</th> 
                 </tr>
             </thead>
             <tr>
                 <td> <%=String.valueOf(categoria.getId())%></td>
-                <td> <%=categoria.getDescripcion()%></td>                    
+                <td> <%=categoria.getDescripcion()%></td>
+                <td>
+                <form class="formularioEliminar" action="ServletCategoria?accion=borrar" method="post">				
+				           <button id="botonEliminar" class="button" type="submit">Borrar Categoria</button>
+				           <input type="hidden" value=<%=String.valueOf(categoria.getId())%> name="id">  </input>
+			          </form>                                                  
+                 </td> 
+                 <td>
+                       <form action="ServletMenu?accion=modificarCategoria" method="post">				 
+								<button id="button" type="submit">Modificar Categoria</button>
+								 <input type="hidden" value=<%=String.valueOf(categoria.getId())%> name="id">  </input>					
+			            </form>  
+			     </td>                         
             </tr>
         </table>
     </div>

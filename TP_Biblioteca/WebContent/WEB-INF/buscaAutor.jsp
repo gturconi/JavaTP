@@ -28,13 +28,25 @@
         <table>
             <thead>
                 <tr>
-                    <th>Numero</th><th>Nombre</th><th>Apellido</th> 
+                    <th>Numero</th><th>Nombre</th><th>Apellido</th><th>Eliminar</th><th>Modificar</th> 
                 </tr>
             </thead>
             <tr>
                 <td> <%=String.valueOf(autor.getId())%></td>
                 <td> <%=autor.getNombre()%></td>  
-                <td> <%=autor.getApellido()%></td>  
+                <td> <%=autor.getApellido()%></td>
+                <td>
+                      <form class="formularioEliminar" action="ServletAutor?accion=borrar" method="post">				
+				           <button id="botonEliminar" class="button" type="submit">Borrar Autor</button>
+				           <input type="hidden" value=<%=String.valueOf(autor.getId())%> name="id">  </input>
+			          </form>                                                  
+                     </td> 
+                     <td>
+                       <form action="ServletMenu?accion=modificarAutor" method="post">				 
+								<button id="button" type="submit">Modificar Autor</button>
+								 <input type="hidden" value=<%=String.valueOf(autor.getId())%> name="id">  </input>					
+			            </form>
+                     </td>  
             </tr>
         </table>
     </div>

@@ -13,6 +13,10 @@
 <title>Categoria</title>
 </head>
 <body>
+    <form class="formularioBusqueda" action="ServletCategoria?accion=buscar" method="post">
+				<input id="campoTexto" type="text" placeholder="Ingrese id de la categoria " maxlength="10" name="id" required> 
+				<button id= "botonBuscar" type="submit">Buscar Categoria</button>
+	</form>
   <div id="tabla">
         <table>
              <thead>
@@ -34,10 +38,13 @@
 								<button id="button" type="submit">Modificar Categoria</button>
 								 <input type="hidden" value=<%=String.valueOf(c.getId())%> name="id">  </input>					
 			            </form>
-                     <td>
+                     </td>
             </tr> 
              <%}%>
         </table>
-    </div>           
+    </div>      
+                                    <form action="ServletMenu?accion=anadirCategoria" method="post">				 
+                                        <button id="button" type="submit">Añadir Categoria</button>
+                                    </form>     
 </body>
 </html>

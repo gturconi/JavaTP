@@ -4,9 +4,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%
- Categoria categoria = (Categoria)request.getAttribute("Categoria");  
-%>
 <meta charset="ISO-8859-1">
 <title>Añadir Categoria</title>
 </head>
@@ -19,23 +16,5 @@
 	  out.println(request.getAttribute("error"));    
   }	  
   %>
-<% if(categoria!=null){%>
-    <div id="tabla">
-        <p>Se añadio exitosamente la categoria:</p>
-        <table>
-            <thead>
-                <tr>
-                    <th>Numero</th><th>Categoria</th> 
-                </tr>
-            </thead>
-            <tr>
-                <td> <%=categoria.getId()%></td>
-                <td> <%=categoria.getDescripcion()%></td>                    
-            </tr>
-        </table>
-    </div>
-<%}%>
-
-
 </body>
 </html>
