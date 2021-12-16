@@ -7,6 +7,7 @@ pageEncoding="ISO-8859-1"%>
 <%
    Cliente cliente = (Cliente)session.getAttribute("Cliente");  
 %>
+
 <meta charset="ISO-8859-1">
 <link rel="stylesheet" type="text/css" href="estilos/menu.css">
 <link rel="stylesheet" type="text/css" href="estilos/botonesListar.css">
