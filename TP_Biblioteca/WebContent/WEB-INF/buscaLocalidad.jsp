@@ -36,13 +36,13 @@
                 <td> <%=localidad.getNombre()%></td>  
                 <td>
                       <form class="formularioEliminar" action="ServletLocalidad?accion=borrar" method="post">				
-				           <button id="botonEliminar" class="button" type="submit">Borrar Localidad</button>
+				           <input type="image"  id="botonEliminar" src="icons/trash-fill.png"/>
 				           <input type="hidden" value=<%=String.valueOf(localidad.getId())%> name="id">  </input>
 			          </form>                                                  
                      </td> 
                      <td>
                        <form action="ServletMenu?accion=modificarLocalidad" method="post">				 
-								<button id="button" type="submit">Modificar Localidad</button>
+								<input type="image"  id="button" src="icons/pencil.png"/>
 								 <input type="hidden" value=<%=String.valueOf(localidad.getId())%> name="id">  </input>					
 			            </form>
                      </td>                  

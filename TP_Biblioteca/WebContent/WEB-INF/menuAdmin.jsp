@@ -40,6 +40,11 @@ pageEncoding="ISO-8859-1"%>
 				</li>
 				<li><a href="#">Listados</a>
 					<ul>
+					    <li>
+							<form action="ServletCliente?accion=listar" method="post">
+                                <button id="button" type="submit">Clientes</button>
+                            </form>
+						</li>
 						<li>
 							<form action="ServletLocalidad?accion=listar" method="post">
                                 <button id="button" type="submit">Localidades</button>
@@ -66,8 +71,8 @@ pageEncoding="ISO-8859-1"%>
 							</form>
 						</li>
 						<li>
-							<form> <!-- llamar servlet para mostrar listado de pedidos-->
-								<button id="button" type="submit">Pedidos</button>
+							<form action="ServletPedido?accion=listar" method="post">
+								<button id="button" type="submit">Pedidos reservados</button>
 							</form>
 						</li>
 					</ul>

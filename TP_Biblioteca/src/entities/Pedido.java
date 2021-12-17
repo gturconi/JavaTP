@@ -10,6 +10,7 @@ public class Pedido {
 	private String estado;
 	private Cliente cliente;
 	private Libro[] libro;
+	
 	public int getNroPedido() {
 		return nroPedido;
 	}

@@ -1,6 +1,8 @@
 package Servlet;
 
 import java.io.IOException;
+import java.util.LinkedList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -44,8 +46,21 @@ public class ServletCliente extends HttpServlet {
 			actualizar(request,response);				
 		}else if(accion.equalsIgnoreCase("eliminarCuenta")) {
 			borrar(request,response);			
+		} else if(accion.equalsIgnoreCase("listar")) {
+			listar(request,response);				
+		}else if(accion.equalsIgnoreCase("buscar")) {
+			buscar(request,response);
 		}
 		
+	}
+
+	private void listar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Logic ctrl = new Logic();
+		
+		LinkedList<Cliente> clientes = ctrl.listadoCliente();
+		request.setAttribute("Clientes", clientes);
+		request.getRequestDispatcher("WEB-INF/listaClientes.jsp").forward(request, response);		
+				
 	}
 
 	private void borrar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -99,5 +114,20 @@ public class ServletCliente extends HttpServlet {
         request.setAttribute("exito", "Los datos de la cuenta se han actualizado con exito!");
     	request.getRequestDispatcher("WEB-INF/modificarCuenta.jsp").forward(request, response);
 	}
+	
+	private void buscar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Logic ctrl = new Logic();
+	    int id = Integer.parseInt(request.getParameter("id"));	    
+	    Cliente cliente = ctrl.buscarClientePorId(id);
+	    if(cliente != null) {
+	    	request.setAttribute("Cliente", cliente);	
+	    }else {
+	    	request.setAttribute("error", "El id no corresponde a ningun cliente!");
+	    }
+		//response.getWriter().append(String.valueOf(autor.getId()));
+	    
+	    request.getRequestDispatcher("WEB-INF/buscaCliente.jsp").forward(request, response);
+	}
+
 
 }

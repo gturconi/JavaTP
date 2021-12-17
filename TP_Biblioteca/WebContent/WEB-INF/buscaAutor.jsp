@@ -1,12 +1,15 @@
 <%@page import="java.util.LinkedList" %>
 <%@page import="entities.Autor" %>
+<%@page import="entities.Cliente" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
 <%
-   Autor autor = (Autor)request.getAttribute("Autor");  
+   Autor autor = (Autor)request.getAttribute("Autor");
+   Cliente cl = (Cliente) (request.getSession().getAttribute("Cliente"));
+   int admin = cl.getisAdmin();
 %>
 <meta charset="ISO-8859-1">
 <title>Buscar Autor</title>
@@ -28,25 +31,28 @@
         <table>
             <thead>
                 <tr>
-                    <th>Numero</th><th>Nombre</th><th>Apellido</th><th>Eliminar</th><th>Modificar</th> 
+                    <th>Numero</th><th>Nombre</th><th>Apellido</th><% if(admin == 1){ %><th>Eliminar</th><th>Modificar</th><%}%> 
                 </tr>
             </thead>
             <tr>
                 <td> <%=String.valueOf(autor.getId())%></td>
                 <td> <%=autor.getNombre()%></td>  
                 <td> <%=autor.getApellido()%></td>
+                <% if(admin == 1){ %>
                 <td>
                       <form class="formularioEliminar" action="ServletAutor?accion=borrar" method="post">				
-				           <button id="botonEliminar" class="button" type="submit">Borrar Autor</button>
+				           <input type="image"  id="botonEliminar" src="icons/trash-fill.png"/>
 				           <input type="hidden" value=<%=String.valueOf(autor.getId())%> name="id">  </input>
 			          </form>                                                  
-                     </td> 
+                     </td>
+                      
                      <td>
                        <form action="ServletMenu?accion=modificarAutor" method="post">				 
-								<button id="button" type="submit">Modificar Autor</button>
+								<input type="image"  id="button" src="icons/pencil.png"/>
 								 <input type="hidden" value=<%=String.valueOf(autor.getId())%> name="id">  </input>					
 			            </form>
                      </td>  
+                  <%}%>   
             </tr>
         </table>
     </div>

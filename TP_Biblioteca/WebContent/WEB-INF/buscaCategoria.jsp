@@ -1,11 +1,14 @@
 <%@page import="entities.Categoria" %>
+<%@page import="entities.Cliente" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
 <%
-   Categoria categoria = (Categoria)request.getAttribute("Categoria");  
+   Categoria categoria = (Categoria)request.getAttribute("Categoria");
+   Cliente cl = (Cliente) (request.getSession().getAttribute("Cliente"));
+   int admin = cl.getisAdmin();
 %>
 <meta charset="ISO-8859-1">
 <title>Buscar Categoria</title>
@@ -26,25 +29,27 @@
         <table>
             <thead>
                 <tr>
-                    <th>Id</th><th>Categoria</th><th>Eliminar</th><th>Modificar</th> 
+                    <th>Id</th><th>Categoria</th><% if(admin == 1){ %><th>Eliminar</th><th>Modificar</th><%}%> 
                 </tr>
             </thead>
             <tr>
                 <td> <%=String.valueOf(categoria.getId())%></td>
                 <td> <%=categoria.getDescripcion()%></td>
-                <td>
+                <% if(admin == 1){ %>
+                <td>                
                 <form class="formularioEliminar" action="ServletCategoria?accion=borrar" method="post">				
-				           <button id="botonEliminar" class="button" type="submit">Borrar Categoria</button>
+				           <input type="image"  id="botonEliminar" src="icons/trash-fill.png"/>
 				           <input type="hidden" value=<%=String.valueOf(categoria.getId())%> name="id">  </input>
 			          </form>                                                  
                  </td> 
                  <td>
                        <form action="ServletMenu?accion=modificarCategoria" method="post">				 
-								<button id="button" type="submit">Modificar Categoria</button>
+								<input type="image"  id="button" src="icons/pencil.png"/>
 								 <input type="hidden" value=<%=String.valueOf(categoria.getId())%> name="id">  </input>					
 			            </form>  
-			     </td>                         
-            </tr>
+			     </td>  
+			      <%}%>                       
+            </tr>            
         </table>
     </div>
 <%}%>

@@ -15,6 +15,7 @@ public class Cliente {
 	private LocalDate fechaInscripcion;
 	private Localidad localidad;
 	private int isAdmin;
+	private String estado;
 	
 	public int getId() {
 		return id;
@@ -111,6 +112,12 @@ public class Cliente {
 	}
 	public void setisAdmin(int isAdmin) {
 		this.isAdmin = isAdmin;
+	}
+	public String getEstado() {
+		return estado;
+	}
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 
 }

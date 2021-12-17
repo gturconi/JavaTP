@@ -8,12 +8,14 @@ import data.DataCliente;
 import data.DataEditorial;
 import data.DataLibro;
 import data.DataLocalidad;
+import data.DataPedido;
 import entities.Autor;
 import entities.Categoria;
 import entities.Cliente;
 import entities.Editorial;
 import entities.Libro;
 import entities.Localidad;
+import entities.Pedido;
 
 
 public class Logic {
@@ -23,6 +25,7 @@ public class Logic {
 	private DataCategoria dcat;
 	private DataEditorial de;
 	private DataLibro dlib;
+	private DataPedido dp;
 	
 	public Logic() {
 		dl = new DataLocalidad();		
@@ -31,6 +34,7 @@ public class Logic {
 		dcat = new DataCategoria();
 		de = new DataEditorial();
 		dlib = new DataLibro();
+		dp = new DataPedido();
 	}
 	
 	public LinkedList<Localidad> listadoLoc() {
@@ -87,6 +91,10 @@ public class Logic {
 	
 	public Cliente buscarCliente(String user, String pass) {
 		return dc.buscarCliente(user,pass);		
+	}
+	
+	public Cliente buscarClientePorId(int id) {
+		return dc.buscarClientePorId(id);		
 	}
 	
 	public int validarCliente(String user) {
@@ -174,5 +182,14 @@ public class Logic {
 	public void modificarLib(Libro l) {
 		dlib.modificar(l);
 	}
+	
+	public LinkedList<Pedido> listadoPed() {
+		return dp.listado();		
+	}
+	
+	public LinkedList<Libro> listadoLibPed(int id) {
+		return dp.librosPedido(id);		
+	}
+	
 }
 

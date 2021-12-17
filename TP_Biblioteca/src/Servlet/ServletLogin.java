@@ -84,7 +84,8 @@ public class ServletLogin extends HttpServlet {
         c.setEmail(email);
         c.setUser(user);
         c.setPassword(pass);
-                
+        c.setEstado("habilitado");        
+        
         LocalDate localDate = LocalDate.now();
         c.setFechaInscripcion(localDate);
         
