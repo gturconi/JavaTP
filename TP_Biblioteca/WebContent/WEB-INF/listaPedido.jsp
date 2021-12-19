@@ -1,6 +1,6 @@
 <%@page import="java.util.LinkedList" %>
 <%@page import="entities.PedidoLibro" %>
-
+<%@page import="entities.Libro" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -11,6 +11,7 @@
 %>
 <meta charset="ISO-8859-1">
 <title>Listado de Pedidos Reservados</title>
+<link rel="stylesheet" href="estilos/tabla.css">
 </head>
 <body>
    <h1>
@@ -21,18 +22,25 @@
             <thead>
                 <tr>
                     <th>Numero</th><th>Fecha</th><th>Estado</th>
-                    <th>IdCliente</th>
-                    
-                    <th>IdLibro</th><th>Titulo</th>                    
-                                       
+                    <th>IdCliente</th>   
+                    <th>IdLibro</th><th>Titulo</th>                                                                                               
                 </tr>
             </thead>
             <tr>
-            <%for(PedidoLibro pl : pedidos){ %>                
-                <td> <%=pl.getPed().getNroPedido()%></td><td> <%=pl.getPed().getFecha()%></td><td> <%=pl.getPed().getEstado()%></td>
-                <td> <%=pl.getPed().getCliente().getId()%>
+              <%for(PedidoLibro pl : pedidos){
+            	String c = String.valueOf(pl.getLibros().size());
+            	%>                
+                <td rowspan=<%=c%>> <%=pl.getPed().getNroPedido()%></td>
+                <td rowspan=<%=c%>> <%=pl.getPed().getFecha()%></td>
+                <td rowspan=<%=c%>> <%=pl.getPed().getEstado()%></td>
+                <td rowspan=<%=c%>> <%=pl.getPed().getCliente().getId()%>             
+             <%for(int i=0; i<pl.getLibros().size();i++) {%>
+                   <%if(i>0){%> <tr> <%}%> 
+                   <td> <%=pl.getLibros().get(i).getId()%></td> 
+                   <td> <%=pl.getLibros().get(i).getTitulo()%></td> </tr>  
              <%}%>           
-          </table>
+           <%}%>  
+          </table>                   
     </div>
 </body>
 </html>

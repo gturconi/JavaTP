@@ -37,7 +37,7 @@ public class DataLibro {
 				l.setFechaEdicion(rs.getObject("fechaEdicion",LocalDate.class));				
 				l.setDimensiones(rs.getString("dimensiones"));
 				l.setNroPaginas(rs.getInt("paginas"));
-				l.setExistencia(rs.getInt("sotck"));
+				l.setExistencia(rs.getInt("stock"));
 				l.setPrecio(rs.getDouble("precio"));
 				l.setEditorial(de.buscar(rs.getInt("idEditorial")));
 				l.setCategoria(dc.buscar(rs.getInt("idCategoria")));
@@ -99,7 +99,7 @@ public class DataLibro {
 		try {
 			stmt=DbHandler.getInstancia().getConn().
 					prepareStatement(
-							"insert into libro(titulo, descripcion, nroEdicion, fechaEdicion, dimensiones, paginas, stock, precio, idEditorial, idCategoria) values(?,?,?,?,?,?,?,?,?,?,?)",
+							"insert into libro(titulo, descripcion, nroEdicion, fechaEdicion, dimensiones, paginas, stock, precio, idEditorial, idCategoria) values(?,?,?,?,?,?,?,?,?,?)",
 							PreparedStatement.RETURN_GENERATED_KEYS
 							);				
 			stmt.setString(1, l.getTitulo());
@@ -110,8 +110,8 @@ public class DataLibro {
 			stmt.setInt(6, l.getNroPaginas());
 			stmt.setInt(7, l.getExistencia());
 			stmt.setDouble(8, l.getPrecio());
-			stmt.setObject(9, l.getEditorial());
-			stmt.setObject(10, l.getCategoria());
+			stmt.setObject(9, l.getEditorial().getId());
+			stmt.setObject(10, l.getCategoria().getId());
 			//stmt.setBlob(11,l.getImagen());
 			
 			stmt.executeUpdate();
@@ -212,6 +212,15 @@ public class DataLibro {
 	
 	
 	public void borrar(int id) {
+		
+		//BORRAMOS LOS PEDIDOS DE ESE LIBRO
+		  borrarPedidosLibro(id);
+		
+		//BORRAMOS LOS AUTORES DE ESE LIBRO
+		  borrarAutoresLibro(id);
+		  
+		//BORRAMOS EL LIBRO  
+		
 		PreparedStatement stmt= null;	
 		try {
 			stmt=DbHandler.getInstancia().getConn().
@@ -231,6 +240,45 @@ public class DataLibro {
 		}			
 	}
 	
+	public void borrarPedidosLibro(int id) {
+		PreparedStatement stmt= null;	
+		try {
+			stmt=DbHandler.getInstancia().getConn().
+					prepareStatement("delete from pedido_libro where idLibro=?");
+			stmt.setInt(1, id);
+			stmt.executeUpdate();				       
+			
+		}  catch (SQLException e) {
+	        e.printStackTrace();
+		} finally {
+	        try {           
+	            if(stmt!=null)stmt.close();
+	            DbHandler.getInstancia().releaseConn();
+	        } catch (SQLException e) {
+	        	e.printStackTrace();
+	        }
+		}		
+	}
+	
+	public void borrarAutoresLibro(int id) {
+		PreparedStatement stmt= null;	
+		try {
+			stmt=DbHandler.getInstancia().getConn().
+					prepareStatement("delete from autor_libro where idLibro=?");
+			stmt.setInt(1, id);
+			stmt.executeUpdate();				       
+			
+		}  catch (SQLException e) {
+	        e.printStackTrace();
+		} finally {
+	        try {           
+	            if(stmt!=null)stmt.close();
+	            DbHandler.getInstancia().releaseConn();
+	        } catch (SQLException e) {
+	        	e.printStackTrace();
+	        }
+		}		
+	}
 	
 	 public void modificar(Libro l) {
 			PreparedStatement stmt= null;	

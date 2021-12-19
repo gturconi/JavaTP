@@ -1,11 +1,18 @@
 package Servlet;
 
 import java.io.IOException;
+import java.util.LinkedList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import entities.Autor;
+import entities.Categoria;
+import entities.Editorial;
+import logic.Logic;
 
 /**
  * Servlet implementation class ServletMenu
@@ -34,7 +41,10 @@ public class ServletMenu extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+						
 		String accion = request.getParameter("accion");
+		Logic ctrl = new Logic();
+		
 		if(accion.equalsIgnoreCase("buscarAutor")) {
 			request.getRequestDispatcher("WEB-INF/buscaAutor.jsp").forward(request, response);
 		}else if(accion.equalsIgnoreCase("anadirAutor")) {			
@@ -58,6 +68,15 @@ public class ServletMenu extends HttpServlet {
 			request.getRequestDispatcher("WEB-INF/modificarCategoria.jsp").forward(request, response);			
 		}else if(accion.equalsIgnoreCase("anadirCategoria")) {
 			request.getRequestDispatcher("WEB-INF/añadirCategoria.jsp").forward(request, response);			
+		}else if(accion.equalsIgnoreCase("anadirLibro")) {
+		    LinkedList<Categoria> categorias = ctrl.listadoCategoria();
+		    LinkedList<Autor> autores = ctrl.listadoAut();
+		    LinkedList<Editorial> editoriales = ctrl.listadoEditorial();
+		    
+		    request.setAttribute("Editoriales", editoriales);
+		    request.setAttribute("Categorias", categorias);
+		    request.setAttribute("Autores", autores);
+			request.getRequestDispatcher("WEB-INF/añadirLibro.jsp").forward(request, response);			
 		}						
 	}
 

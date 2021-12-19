@@ -234,5 +234,36 @@ public class DataAutor {
 		return 0; 	 
   }
 
+	public Autor buscarAutor2(String nombre, String apellido) {
+		Autor a=null;
+		PreparedStatement stmt=null;
+		ResultSet rs=null;
+		try {
+			stmt=DbHandler.getInstancia().getConn().prepareStatement(
+					"select id,nombre, apellido from autor where nombre=? and apellido=?");
+			stmt.setString(1, nombre);
+			stmt.setString(2, apellido);
+			rs=stmt.executeQuery();
+			
+			if(rs!=null && rs.next()) {
+				a=new Autor();
+				a.setId(rs.getInt("id"));
+				a.setNombre(rs.getString("nombre"));
+				a.setApellido(rs.getString("apellido"));																										
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs!=null) {rs.close();}
+				if(stmt!=null) {stmt.close();}
+				DbHandler.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}			
+		return a;	 
+  }	
+	
 
 }

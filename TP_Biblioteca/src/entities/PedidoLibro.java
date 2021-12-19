@@ -5,6 +5,8 @@ import java.util.LinkedList;
 public class PedidoLibro {
 
 	private Pedido ped;
+	private LinkedList<Libro> libros;
+	
 	public Pedido getPed() {
 		return ped;
 	}
@@ -17,6 +19,6 @@ public class PedidoLibro {
 	public void setLibros(LinkedList<Libro> libros) {
 		this.libros = libros;
 	}
-	private LinkedList<Libro> libros;
+	
 	
 }

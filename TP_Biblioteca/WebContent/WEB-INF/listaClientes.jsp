@@ -29,7 +29,7 @@
                     <th>Numero</th><th>Nombre</th><th>Apellido</th>
                     <th>Usuario</th><th>Password</th><th>Domicilio</th>
                     <th>Telefono</th><th>Email</th><th>Fecha Inscripcion</th>
-                    <th>Localidad</th><th>Administrador</th><th>Estado</th>
+                    <th>Localidad</th><th>Estado</th>
                     
                     <% if(admin == 1){ %><th>Eliminar</th><th>Modificar</th><%}%>
                 </tr>
@@ -39,7 +39,7 @@
                 <td> <%=cli.getId()%></td><td> <%=cli.getNombre()%></td><td> <%=cli.getApellido()%></td>
                 <td> <%=cli.getUser()%></td><td> <%=cli.getPassword()%></td><td> <%=cli.getDomicilio()%></td>
                 <td> <%=cli.getTelefono()%></td><td> <%=cli.getEmail()%></td><td> <%=cli.getFechaInscripcion()%></td>
-                <td> <%=cli.getLocalidad().getNombre()%></td><td> <%=cli.getisAdmin()%></td><td> <%=cli.getEstado()%></td>
+                <td> <%=cli.getLocalidad().getNombre()%></td><td> <%=cli.getEstado()%></td>
                 <% if(admin == 1){ %>
                 <td>                
                       <form class="formularioEliminar" action="ServletCliente?accion=eliminarCuenta" method="post">

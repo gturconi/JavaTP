@@ -1,3 +1,5 @@
+<%@page import="java.util.LinkedList" %>
+<%@page import="entities.Localidad" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -6,6 +8,12 @@
 <meta charset="ISO-8859-1">
 <link rel="stylesheet" type="text/css" href="estilos/registro.css">
 <link rel="icon" href="icons/libro.ico">
+
+
+<%
+   LinkedList<Localidad> localidades = (LinkedList<Localidad>)request.getAttribute("Localidades");   
+%>
+
 <title>Registrarse</title>
 </head>
 <body class="cuerpo">
@@ -22,11 +30,13 @@
         <input class="controlr" type="text" name="tel" placeholder="Telefono" required >
         <input class="controlr" type="text" name="email" placeholder="Email" required >                                
           <select name="city" class="controlr" required>
- <option style="display: none;" value="" selected>Localidad</option>                              
- <option value="Cañada de Gomez">Cañada de Gomez</option>
- <option value="Casilda">Casilda</option>
- <option value="Pujato">Pujato</option>
- <option value="Rosario">Rosario</option>     
+ <option style="display: none;" value="" selected>Localidad</option>  
+          <% 
+             for(Localidad loc:localidades){
+            	 %> <option value='<%=loc.getNombre()%>'><%=loc.getNombre()%></option>
+          <%
+             }          
+          %>                              
 </select>
 <input class="controlr" type="text" name="user" placeholder="Usuario" required >
 <input class="controlr" type="password" name="pass" placeholder="Contraseña" required >                   

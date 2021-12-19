@@ -66,9 +66,9 @@ pageEncoding="ISO-8859-1"%>
 							</form>
 						</li>
 						<li>
-							<form> <!-- llamar servlet para mostrar listado de libros-->
-								<button id="button" type="submit">Libros</button>
-							</form>
+							<form action="ServletLibro?accion=listar" method="post">
+                                <button id="button" type="submit">Libros</button>
+                            </form>
 						</li>
 						<li>
 							<form action="ServletPedido?accion=listar" method="post">

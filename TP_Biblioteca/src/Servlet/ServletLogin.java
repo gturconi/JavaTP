@@ -2,7 +2,7 @@ package Servlet;
 
 import java.io.IOException;
 import java.time.LocalDate;
-
+import java.util.LinkedList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import entities.Cliente;
+import entities.Localidad;
 import logic.Logic;
 
 /**
@@ -92,8 +93,14 @@ public class ServletLogin extends HttpServlet {
         c.setLocalidad(ctrl.buscarLocPorNombre(city));
         
         
+        
+		LinkedList<Localidad> localidades =  ctrl.listadoLoc();
+		
+		request.setAttribute("Localidades", localidades);
+        
         /*VERIFICAR QUE EL USUARIO NO EXISTA*/        
         if(ctrl.validarCliente(user) ==1) {
+        	
         	request.setAttribute("errorMensaje", "Ya existe un usuario con ese nombre!");
         	request.getRequestDispatcher("WEB-INF/registro.jsp").forward(request, response);
         }        
@@ -108,6 +115,10 @@ public class ServletLogin extends HttpServlet {
 
 	private void registrar(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
 		
+		Logic ctrl = new Logic();
+		LinkedList<Localidad> localidades =  ctrl.listadoLoc();
+		
+		request.setAttribute("Localidades", localidades);
 		request.getRequestDispatcher("WEB-INF/registro.jsp").forward(request, response);
 	}
 

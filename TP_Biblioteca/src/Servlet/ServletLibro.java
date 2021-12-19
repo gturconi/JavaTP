@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import entities.Autor;
 import entities.Libro;
 import logic.Logic;
 
@@ -117,10 +118,9 @@ public class ServletLibro extends HttpServlet {
 		String titulo = request.getParameter("titulo");
 		String descripcion = request.getParameter("descripcion");
 		int edicion = Integer.parseInt(request.getParameter("edicion"));
-		
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMM-yyyy");		
-		LocalDate fecha = LocalDate.parse(request.getParameter("fecha"), formatter);
-		
+		LocalDate fecha = LocalDate.parse(request.getParameter("fecha"));
+
+				
 		String dimensiones = request.getParameter("dimensiones");
 		int paginas = Integer.parseInt(request.getParameter("paginas"));
 		int stock = Integer.parseInt(request.getParameter("stock"));
@@ -128,6 +128,9 @@ public class ServletLibro extends HttpServlet {
 		String editorial = request.getParameter("editorial");
 		String categoria = request.getParameter("categoria");
 		
+		
+		String[] autores = request.getParameterValues("autores");
+						 		
 		Libro l = new Libro();
 		l.setTitulo(titulo);
 		l.setDescripcion(descripcion);
@@ -140,9 +143,20 @@ public class ServletLibro extends HttpServlet {
 		l.setEditorial(ctrl.buscarEdPorNombre(editorial));
 		l.setCategoria(ctrl.buscarCatPorNombre(categoria));
 		
-		request.setAttribute("mensaje", "Libro registrado con exito!");
-    	request.getRequestDispatcher("WEB-INF/añadirLibro.jsp").forward(request, response);
+		LinkedList<Autor> ats = new LinkedList<Autor>();
+				
+		for(int i=0; i<autores.length;i++) {
+			String[] nomyApe = autores[i].split("/");			
+			ats.add(ctrl.buscarAutPorNombre2(nomyApe[0], nomyApe[1]));
+		}
 		
+		
+		
+		l.setAutores(ats);
+		
+		ctrl.agregarLibro(l);
+		
+		listar(request,response);
 		
 	}
 

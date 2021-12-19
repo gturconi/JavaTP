@@ -141,13 +141,15 @@ public class DataCliente {
 	 
 	 public LinkedList<Cliente> listado(){	
 		    DataLocalidad dl = new DataLocalidad();;
-			Statement stmt=null;
+		    PreparedStatement stmt=null;
 			ResultSet rs=null;
 			LinkedList<Cliente> list= new LinkedList<>();
 			
 			try {
-				stmt= DbHandler.getInstancia().getConn().createStatement();
-				rs= stmt.executeQuery("select id,nombre, apellido, user, password, domicilio, telefono, email, fechaInscripcion, idLocalidad, isAdmin, estado from cliente");			
+				stmt=DbHandler.getInstancia().getConn().prepareStatement(
+				   "select id,nombre, apellido, user, password, domicilio, telefono, email, fechaInscripcion, idLocalidad, isAdmin, estado from cliente where isAdmin=?");
+				stmt.setInt(1, 0);
+				rs=stmt.executeQuery();
 				if(rs!=null) {
 					while(rs.next()) {
 						Cliente c=new Cliente();					
