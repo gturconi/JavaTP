@@ -77,6 +77,16 @@ public class ServletMenu extends HttpServlet {
 		    request.setAttribute("Categorias", categorias);
 		    request.setAttribute("Autores", autores);
 			request.getRequestDispatcher("WEB-INF/añadirLibro.jsp").forward(request, response);			
+		}else if(accion.equalsIgnoreCase("modificarLibro")) {
+			request.setAttribute("id", request.getParameter("id"));
+			LinkedList<Categoria> categorias = ctrl.listadoCategoria();
+		    LinkedList<Autor> autores = ctrl.listadoAut();
+		    LinkedList<Editorial> editoriales = ctrl.listadoEditorial();
+		    
+		    request.setAttribute("Editoriales", editoriales);
+		    request.setAttribute("Categorias", categorias);
+		    request.setAttribute("Autores", autores);
+			request.getRequestDispatcher("WEB-INF/modificarLibro.jsp").forward(request, response);			
 		}						
 	}
 

@@ -28,49 +28,57 @@
   }	  
   %>	
 <div id="tabla">
-        <table>
+       <table>
             <thead>
                 <tr>
-                    <th>Id</th><th>Ttitulo</th><th>Descripcion</th>
+                    <th>Portada</th>
+                    <th>Id</th><th>Titulo</th><th>Descripcion</th>
                     <th>nroEdicion</th><th>fechaEdicion</th><th>Dimensiones</th>
                     <th>Paginas</th><th>Stock</th><th>Precio</th>
-                    <th>Paginas</th><th>Editorial</th><th>Categoria</th> 
-                    <th>Eliminar</th><th>Modificar</th> 
+                    <th>Paginas</th><th>Editorial</th><th>Categoria</th>
+                    <% if(admin == 1){ %><th>Eliminar</th><th>Modificar</th><%}%> 
+                    <th>Nombre Autor</th><th>Apellido Autor</th>
+                                                                                                                    
                 </tr>
             </thead>
             <tr>
-                <td> <%=l.getId()%></td><td> <%=l.getTitulo()%></td><td> <%=l.getDescripcion()%></td>
-                <td> <%=l.getNroEdicion()%></td><td> <%=l.getFechaEdicion()%></td><td> <%=l.getDimensiones()%></td>
-                <td> <%=l.getNroPaginas()%></td><td> <%=l.getExistencia()%></td><td> <%=l.getPrecio()%></td>
-                <td> <%=l.getNroPaginas()%></td><td> <%=l.getEditorial().getNombre()%></td><td> <%=l.getCategoria().getDescripcion()%></td>
-                <td>
+               <td rowspan=<%=String.valueOf(l.getAutores().size())%>> <img src="ServletLibro?id=<%=l.getId()%>" width="60px" height="60px"/> </td>
+               <td rowspan=<%=String.valueOf(l.getAutores().size())%>> <%=l.getId()%></td>
+                <td rowspan=<%=String.valueOf(l.getAutores().size())%>> <%=l.getTitulo()%></td>
+                <td rowspan=<%=String.valueOf(l.getAutores().size())%>> <%=l.getDescripcion()%></td>
+                <td rowspan=<%=String.valueOf(l.getAutores().size())%>> <%=l.getNroEdicion()%></td>
+                <td rowspan=<%=String.valueOf(l.getAutores().size())%>> <%=l.getFechaEdicion()%></td>
+                <td rowspan=<%=String.valueOf(l.getAutores().size())%>> <%=l.getDimensiones()%></td>
+                <td rowspan=<%=String.valueOf(l.getAutores().size())%>> <%=l.getNroPaginas()%></td>
+                <td rowspan=<%=String.valueOf(l.getAutores().size())%>> <%=l.getExistencia()%></td>
+                <td rowspan=<%=String.valueOf(l.getAutores().size())%>> <%=l.getPrecio()%></td>
+                <td rowspan=<%=String.valueOf(l.getAutores().size())%>> <%=l.getNroPaginas()%></td>
+                <td rowspan=<%=String.valueOf(l.getAutores().size())%>> <%=l.getEditorial().getNombre()%></td>
+                <td rowspan=<%=String.valueOf(l.getAutores().size())%>> <%=l.getCategoria().getDescripcion()%></td>
+                 <% if(admin == 1){ %>
+                <td rowspan=<%=String.valueOf(l.getAutores().size())%>>
                       <form class="formularioEliminar" action="ServletLibro?accion=borrar" method="post">				
 				           <input type="image"  id="botonEliminar" src="icons/trash-fill.png"/>
 				           <input type="hidden" value=<%=String.valueOf(l.getId())%> name="id">  </input>
 			          </form>                                                  
                      </td>
                       
-                     <td>
+                    <td rowspan=<%=String.valueOf(l.getAutores().size())%>>
                        <form action="ServletMenu?accion=modificarLibro" method="post">				 
 								<input type="image"  id="button" src="icons/pencil.png"/>
 								 <input type="hidden" value=<%=String.valueOf(l.getId())%> name="id">  </input>					
 			            </form>
-                     </td>
-                   
-            </tr>
+                     </td>  
+                    <%}%>                                                                           					                                                              
+                   <%for(int i=0; i<l.getAutores().size();i++) {%>                             
+                        <%if(i>0){%> <tr> <%}%> 
+                        <td> <%=l.getAutores().get(i).getNombre()%></td> 
+                        <td> <%=l.getAutores().get(i).getApellido()%></td>  
+                        </tr>                                                     
+                 <%}%>                                                                                                                     
+          
         </table>
-        <table>       
-            <thead>
-                <tr>            
-                  <th>Nombre Autor</th><th>Apellido Autor</th>
-                </tr>
-            </thead>  
-              <tr>                
-                <%for(Autor a : l.getAutores()){ %>                             
-                   <td> <%=a.getNombre()%></td> <td> <%=a.getApellido()%></td><tr></tr>                                 
-                 <%}%>                   
-         </table>
-    </div>
+       </div>
 
 
 </body>

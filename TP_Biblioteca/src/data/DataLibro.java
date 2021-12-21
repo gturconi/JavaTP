@@ -1,5 +1,9 @@
 package data;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.sql.PreparedStatement;
 
 import java.sql.ResultSet;
@@ -7,6 +11,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.LinkedList;
+
+import javax.servlet.http.HttpServletResponse;
 
 import entities.Autor;
 import entities.Libro;
@@ -99,7 +105,7 @@ public class DataLibro {
 		try {
 			stmt=DbHandler.getInstancia().getConn().
 					prepareStatement(
-							"insert into libro(titulo, descripcion, nroEdicion, fechaEdicion, dimensiones, paginas, stock, precio, idEditorial, idCategoria) values(?,?,?,?,?,?,?,?,?,?)",
+							"insert into libro(titulo, descripcion, nroEdicion, fechaEdicion, dimensiones, paginas, stock, precio, idEditorial, idCategoria, imagen) values(?,?,?,?,?,?,?,?,?,?,?)",
 							PreparedStatement.RETURN_GENERATED_KEYS
 							);				
 			stmt.setString(1, l.getTitulo());
@@ -112,7 +118,7 @@ public class DataLibro {
 			stmt.setDouble(8, l.getPrecio());
 			stmt.setObject(9, l.getEditorial().getId());
 			stmt.setObject(10, l.getCategoria().getId());
-			//stmt.setBlob(11,l.getImagen());
+			stmt.setBlob(11,l.getImagen());
 			
 			stmt.executeUpdate();
 			
@@ -173,7 +179,7 @@ public class DataLibro {
 		
 		try {
 			stmt= DbHandler.getInstancia().getConn().createStatement();
-			rs= stmt.executeQuery("select id,titulo, descripcion, nroEdicion, fechaEdicion, dimensiones, paginas, stock, precio, idEditorial, idCategoria from libro");			
+			rs= stmt.executeQuery("select id,titulo, descripcion, nroEdicion, fechaEdicion, dimensiones, paginas, stock, precio, idEditorial, idCategoria, imagen from libro");			
 			if(rs!=null) {
 				while(rs.next()) {
 					Libro l=new Libro();					
@@ -189,7 +195,8 @@ public class DataLibro {
 					l.setEditorial(de.buscar(rs.getInt("idEditorial")));
 					l.setCategoria(dc.buscar(rs.getInt("idCategoria")));
 					l.setAutores(buscaAutores(l.getId()));
-					//l.setImagen(rs.getBlob("imagen"));
+					l.setImagen(rs.getBinaryStream("imagen"));
+					
 					list.add(l);
 				}
 			}
@@ -208,6 +215,34 @@ public class DataLibro {
 		}		
 		
 		return list;		
+	}
+	
+	public void listarImg(int id, HttpServletResponse response) {
+					
+		InputStream inputStream=null;
+		OutputStream outputStream=null;
+		BufferedInputStream bufferedInputStream=null;
+		BufferedOutputStream bufferedOutputStream=null;
+		response.setContentType("image/*");
+		
+		try {
+			outputStream=response.getOutputStream();
+			PreparedStatement stmt = DbHandler.getInstancia().getConn().prepareStatement("select id,titulo, descripcion, nroEdicion, fechaEdicion, dimensiones, paginas, stock, precio, idEditorial, idCategoria, imagen from libro where id=?");
+			stmt.setInt(1, id);						
+			ResultSet rs = stmt.executeQuery();
+						
+			if(rs.next()) {
+				inputStream=rs.getBinaryStream("imagen");
+			}
+			bufferedInputStream= new BufferedInputStream(inputStream);
+			bufferedOutputStream= new BufferedOutputStream(outputStream);
+			int i=0;
+			while((i=bufferedInputStream.read())!=-1) {
+				bufferedOutputStream.write(i);
+			}
+		}catch(Exception e){
+			
+		}
 	}
 	
 	

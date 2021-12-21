@@ -1,6 +1,7 @@
 <%@page import="java.util.LinkedList" %>
 <%@page import="entities.Autor" %>
 <%@page import="entities.Libro" %>
+<%@page import="entities.Cliente" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -8,6 +9,8 @@
 <head>
 <%
    LinkedList<Libro> libros = (LinkedList<Libro>)request.getAttribute("Libros");   
+   Cliente cl = (Cliente) (request.getSession().getAttribute("Cliente"));
+   int admin = cl.getisAdmin();
 %>
 <meta charset="ISO-8859-1">
 <title>Listado de Libros</title>
@@ -25,11 +28,12 @@
         <table>
             <thead>
                 <tr>
+                    <th>Portada</th> 
                     <th>Id</th><th>Titulo</th><th>Descripcion</th>
                     <th>nroEdicion</th><th>fechaEdicion</th><th>Dimensiones</th>
                     <th>Paginas</th><th>Stock</th><th>Precio</th>
                     <th>Paginas</th><th>Editorial</th><th>Categoria</th>
-                    <th>Eliminar</th><th>Modificar</th> 
+                    <% if(admin == 1){ %><th>Eliminar</th><th>Modificar</th><%}%> 
                     <th>Nombre Autor</th><th>Apellido Autor</th>
                                                                                                                     
                 </tr>
@@ -38,7 +42,9 @@
             
             <!-- ACA HICE UN QUILOMBO PARA PODER MOSTRAR MAS DE UN AUTOR PARA UN MISMO LIBRO 
             PORQUE TUVE QUE FUSIONAR FILAS, DE TODAS FORMAS ESTA INTERFAZ ES TEMPORAL JAJA -->
-            <%for(Libro l : libros){ %>                
+            <%for(Libro l : libros){ %>
+                 
+                 <td rowspan=<%=String.valueOf(l.getAutores().size())%>> <img src="ServletLibro?id=<%=l.getId()%>" width="60px" height="60px"/> </td>                                 
                 <td rowspan=<%=String.valueOf(l.getAutores().size())%>> <%=l.getId()%></td>
                 <td rowspan=<%=String.valueOf(l.getAutores().size())%>> <%=l.getTitulo()%></td>
                 <td rowspan=<%=String.valueOf(l.getAutores().size())%>> <%=l.getDescripcion()%></td>
@@ -51,7 +57,8 @@
                 <td rowspan=<%=String.valueOf(l.getAutores().size())%>> <%=l.getNroPaginas()%></td>
                 <td rowspan=<%=String.valueOf(l.getAutores().size())%>> <%=l.getEditorial().getNombre()%></td>
                 <td rowspan=<%=String.valueOf(l.getAutores().size())%>> <%=l.getCategoria().getDescripcion()%></td>
-                <td rowspan=<%=String.valueOf(l.getAutores().size())%>>
+                <% if(admin == 1){ %>
+                <td rowspan=<%=String.valueOf(l.getAutores().size())%>>                      
                       <form class="formularioEliminar" action="ServletLibro?accion=borrar" method="post">				
 				           <input type="image"  id="botonEliminar" src="icons/trash-fill.png"/>
 				           <input type="hidden" value=<%=String.valueOf(l.getId())%> name="id">  </input>
@@ -62,8 +69,10 @@
                        <form action="ServletMenu?accion=modificarLibro" method="post">				 
 								<input type="image"  id="button" src="icons/pencil.png"/>
 								 <input type="hidden" value=<%=String.valueOf(l.getId())%> name="id">  </input>					
-			            </form>
-                     </td>                                                                            					                                                              
+			            </form>			            
+                     </td>
+                      <%}%>         
+                                                                                                 					                                                              
                    <%for(int i=0; i<l.getAutores().size();i++) {%>                             
                         <%if(i>0){%> <tr> <%}%> 
                         <td> <%=l.getAutores().get(i).getNombre()%></td> 
@@ -73,10 +82,11 @@
              <%}%>                                            
           </table>
                                                                         
-    </div>
+    </div> 
+                                   <% if(admin == 1){ %>
                                     <form action="ServletMenu?accion=anadirLibro" method="post">				 
                                         <button id="button" type="submit">Añadir Libro</button>
                                     </form>
-
+                                     <%}%>  
 </body>
 </html>

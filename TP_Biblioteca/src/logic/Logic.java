@@ -2,6 +2,8 @@ package logic;
 
 import java.util.LinkedList;
 
+import javax.servlet.http.HttpServletResponse;
+
 import data.DataAutor;
 import data.DataCategoria;
 import data.DataCliente;
@@ -173,6 +175,11 @@ public class Logic {
 	public LinkedList<Libro> listadoLib() {
 		return dlib.listado();
 	}	
+	
+	public void listarImgLib(int id, HttpServletResponse response) {
+		dlib.listarImg(id, response);
+	}
+	
 	
 	public Libro buscarLib(int id) {
 		return dlib.buscar(id);		

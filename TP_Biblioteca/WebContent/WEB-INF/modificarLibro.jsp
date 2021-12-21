@@ -1,31 +1,27 @@
 <%@page import="java.util.LinkedList" %>
-<%@page import="entities.Editorial" %>
-<%@page import="entities.Categoria" %>
 <%@page import="entities.Autor" %>
 <%@page import="entities.Libro" %>
+<%@page import="entities.Editorial" %>
+<%@page import="entities.Categoria" %>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
 <%
+   String id = (String) request.getAttribute("id");
    LinkedList<Editorial> editoriales = (LinkedList<Editorial>)request.getAttribute("Editoriales");
    LinkedList<Categoria> categorias = (LinkedList<Categoria>)request.getAttribute("Categorias");
    LinkedList<Autor> autores = (LinkedList<Autor>)request.getAttribute("Autores");
 %>
 <meta charset="ISO-8859-1">
-<title>Libro Nuevo</title>
-<link rel="stylesheet" href="estilos/tabla.css">
+<title>Editar libro</title>
 </head>
 <body>
 
-<form class="formularioBusqueda" action="ServletLibro?accion=buscar" method="post">
-				<input id="campoTexto" type="text" placeholder="Ingrese id del libro " maxlength="10" name="id" required> 
-				<button id= "botonBuscar" type="submit">Buscar Libro</button>
-	</form>
-
-
-<form action="ServletLibro?accion=agregar" method="post" enctype="multipart/form-data">
+            <form action="ServletLibro?accion=modificar" method="post">
+                <input type="hidden" value=<%=id%> name="id">  </input>
 				<input class="controlr" type="text" placeholder="Ingrese el titulo" maxlength="20" name="titulo"required>
 				<input class="controlr" type="text" placeholder="Ingrese la descripcion" maxlength="20" name="descripcion" required>
 				<input class="controlr" type="number" placeholder="Ingrese el numero de la edicion" maxlength="20" name="edicion" required>
@@ -70,15 +66,9 @@
                             }          
                       %>                                                                
                   </label>
-                              
-                   <b>Subir portada </b><br/><br/>                  
-                     <input type="file" name="imagen" required="required"/><br/><br/>                   
-                                                                                                                                                          
-				<button class="button" type="submit">Añadir Libro</button>
+                                
+				<button class="button" type="submit">Modificar Libro</button>
 			</form>
-<%if(null != request.getAttribute("error")){
-	  out.println(request.getAttribute("error"));    
-  }	  
-  %>			
+
 </body>
 </html>
