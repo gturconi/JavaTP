@@ -13,14 +13,23 @@
 <meta charset="ISO-8859-1">
 <title>Buscar cliente</title>
 <link rel="stylesheet" href="estilos/tabla.css">
-<link rel="stylesheet" href="estilos/buscar.css">
+<link rel="stylesheet" href="estilos/busqueda.css">
 </head>
 <body>
    <h1>Busqueda de Cliente</h1>
-    <form class="formularioBusqueda" action="ServletCliente?accion=buscar" method="post">
-				<input id="campoTexto" type="text" placeholder="Ingrese id del cliente " maxlength="10" name="id" required> 
-				<button id= "botonBuscar" type="submit">Buscar Cliente</button>
-	</form>
+   
+<div class="container">
+    <div class="card">
+      <img src="pictures/lupaBusqueda.png" alt="">
+      <h4> Buscar </h4>
+      <form class="formulario" action="ServletCliente?accion=buscar" method="post">
+        <input id="campoTexto" type="text" placeholder="Ingrese id  " maxlength="10" name="id" required> 
+        <button id= "boton" type="submit">Buscar Cliente</button>
+      </form>
+    </div>  
+  </div> 
+
+
 <%if(null != request.getAttribute("error")){
 	  out.println(request.getAttribute("error"));    
   }	  
@@ -31,18 +40,35 @@
         <table>
             <thead>
                 <tr>
-                    <th>Numero</th><th>Nombre</th><th>Apellido</th>
-                    <th>Usuario</th><th>Password</th><th>Domicilio</th>
-                    <th>Telefono</th><th>Email</th><th>Fecha Inscripcion</th>
-                    <th>Localidad</th><th>Administrador</th><th>Estado</th>
-                    <th>Eliminar</th><th>Modificar</th>                                        
+                    <th>Numero</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Usuario</th>
+                    <!--<th>Password</th> -->
+                    <th>Domicilio</th>
+                    <th>Telefono</th>
+                    <th>Email</th>
+                    <th>Fecha Inscripcion</th>
+                    <th>Localidad</th>
+                    <th>Administrador</th>
+                    <th>Estado</th>
+                    <th>Eliminar</th>
+                    <th>Modificar</th>                                        
                 </tr>
             </thead>
             <tr>            
-                <td> <%=cli.getId()%></td><td> <%=cli.getNombre()%></td><td> <%=cli.getApellido()%></td>
-                <td> <%=cli.getUser()%></td><td> <%=cli.getPassword()%></td><td> <%=cli.getDomicilio()%></td>
-                <td> <%=cli.getTelefono()%></td><td> <%=cli.getEmail()%></td><td> <%=cli.getFechaInscripcion()%></td>
-                <td> <%=cli.getLocalidad().getNombre()%></td><td> <%=cli.getisAdmin()%></td><td> <%=cli.getEstado()%></td>                
+                <td data-label="id"> <%=cli.getId()%></td>
+                <td data-label="nombre"> <%=cli.getNombre()%></td>
+                <td data-label="apellido"> <%=cli.getApellido()%></td>
+                <td data-label="usuario"> <%=cli.getUser()%></td>
+              <!--<td> <%=cli.getPassword()%></td> -->
+                <td data-label="domicilio"> <%=cli.getDomicilio()%></td>
+                <td data-label="telefono"> <%=cli.getTelefono()%></td>
+                <td data-label="email"> <%=cli.getEmail()%></td>
+                <td data-label="fechaInscripcion"> <%=cli.getFechaInscripcion()%></td>
+                <td data-label="localidadNombre"> <%=cli.getLocalidad().getNombre()%></td>
+                <td data-label="admin"> <%=cli.getisAdmin()%></td>
+                <td data-label="estado"> <%=cli.getEstado()%></td>                
                 <td>                
                       <form class="formularioEliminar" action="ServletCliente?accion=eliminarCuenta" method="post">
                            <input type="image"  id="botonEliminar" src="icons/trash-fill.png"/> 								           

@@ -8,7 +8,7 @@
 <link rel="icon" href="icons/libro.ico">
 <title>Modificar Cuenta</title>
 </head>
-<body>
+<body style="background-color: #FFDEAD" >
 
 <div class="contenedor">
  <section class="form-registrar">

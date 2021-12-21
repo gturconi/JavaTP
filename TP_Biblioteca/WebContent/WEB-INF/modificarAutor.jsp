@@ -7,16 +7,24 @@
    String id = (String) request.getAttribute("id");      
 %>
 <meta charset="ISO-8859-1">
-<link rel="stylesheet" type="text/css" href="estilos/modificar.css">
+<link rel="stylesheet" href="estilos/busqueda.css">
 <title>Editar Autor</title>
 </head>
 <body>
-	<h1>Modificacion de autor</h1>
-<form class="formularioModificar" action="ServletAutor?accion=modificar" method="post">
-				<input type="hidden" value=<%=id%> name="id">  </input>
-				<input id="campoTexto" type="text" placeholder="Ingrese el nuevo nombre del autor" maxlength="20" name="nombre"required>
-				<input id="campoTexto" type="text" placeholder="Ingrese el nuevo apellido del autor" maxlength="20" name="apellido"required>
-				<button id="botonModificar" type="submit">Modificar Autor</button>
-			</form>
+	<h1>Modificacion de Autor</h1>
+
+<div class="containerAutor">
+    <div class="cardAutor">
+      <img src="pictures/modificar.png" alt="">
+      <h4> Modificar </h4>
+      <form class="formularioAutor" action="ServletAutor?accion=modificar" method="post">
+			<input type="hidden" value=<%=id%> name="id"> 
+			<input id="campoTextoAutor" type="text" placeholder="Ingrese el nuevo nombre" maxlength="20" name="nombre"required>
+			<input id="campoTextoAutor" type="text" placeholder="Ingrese el nuevo apellido" maxlength="20" name="apellido"required>				
+			<button id="botonAutor" type="submit">Modificar Autor</button>
+	  </form>
+    </div>  
+</div>
+
 </body>
 </html>

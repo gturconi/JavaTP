@@ -15,26 +15,28 @@
 <meta charset="ISO-8859-1">
 <title>Localidades</title>
 <link rel="stylesheet" href="estilos/tabla.css">
+<link rel="stylesheet" href="estilos/busqueda.css">
 <link rel="icon" href="icons/localidad.ico">
 </head>
-<body>
-    <form class="formularioBusqueda" action="ServletLocalidad?accion=buscar" method="post">
-				<input id="campoTexto" type="text" placeholder="Ingrese id de la localidad " maxlength="10" name="id" required> 
-				<button id= "botonBuscar" type="submit">Buscar Localidad</button>
-	</form>                           
-    <div id="tabla">
+<body>      
+
+<h1> Listado de Localidades</h1>
+              
         <table>
              <thead>
                 <tr>
-                  <th>Numero</th><th>Nombre</th><% if(admin == 1){ %><th>Eliminar</th><th>Modificar</th><%}%>
+                  <th>Numero</th>
+                  <th>Nombre</th>
+                  <% if(admin == 1){ %><th>Eliminar</th><th>Modificar</th><%}%>
               </tr>
              </thead>
             <tr>
             <%for(Localidad loc : localidades){ %>
-                <td> <%=loc.getId()%></td><td> <%=loc.getNombre()%></td>
+                <td data-label="id"> <%=loc.getId()%></td>
+                <td data-label="nombre"> <%=loc.getNombre()%></td>
                 <% if(admin == 1){ %>
                 <td>
-                      <form class="formularioEliminar" action="ServletLocalidad?accion=borrar" method="post">
+                      <form action="ServletLocalidad?accion=borrar" method="post">
                            <input type="image"  id="botonEliminar" src="icons/trash-fill.png"/>								           
 				           <input type="hidden" value=<%=String.valueOf(loc.getId())%> name="id">  </input>
 			          </form>                                                  
@@ -49,11 +51,29 @@
             </tr> 
              <%}%>
         </table>
-    </div>
-                                   <% if(admin == 1){ %>  
-                                    <form action="ServletMenu?accion=anadirLocalidad" method="post">				 
-								      <button id="button" type="submit">Añadir Localidad</button>
-							        </form>
-							       <%}%> 
+
+
+
+<div class="container">
+    <div class="card">
+      <img src="pictures/lupaBusqueda.png" alt="">
+      <h4> Buscar </h4>
+      <form class="formulario" action="ServletLocalidad?accion=buscar" method="post">
+        <input id="campoTexto" type="text" placeholder="Ingrese id " maxlength="10" name="id" required> 
+        <button id= "boton" type="submit">Buscar Localidad</button>
+       </form>  
+    </div>  
+    <% if(admin == 1){ %>
+    <div class="card">
+      <img src="pictures/añadir.png" alt="">
+      <h4> Añadir </h4>  
+      <form class="formulario" action="ServletMenu?accion=anadirLocalidad" method="post">       
+         <button id="boton_Añadir" type="submit">Añadir Localidad</button>
+      </form>
+      <%}%> 
+    </div>  
+</div>
+
+
 </body>
 </html>

@@ -17,6 +17,10 @@ pageEncoding="ISO-8859-1"%>
 	<body>
 	<h1>Bienvenido Administrador <%=cliente.getNombre()%> <%=cliente.getApellido()%></h1>
 	
+	<header>
+		<input type="checkbox" id="btn_menu">
+			<label for="btn_menu"><img src="pictures/menu.png" alt=""></label>
+
 		<nav class="navegacion">
 			<ul class="nav">
 				<li><a href="#">Cuenta</a>
@@ -111,7 +115,7 @@ pageEncoding="ISO-8859-1"%>
 						</li>
 					</ul>
 				</li>
-				<li><a href="#">Modificaciones</a>
+			<!--	<li><a href="#">Modificaciones</a>
 					<ul>
 					<li><a href="#">Localidad</a>
 							<ul>
@@ -173,17 +177,17 @@ pageEncoding="ISO-8859-1"%>
 						<li><a href="#">Editorial</a>
 							<ul>
 								<li>
-									<form> <!-- llamar servlet para añadir editorial -->				 
+									<form> (<!-- llamar servlet para añadir editorial 				 
                                         <button id="button" type="submit">Añadir Editorial</button>
                                     </form>
 								</li>
 								<li>
-									<form> <!-- llamar servlet para modificar editorial -->				 
+									<form> <!-- llamar servlet para modificar editorial 				 
                                         <button id="button" type="submit">Modificar Editorial</button>
                                     </form>
 								</li>
 								<li>
-									<form> <!-- llamar servlet para borrar editorial -->				 
+									<form> <!-- llamar servlet para borrar editorial 				 
                                         <button id="button" type="submit">Eliminar Editorial</button>
                                     </form>
 								</li>
@@ -192,24 +196,25 @@ pageEncoding="ISO-8859-1"%>
 						<li><a href="#">Libro</a>
 							<ul>
 								<li>
-									<form> <!-- llamar servlet para añadir libro -->				 
+									<form> <!-- llamar servlet para añadir libro 				 
                                         <button id="button" type="submit">Añadir Libro</button>
                                     </form>
 								</li>
 								<li>
-									<form> <!-- llamar servlet para modificar libro -->				 
+									<form> <!-- llamar servlet para modificar libro 			 
                                         <button id="button" type="submit">Modificar Libro</button>
                                     </form>
 								</li>
 								<li>
-									<form> <!-- llamar servlet para borrar libro -->				 
+									<form> <!-- llamar servlet para borrar libro 				 
                                         <button id="button" type="submit">Eliminar Libro</button>
                                     </form>
 								</li>
 							</ul>
 						</li>
 					</ul>
-				</li>
+				</li> -->
 			</ul>
 		</nav>
+	</header>
 	</body>

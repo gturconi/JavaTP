@@ -14,14 +14,23 @@
 <meta charset="ISO-8859-1">
 <title>Buscar Autor</title>
 <link rel="stylesheet" href="estilos/tabla.css">
-<link rel="stylesheet" href="estilos/buscar.css">
+<link rel="stylesheet" href="estilos/busqueda.css">
 </head>
-<body>     
-    <h1>Busqueda de Autor</h1>
-    <form class="formularioBusqueda" action="ServletAutor?accion=buscar" method="post">
-				<input id="campoTexto" type="text" placeholder="Ingrese id del autor " maxlength="10" name="id" required> 
-				<button id= "botonBuscar" type="submit">Buscar Autor</button>
-	</form>
+<body>   
+
+  <h1>Busqueda de Autor</h1>
+
+ <div class="container">
+    <div class="card">
+      <img src="pictures/lupaBusqueda.png" alt="">
+      <h4> Buscar </h4>
+      <form class="formulario" action="ServletAutor?accion=buscar" method="post">
+        <input id="campoTexto" type="text" placeholder="Ingrese id " maxlength="10" name="id" required> 
+        <button id= "boton" type="submit">Buscar Autor</button>
+       </form>  
+    </div>  
+  </div> 
+
 <%if(null != request.getAttribute("error")){
 	  out.println(request.getAttribute("error"));    
   }	  
@@ -31,13 +40,15 @@
         <table>
             <thead>
                 <tr>
-                    <th>Numero</th><th>Nombre</th><th>Apellido</th><% if(admin == 1){ %><th>Eliminar</th><th>Modificar</th><%}%> 
+                    <th>Numero</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th><% if(admin == 1){ %><th>Eliminar</th><th>Modificar</th><%}%> 
                 </tr>
             </thead>
             <tr>
-                <td> <%=String.valueOf(autor.getId())%></td>
-                <td> <%=autor.getNombre()%></td>  
-                <td> <%=autor.getApellido()%></td>
+                <td data-label="id"> <%=String.valueOf(autor.getId())%></td>
+                <td data-label="nombre"> <%=autor.getNombre()%></td>  
+                <td data-label="apellido"> <%=autor.getApellido()%></td>
                 <% if(admin == 1){ %>
                 <td>
                       <form class="formularioEliminar" action="ServletAutor?accion=borrar" method="post">				

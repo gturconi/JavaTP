@@ -12,13 +12,23 @@
 %>
 <meta charset="ISO-8859-1">
 <title>Buscar Categoria</title>
+<link rel="stylesheet" href="estilos/tabla.css">
+<link rel="stylesheet" href="estilos/busqueda.css">
 </head>
 <body>
    <h1>Busqueda de Categoria</h1>
-    <form class="formularioBusqueda" action="ServletCategoria?accion=buscar" method="post">
-				<input id="campoTexto" type="text" placeholder="Ingrese id de la categoria " maxlength="10" name="id" required> 
-				<button id= "botonBuscar" type="submit">Buscar Categoria</button>
-	</form>
+
+     <div class="container">
+    <div class="card">
+      <img src="pictures/lupaBusqueda.png" alt="">
+      <h4> Buscar </h4>
+      <form class="formulario" action="ServletCategoria?accion=buscar" method="post">
+        <input id="campoTexto" type="text" placeholder="Ingrese id " maxlength="10" name="id" required> 
+        <button id= "boton" type="submit">Buscar Categoria</button>
+       </form>  
+    </div>  
+  </div> 
+
 <%if(null != request.getAttribute("error")){
 	  out.println(request.getAttribute("error"));    
   }	  
@@ -33,8 +43,8 @@
                 </tr>
             </thead>
             <tr>
-                <td> <%=String.valueOf(categoria.getId())%></td>
-                <td> <%=categoria.getDescripcion()%></td>
+                <td data-label="id"> <%=String.valueOf(categoria.getId())%></td>
+                <td data-label="nombre"> <%=categoria.getDescripcion()%></td>
                 <% if(admin == 1){ %>
                 <td>                
                 <form class="formularioEliminar" action="ServletCategoria?accion=borrar" method="post">				

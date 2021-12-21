@@ -9,15 +9,23 @@
 %>
 <meta charset="ISO-8859-1">
 <link rel="stylesheet" href="estilos/tabla.css">
-<link rel="stylesheet" href="estilos/buscar.css">
+<link rel="stylesheet" href="estilos/busqueda.css">
 <title>Buscar Localidad</title>
 </head>
 <body>
    <h1>Busqueda de Localidad</h1>
-    <form class="formularioBusqueda" action="ServletLocalidad?accion=buscar" method="post">
-				<input id="campoTexto" type="text" placeholder="Ingrese id de la localidad " maxlength="10" name="id" required> 
-				<button id= "botonBuscar" type="submit">Buscar Localidad</button>
-	</form>
+   
+   <div class="container">
+    <div class="card">
+      <img src="pictures/lupaBusqueda.png" alt="">
+      <h4> Buscar </h4>
+      <form class="formulario" action="ServletLocalidad?accion=buscar" method="post">
+        <input id="campoTexto" type="text" placeholder="Ingrese id " maxlength="10" name="id" required> 
+        <button id= "boton" type="submit">Buscar Localidad</button>
+       </form>  
+    </div>  
+  </div> 
+    
 <%if(null != request.getAttribute("error")){
 	  out.println(request.getAttribute("error"));    
   }	  
@@ -32,8 +40,8 @@
                 </tr>
             </thead>
             <tr>
-                <td> <%=String.valueOf(localidad.getId())%></td>
-                <td> <%=localidad.getNombre()%></td>  
+                <td data-label="id"> <%=String.valueOf(localidad.getId())%></td>
+                <td data-label="nombre"> <%=localidad.getNombre()%></td>  
                 <td>
                       <form class="formularioEliminar" action="ServletLocalidad?accion=borrar" method="post">				
 				           <input type="image"  id="botonEliminar" src="icons/trash-fill.png"/>

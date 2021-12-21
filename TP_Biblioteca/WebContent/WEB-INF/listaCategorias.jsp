@@ -15,23 +15,23 @@
 <meta charset="ISO-8859-1">
 <title>Categoria</title>
 <link rel="stylesheet" href="estilos/tabla.css">
+<link rel="stylesheet" href="estilos/busqueda.css">
 </head>
 <body>
-    <form class="formularioBusqueda" action="ServletCategoria?accion=buscar" method="post">
-				<input id="campoTexto" type="text" placeholder="Ingrese id de la categoria " maxlength="10" name="id" required> 
-				<button id= "botonBuscar" type="submit">Buscar Categoria</button>
-	</form>
 	 	
   <div id="tabla">
         <table>
              <thead>
                 <tr>
-                  <th>Numero</th><th>Descripcion</th><% if(admin == 1){ %><th>Eliminar</th><th>Modificar</th><%}%>
+                  <th>Numero</th>
+                  <th>Descripcion</th>
+                  <% if(admin == 1){ %><th>Eliminar</th><th>Modificar</th><%}%>
               </tr>
              </thead>
             <tr>
             <%for(Categoria c : categorias){ %>
-                <td> <%=c.getId()%></td><td> <%=c.getDescripcion()%></td>
+                <td data-label="id"> <%=c.getId()%></td>
+                <td data-label="descripcion"> <%=c.getDescripcion()%></td>
                 <% if(admin == 1){ %>
                      <td>
                       <form class="formularioEliminar" action="ServletCategoria?accion=borrar" method="post">				
@@ -50,11 +50,28 @@
             </tr> 
              <%}%>
         </table>
-    </div>                        
-                                    <% if(admin == 1){ %> 
-                                    <form action="ServletMenu?accion=anadirCategoria" method="post">				 
-                                        <button id="button" type="submit">Añadir Categoria</button>
-                                    </form> 
-                                    <%}%>    
+    </div>     
+
+<div class="container">
+    <div class="card">
+      <img src="pictures/lupaBusqueda.png" alt="">
+      <h4> Buscar </h4>
+      <form class="formulario" action="ServletCategoria?accion=buscar" method="post">
+        <input id="campoTexto" type="text" placeholder="Ingrese id " maxlength="10" name="id" required> 
+        <button id= "boton" type="submit">Buscar Categoria</button>
+       </form>  
+    </div>  
+    
+    <% if(admin == 1){ %>  
+    <div class="card">
+      <img src="pictures/añadir.png" alt="">
+      <h4> Añadir </h4>
+      <form class="formulario" action="ServletMenu?accion=anadirCategoria" method="post">      
+         <button id="boton_Añadir" type="submit">Añadir Categoria</button>
+      </form>
+    </div> 
+      <%}%>  
+</div>
+
 </body>
 </html>
