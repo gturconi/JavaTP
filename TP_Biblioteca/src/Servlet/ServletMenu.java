@@ -67,7 +67,16 @@ public class ServletMenu extends HttpServlet {
 			request.setAttribute("id", request.getParameter("id"));
 			request.getRequestDispatcher("WEB-INF/modificarCategoria.jsp").forward(request, response);			
 		}else if(accion.equalsIgnoreCase("anadirCategoria")) {
-			request.getRequestDispatcher("WEB-INF/añadirCategoria.jsp").forward(request, response);			
+			request.getRequestDispatcher("WEB-INF/añadirCategoria.jsp").forward(request, response);
+			
+		}else if(accion.equalsIgnoreCase("buscarEditorial")) {
+			request.getRequestDispatcher("WEB-INF/buscaEditorial.jsp").forward(request, response);			
+		}else if(accion.equalsIgnoreCase("modificarEditorial")) {
+			request.setAttribute("id", request.getParameter("id"));
+			request.getRequestDispatcher("WEB-INF/modificarEditorial.jsp").forward(request, response);			
+		}else if(accion.equalsIgnoreCase("anadirEditorial")) {
+			request.getRequestDispatcher("WEB-INF/añadirEditorial.jsp").forward(request, response);	
+			
 		}else if(accion.equalsIgnoreCase("anadirLibro")) {
 		    LinkedList<Categoria> categorias = ctrl.listadoCategoria();
 		    LinkedList<Autor> autores = ctrl.listadoAut();

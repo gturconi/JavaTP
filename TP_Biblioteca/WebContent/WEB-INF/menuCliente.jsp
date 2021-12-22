@@ -52,7 +52,7 @@
 							</form>							
 						</li>
 						<li>
-							<form> <!-- llamar servlet para mostrar listado de editoriales-->
+							<form action="ServletEditorial?accion=listar" method="post">
 								<button id="button" type="submit">Editoriales</button>
 							</form>
 						</li>

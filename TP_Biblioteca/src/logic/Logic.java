@@ -164,9 +164,14 @@ public class Logic {
 		de.modificar(e);
 	}
 	
-	public Editorial buscarEdPorNombre(String ed) {
-		return de.buscarEditorialPorNombre(ed);		
+	public Editorial buscarEdPorNombre(String nombre) {
+		return de.buscarEditorialPorNombre(nombre);		
 	}
+	
+	public int buscarEdPorDescripcion(String nombre) {
+		return de.buscarEditorialPorDescripcion(nombre);		
+	}
+	
 	
 	public void agregarLibro(Libro l) {
 		dlib.agregar(l);
