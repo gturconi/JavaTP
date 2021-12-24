@@ -61,15 +61,15 @@
                 </select>
                 
                   <label>    
-                     <span>Seleccione el/los autores</span>
-                     <option style="display: none;" value="" selected>Categoria</option>
+                     <span>Seleccione el/los autores</span>                     
+                   <option style="display: none;" value="" selected>Categoria</option>
                       <% 
                              for(Autor aut:autores){
             	                %> <input type="checkbox" name="autores" value='<%=aut.getNombre() + "/" + aut.getApellido()%>'><%=aut.getNombre() + " " + aut.getApellido()%>
                       <%
                             }          
-                      %>                                                                
-                  </label>
+                      %>                                                               
+                  </label> 
                               
                    <b>Subir portada </b><br/><br/>                  
                      <input type="file" name="imagen" required="required"/><br/><br/>                   

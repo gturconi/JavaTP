@@ -67,7 +67,7 @@ public class ServletCategoria extends HttpServlet {
 		Categoria c = new Categoria();		
 		c.setDescripcion(descripcion);
 		
-		if(ctrl.buscarCatPorDescripcion(descripcion)==1) {
+		if(ctrl.buscarCatPorNombre(descripcion)!=null) {
         	request.setAttribute("error", "Ya existe una categoria con esa descripcion!");
         	request.getRequestDispatcher("WEB-INF/añadirCategoria.jsp").forward(request, response);
         }else {

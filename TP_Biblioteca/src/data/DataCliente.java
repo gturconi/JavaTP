@@ -4,7 +4,6 @@ import java.sql.PreparedStatement;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.LinkedList;
 
@@ -15,7 +14,7 @@ public class DataCliente {
 
 	 public Cliente buscarCliente(String user, String pass) {	 
 			
-		    DataLocalidad dl = new DataLocalidad();;
+		    DataLocalidad dl = new DataLocalidad();
 		    Cliente c=null;
 			PreparedStatement stmt=null;
 			ResultSet rs=null;

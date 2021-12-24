@@ -16,7 +16,7 @@
 <body>
    <h1>
         Listado de pedidos
-    </h1>
+    </h1>            
     <div id="tabla">
         <table>
             <thead>
@@ -41,6 +41,6 @@
              <%}%>           
            <%}%>  
           </table>                   
-    </div>
+    </div>     
 </body>
 </html>

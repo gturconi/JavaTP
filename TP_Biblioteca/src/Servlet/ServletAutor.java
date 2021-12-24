@@ -85,7 +85,7 @@ public class ServletAutor extends HttpServlet {
 		Autor a = new Autor();
 		a.setNombre(nombre);
 		a.setApellido(apellido);
-		if(ctrl.buscarAutPorNombre(nombre, apellido)==1) {
+		if(ctrl.buscarAutPorNombre(nombre, apellido)!=null) {
         	request.setAttribute("error", "Ya existe un autor con ese nombre y apellido!");
         	request.getRequestDispatcher("WEB-INF/añadirAutor.jsp").forward(request, response);
         }else {

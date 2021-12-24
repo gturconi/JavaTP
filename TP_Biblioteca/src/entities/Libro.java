@@ -1,11 +1,12 @@
 package entities;
 
 import java.io.InputStream;
-import java.sql.Blob;
 import java.time.*;
 import java.util.LinkedList;
 
-public class Libro {
+
+
+public class Libro implements Comparable<Libro>{
 	
 	private int id;
 	private String titulo;
@@ -122,6 +123,29 @@ public InputStream getImagen() {
 	}
 	public void setImagen(InputStream is) {
 		this.imagen = is;
+	}
+	
+	@Override
+	  public boolean equals(Object obj) {
+		  if(this == obj) {
+			  return true;
+		  }
+		  if(obj == null) {
+			  return false;
+		  }
+		  if(!(obj instanceof Libro)) {
+			  return false;
+		  }
+		  Libro other = (Libro) obj;
+		  if(id != other.id) {
+			  return false;
+		  }
+		  return true;
+	  }
+	@Override
+	public int compareTo(Libro o) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 }

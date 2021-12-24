@@ -1,7 +1,7 @@
 package entities;
 
 import java.time.*;
-import java.util.Arrays;
+import java.util.LinkedList;
 
 public class Pedido {
 	
@@ -9,7 +9,7 @@ public class Pedido {
 	private LocalDate fecha;
 	private String estado;
 	private Cliente cliente;
-	private Libro[] libro;
+	private LinkedList<Libro> libros;
 	
 	public int getNroPedido() {
 		return nroPedido;
@@ -35,25 +35,25 @@ public class Pedido {
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
-	public Libro[] getLibro() {
-		return libro;
+	public LinkedList<Libro> getLibro() {
+		return libros;
 	}
-	public void setLibro(Libro[] libro) {
-		this.libro = libro;
+	public void setLibro(LinkedList<Libro> libros) {
+		 this.libros = libros;
 	}
 	
 	@Override
 	public String toString() {
 		return "Pedido [nroPedido=" + nroPedido + ", fecha=" + fecha + ", estado=" + estado + ", cliente=" + cliente
-				+ ", libro=" + Arrays.toString(libro) + "]";
+				+ ", libro=" + " " + "]";
 	}
 	
-	public Pedido(int nroPedido, LocalDate fecha, String estado, Cliente cliente, Libro[] libro) {
+	public Pedido(int nroPedido, LocalDate fecha, String estado, Cliente cliente, LinkedList<Libro> libro) {
 		this.nroPedido = nroPedido;
 		this.fecha = fecha;
 		this.estado = estado;
 		this.cliente = cliente;
-		this.libro = libro;
+		this.libros = libro;
 	}
 	
 	public Pedido(){

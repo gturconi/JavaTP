@@ -109,5 +109,10 @@
 			</ul>
 		</nav>
 	</header>
+	<%if(null != request.getAttribute("mensaje")){
+	  out.println(request.getAttribute("mensaje"));    
+  }	  
+  %>
+	
 </body>
 </html>

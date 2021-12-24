@@ -8,19 +8,21 @@
 <html>
 <head>
 <%
-   LinkedList<Libro> libros = (LinkedList<Libro>)request.getAttribute("Libros");   
+   LinkedList<Libro> libros = (LinkedList<Libro>)request.getAttribute("Libros");
+   LinkedList<Libro> librosPedidos = (LinkedList<Libro>)request.getAttribute("LibrosPedidos");
    Cliente cl = (Cliente) (request.getSession().getAttribute("Cliente"));
    int admin = cl.getisAdmin();
 %>
 <meta charset="ISO-8859-1">
 <title>Listado de Libros</title>
 <link rel="stylesheet" href="estilos/tabla.css">
+<link rel="stylesheet" href="listaLibros/tabla.css">
 </head>
 <body>
 <form class="formularioBusqueda" action="ServletLibro?accion=buscar" method="post">
 				<input id="campoTexto" type="text" placeholder="Ingrese id del libro " maxlength="10" name="id" required> 
 				<button id= "botonBuscar" type="submit">Buscar Libro</button>
-	</form>
+	</form>		
    <h1>
         Listado de libros
     </h1>    
@@ -29,10 +31,11 @@
             <thead>
                 <tr>
                     <th>Portada</th> 
-                    <th>Id</th><th>Titulo</th><th>Descripcion</th>
+                    <th>Id</th><th>Titulo</th><th>Descripcion</th>                    
                     <th>nroEdicion</th><th>fechaEdicion</th><th>Dimensiones</th>
                     <th>Paginas</th><th>Stock</th><th>Precio</th>
                     <th>Paginas</th><th>Editorial</th><th>Categoria</th>
+                    <th>Solicitar</th>
                     <% if(admin == 1){ %><th>Eliminar</th><th>Modificar</th><%}%> 
                     <th>Nombre Autor</th><th>Apellido Autor</th>
                                                                                                                     
@@ -44,7 +47,7 @@
             PORQUE TUVE QUE FUSIONAR FILAS, DE TODAS FORMAS ESTA INTERFAZ ES TEMPORAL JAJA -->
             <%for(Libro l : libros){ %>
                  
-                 <td rowspan=<%=String.valueOf(l.getAutores().size())%>> <img src="ServletLibro?id=<%=l.getId()%>" width="60px" height="60px"/> </td>                                 
+                <td rowspan=<%=String.valueOf(l.getAutores().size())%>> <img src="ServletLibro?id=<%=l.getId()%>" width="60px" height="60px"/> </td>                                 
                 <td rowspan=<%=String.valueOf(l.getAutores().size())%>> <%=l.getId()%></td>
                 <td rowspan=<%=String.valueOf(l.getAutores().size())%>> <%=l.getTitulo()%></td>
                 <td rowspan=<%=String.valueOf(l.getAutores().size())%>> <%=l.getDescripcion()%></td>
@@ -57,6 +60,16 @@
                 <td rowspan=<%=String.valueOf(l.getAutores().size())%>> <%=l.getNroPaginas()%></td>
                 <td rowspan=<%=String.valueOf(l.getAutores().size())%>> <%=l.getEditorial().getNombre()%></td>
                 <td rowspan=<%=String.valueOf(l.getAutores().size())%>> <%=l.getCategoria().getDescripcion()%></td>
+                <td rowspan=<%=String.valueOf(l.getAutores().size())%>>                   
+                 <% if(!librosPedidos.contains(l)){ %>
+                 <form action="ServletPedido?accion=reservaLibro" method="post">
+                 <input type="hidden" value=<%=String.valueOf(l.getId())%> name="id">  </input>			 
+                 <button id="button" type="submit">Reservar Libro</button>
+                 </form>
+                 <%}else{%>
+                   <label>Reservado</label>
+                 <%}%>                  
+                  </td>
                 <% if(admin == 1){ %>
                 <td rowspan=<%=String.valueOf(l.getAutores().size())%>>                      
                       <form class="formularioEliminar" action="ServletLibro?accion=borrar" method="post">				
@@ -78,8 +91,8 @@
                         <td> <%=l.getAutores().get(i).getNombre()%></td> 
                         <td> <%=l.getAutores().get(i).getApellido()%></td>  
                         </tr>                                                     
-                 <%}%>                                                                                                                     
-             <%}%>                                            
+                 <%}%>                                                                                                                                     
+             <%}%>                                                         
           </table>
                                                                         
     </div> 
