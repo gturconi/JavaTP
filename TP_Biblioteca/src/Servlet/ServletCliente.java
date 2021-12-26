@@ -1,6 +1,7 @@
 package Servlet;
 
 import java.io.IOException;
+
 import java.util.LinkedList;
 
 import javax.servlet.ServletException;
@@ -39,8 +40,7 @@ public class ServletCliente extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 		String accion = request.getParameter("accion");
 		if(accion.equalsIgnoreCase("actualizar")) {
 			actualizar(request,response);				
@@ -102,7 +102,7 @@ public class ServletCliente extends HttpServlet {
         c.setPassword(pass);
         c.setLocalidad(ctrl.buscarLocPorNombre(city));
         c.setId(((Cliente) request.getSession().getAttribute("Cliente")).getId());
-		
+        
         /*VERIFICAR QUE EL USUARIO NO EXISTA*/        
         if(ctrl.validarCliente(user) ==1) {
         	request.setAttribute("errorMensaje", "Ya existe un usuario con ese nombre!");

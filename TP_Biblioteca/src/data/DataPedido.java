@@ -124,6 +124,8 @@ public class DataPedido {
 	}
 	
 	public void agregarLibro(Pedido p, Libro l) {
+		
+		DataLibro dlib = new DataLibro(); 
 		PreparedStatement stmt= null;
 		ResultSet keyResultSet=null;
 		try {
@@ -133,7 +135,7 @@ public class DataPedido {
 			stmt.setInt(1, p.getNroPedido());
 			stmt.setInt(2, l.getId());
 			stmt.executeUpdate();
-			l.setExistencia(l.getExistencia()-1);
+			dlib.actualizaExistencia(l.getId()); //actualizamos la existencia del libro			
 									
 		}  catch (SQLException e) {
 	        e.printStackTrace();		        
@@ -199,7 +201,7 @@ public class DataPedido {
 						
 			if(rs!=null) {
 				while(rs.next()) {					 									
-					list=librosPedido(rs.getInt("nroPedido"));
+					list.addAll(librosPedido(rs.getInt("nroPedido")));
 				}
 			}
 			

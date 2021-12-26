@@ -1,10 +1,11 @@
+<%@page import="entities.Editorial" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>    
 <!DOCTYPE html>
 <html>
 <head>
 <%
-   String id = (String) request.getAttribute("id");      
+   Editorial e = (Editorial) request.getAttribute("Editorial");      
 %>
 <meta charset="ISO-8859-1">
 <title>Editar Editorial</title>
@@ -18,8 +19,8 @@
       <img src="pictures/modificar.png" alt="">
       <h4> Modificar </h4>
       <form class="formulario" action="ServletEditorial?accion=modificar" method="post">
-			<input type="hidden" value=<%=id%> name="id"> 
-			<input id="campoTexto" type="text" placeholder="Ingrese el nuevo nombre" maxlength="20" name="nombre"required>				
+			<input type="hidden" value=<%=e.getId()%> name="id"> 
+			<input id="campoTexto" type="text" value=<%=e.getNombre()%> maxlength="20" name="nombre"required>				
 			<button id="boton" type="submit">Modificar Editorial</button>
 	  </form>
     </div>  

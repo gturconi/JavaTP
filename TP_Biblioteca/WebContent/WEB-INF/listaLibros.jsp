@@ -13,21 +13,30 @@
    Cliente cl = (Cliente) (request.getSession().getAttribute("Cliente"));
    int admin = cl.getisAdmin();
 %>
-<meta charset="ISO-8859-1">
+<meta charset="ISO-8859-1" name="description" content="Bootstrap.">
 <title>Listado de Libros</title>
+
 <link rel="stylesheet" href="estilos/tabla.css">
-<link rel="stylesheet" href="listaLibros/tabla.css">
+     
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css"></style>
+<script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+
 </head>
-<body>
+<body style="margin:20px auto">
+ <div class="container">
+
 <form class="formularioBusqueda" action="ServletLibro?accion=buscar" method="post">
 				<input id="campoTexto" type="text" placeholder="Ingrese id del libro " maxlength="10" name="id" required> 
 				<button id= "botonBuscar" type="submit">Buscar Libro</button>
-	</form>		
+	</form>	
+		
    <h1>
         Listado de libros
-    </h1>    
-    <div id="tabla">
-        <table>
+    </h1>        
+        <table id="myTable" class="table table-striped">
             <thead>
                 <tr>
                     <th>Portada</th> 
@@ -94,12 +103,17 @@
                  <%}%>                                                                                                                                     
              <%}%>                                                         
           </table>
-                                                                        
-    </div> 
+   </div>                                                                     
+    
                                    <% if(admin == 1){ %>
                                     <form action="ServletMenu?accion=anadirLibro" method="post">				 
                                         <button id="button" type="submit">Añadir Libro</button>
                                     </form>
                                      <%}%>  
 </body>
+<script>
+$(document).ready(function(){
+    $('#myTable').dataTable();
+});
+</script>
 </html>
