@@ -177,32 +177,5 @@ public Editorial buscarEditorialPorNombre(String nombre) {
 	return ed; 	 
 }
 
-public int buscarEditorialPorDescripcion(String nombre) {	 
-	
-	PreparedStatement stmt=null;
-	ResultSet rs=null;
-	try {
-		stmt=DbHandler.getInstancia().getConn().prepareStatement(
-				"select id, nombre from editorial where nombre=?");
-		stmt.setString(1, nombre);			
-		rs=stmt.executeQuery();
-		
-		if(rs!=null && rs.next()) {
-			return 1;																												
-		}
-	} catch (SQLException e) {
-		e.printStackTrace();
-	}finally {
-		try {
-			if(rs!=null) {rs.close();}
-			if(stmt!=null) {stmt.close();}
-			DbHandler.getInstancia().releaseConn();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}			
-	return 0; 	 
-}
-
 
 }

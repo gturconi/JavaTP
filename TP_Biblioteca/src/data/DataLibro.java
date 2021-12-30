@@ -375,26 +375,6 @@ public class DataLibro {
 		
 	}
 	
-	void actualizaExistencia(int id) {
-		
-		PreparedStatement stmt= null;
-		try {
-			stmt=DbHandler.getInstancia().getConn().
-					prepareStatement("update libro set stock=stock-1 where id=?");
-			stmt.setInt(1,id);
-			stmt.executeUpdate();				       
-			
-		}  catch (SQLException e) {
-	        e.printStackTrace();
-		} finally {
-	        try {           
-	            if(stmt!=null)stmt.close();
-	            DbHandler.getInstancia().releaseConn();
-	        } catch (SQLException e) {
-	        	e.printStackTrace();
-	        }
-		}
-		
-	}
+	
 		
 }

@@ -15,7 +15,6 @@ import javax.servlet.http.Part;
 
 
 import entities.Autor;
-import entities.Cliente;
 import entities.Libro;
 import logic.Logic;
 
@@ -207,13 +206,9 @@ public class ServletLibro extends HttpServlet {
 		Logic ctrl = new Logic();
 		LinkedList<Libro> libros = ctrl.listadoLib();
 		
-		Cliente cliente = (Cliente) request.getSession().getAttribute("Cliente");
-		int idCliente = cliente.getId();
-		
-		LinkedList<Libro> librosPedidos = ctrl.listadoLibCliente(idCliente);
 		
 		request.setAttribute("Libros", libros);
-		request.setAttribute("LibrosPedidos", librosPedidos);		
+		
 		request.getRequestDispatcher("WEB-INF/listaLibros.jsp").forward(request, response);
 		
 	}

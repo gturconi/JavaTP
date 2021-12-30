@@ -1,6 +1,6 @@
 package entities;
 
-public class Autor implements Comparable<Autor>{
+public class Autor {
 	
 	private int id;
 	private String nombre;
@@ -43,28 +43,7 @@ public class Autor implements Comparable<Autor>{
 		
 	}
 	
-	@Override
-	  public boolean equals(Object obj) {
-		  if(this == obj) {
-			  return true;
-		  }
-		  if(obj == null) {
-			  return false;
-		  }
-		  if(!(obj instanceof Autor)) {
-			  return false;
-		  }
-		  Autor other = (Autor) obj;
-		  if(id != other.id) {
-			  return false;
-		  }
-		  return true;
-	  }
-	@Override
-	public int compareTo(Autor o) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	
 	
 
 }

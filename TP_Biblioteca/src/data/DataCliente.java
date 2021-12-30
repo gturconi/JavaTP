@@ -14,7 +14,7 @@ public class DataCliente {
 
 	 public Cliente buscarCliente(String user, String pass) {	 
 			
-		    DataLocalidad dl = new DataLocalidad();
+		    DataLocalidad dl = new DataLocalidad();;
 		    Cliente c=null;
 			PreparedStatement stmt=null;
 			ResultSet rs=null;

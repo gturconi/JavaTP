@@ -65,7 +65,7 @@ pageEncoding="ISO-8859-1"%>
 							</form>
 						</li>
 						<li>
-							<form action="ServletEditorial?accion=listar" method="post">
+							<form> <!-- llamar servlet para mostrar listado de editoriales-->
 								<button id="button" type="submit">Editoriales</button>
 							</form>
 						</li>

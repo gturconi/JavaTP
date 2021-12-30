@@ -7,7 +7,7 @@ import java.sql.Statement;
 import java.util.LinkedList;
 
 import entities.Autor;
-
+import entities.Libro;
 
 public class DataAutor {
 
@@ -112,8 +112,28 @@ public class DataAutor {
 	
 	  public void borrar(int id) {
 			PreparedStatement stmt= null;
+			PreparedStatement stmt1= null;
+			PreparedStatement stmt2= null;
 			try {
-					stmt=DbHandler.getInstancia().getConn().
+				//PRIMERO BUSCAMOS LOS LIBROS DEL AUTOR
+				LinkedList<Libro> libros = buscaLibros(id);
+				
+				//BORRAMOS LOS LIBROS DE LA TABLA AUTOR_LIBRO
+				stmt1=DbHandler.getInstancia().getConn().
+						prepareStatement("delete from autor_libro where idAutor=?");
+				stmt1.setInt(1, id);
+				stmt1.executeUpdate();
+				
+				//BORRAMOS LOS LIBROS DE LA TABLA LIBRO
+				if(!libros.isEmpty()) {
+					for (Libro libro : libros) {
+						stmt2=DbHandler.getInstancia().getConn().
+								prepareStatement("delete from libro where id=?");
+						stmt2.setInt(1,libro.getId());
+						stmt2.executeUpdate();
+					}
+				}															
+				stmt=DbHandler.getInstancia().getConn().
 						prepareStatement("delete from autor where id=?");
 				stmt.setInt(1, id);
 				stmt.executeUpdate();				       
@@ -122,8 +142,8 @@ public class DataAutor {
 		        e.printStackTrace();
 			} finally {
 		        try {           
-		            if(stmt!=null) {
-		            	stmt.close();
+		            if(stmt!=null && stmt1!=null && stmt2!=null) {
+		            	stmt.close(); stmt1.close(); stmt2.close();
 			            DbHandler.getInstancia().releaseConn();	
 		            }		            
 		        } catch (SQLException e) {
@@ -134,7 +154,35 @@ public class DataAutor {
 			
 		}
 	  
-	 
+	  private LinkedList<Libro> buscaLibros(int id) {
+		  
+		  LinkedList<Libro> list= new LinkedList<>();
+		  PreparedStatement stmt= null;
+		  ResultSet rs=null;
+		  try{ stmt=DbHandler.getInstancia().getConn().
+					prepareStatement("select idLibro from autor_libro where idAutor=?");
+			stmt.setInt(1, id);
+			rs= stmt.executeQuery();;
+			if(rs!=null) {
+				while(rs.next()) {
+					Libro l=new Libro ();					
+					l.setId(rs.getInt("idLibro"));					
+					list.add(l);
+				}
+			}	
+	     } catch (SQLException e) {
+	        e.printStackTrace();
+		} finally {
+	        try {           
+	            if(stmt!=null)stmt.close();
+	            DbHandler.getInstancia().releaseConn();
+	        } catch (SQLException e) {
+	        	e.printStackTrace();
+	        }
+		}
+		return list;
+	}
+
 	public void modificar(Autor a) {
 			PreparedStatement stmt= null;	
 			try {

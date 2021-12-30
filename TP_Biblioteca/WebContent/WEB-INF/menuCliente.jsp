@@ -52,7 +52,7 @@
 							</form>							
 						</li>
 						<li>
-							<form action="ServletEditorial?accion=listar" method="post">
+							<form> <!-- llamar servlet para mostrar listado de editoriales-->
 								<button id="button" type="submit">Editoriales</button>
 							</form>
 						</li>
@@ -109,10 +109,5 @@
 			</ul>
 		</nav>
 	</header>
-	<%if(null != request.getAttribute("mensaje")){
-	  out.println(request.getAttribute("mensaje"));    
-  }	  
-  %>
-	
 </body>
 </html>

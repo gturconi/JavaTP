@@ -70,7 +70,8 @@ public class Logic {
 	public Autor buscarAut(int id) {
 		return da.buscar(id);		
 	}
-		
+	
+	
 	public Autor buscarAutPorNombre(String nombre, String apellido) {
 		return da.buscarAutor(nombre, apellido);		
 	}
@@ -122,7 +123,7 @@ public class Logic {
 	public Categoria buscarCategoria(int id) {
 		return dcat.buscar(id);		
 	}	
-		
+	
 	public Categoria buscarCatPorNombre(String desc) {
 		return dcat.buscarCategoriaPorNombre(desc);		
 	}
@@ -156,14 +157,9 @@ public class Logic {
 		de.modificar(e);
 	}
 	
-	public Editorial buscarEdPorNombre(String nombre) {
-		return de.buscarEditorialPorNombre(nombre);		
+	public Editorial buscarEdPorNombre(String ed) {
+		return de.buscarEditorialPorNombre(ed);		
 	}
-	
-	public int buscarEdPorDescripcion(String nombre) {
-		return de.buscarEditorialPorDescripcion(nombre);		
-	}
-	
 	
 	public void agregarLibro(Libro l) {
 		dlib.agregar(l);
@@ -196,22 +192,6 @@ public class Logic {
 	
 	public LinkedList<Libro> listadoLibPed(int id) {
 		return dp.librosPedido(id);		
-	}
-	
-	public void agregarPedido(Pedido p) {
-		dp.agregarPedido(p);
-	}
-	
-	public void agregarLibroAPedido(Pedido p, Libro l) {
-		dp.agregarLibro(p, l);
-	}
-	
-	public Pedido buscarReserva(int idCl) {
-		return dp.buscaReserva(idCl);
-	}
-	
-	public LinkedList<Libro> listadoLibCliente(int idCliente) {
-		return dp.librosReservados(idCliente);		
 	}
 	
 }
