@@ -3,12 +3,17 @@ body{
     font-family: arial;
 }
 
-table {
-    border: 1px solid #ccc;
-    width: 100%;
-    margin: 80px auto;
-    border-collapse: collapse;
+.table-striped thead th{ 
+    text-transform: uppercase;
+    background-color: #411023;
+    color:#fff;
 }
+
+table thead tr{
+    background-color: #411023;
+    color:white;
+}
+
 
 table tr {
     border: 1px solid #ddd;
@@ -17,15 +22,26 @@ table tr {
 }
 
 
+table {
+    border: 1px solid #ccc;
+    width: 100%;
+    margin: 80px auto;
+    border-collapse: collapse;
+}
+
+   table td img{
+    float:left;
+    border-radius:10px;
+    width:100px;
+    height:auto;
+    margin:auto;    
+}
+
+
 table tr:nth-child(even) {
     background-color: #f5b498;
 }
 
-table thead th{ 
-    text-transform: uppercase;
-    background-color: #411023;
-    color:#fff;
-}
 
 tr:hover td{
     background-color: #999999;
@@ -78,4 +94,6 @@ table th {
     table thead {
         display: none;
     }
+    
+    
 }

@@ -14,7 +14,7 @@ public class DataCliente {
 
 	 public Cliente buscarCliente(String user, String pass) {	 
 			
-		    DataLocalidad dl = new DataLocalidad();;
+		    DataLocalidad dl = new DataLocalidad();
 		    Cliente c=null;
 			PreparedStatement stmt=null;
 			ResultSet rs=null;
@@ -60,7 +60,7 @@ public class DataCliente {
 			ResultSet rs=null;
 			try {
 				stmt=DbHandler.getInstancia().getConn().prepareStatement(
-						"select id,nombre, apellido, domicilio, telefono, email, fechaInscripcion, idLocalidad, isAdmin, estado from cliente where id=?");
+						"select id,nombre, apellido,user, domicilio, telefono, email, fechaInscripcion, idLocalidad, isAdmin, estado from cliente where id=?");
 				stmt.setInt(1, id);				
 				rs=stmt.executeQuery();
 				
@@ -69,6 +69,7 @@ public class DataCliente {
 					c.setId(rs.getInt("id"));
 					c.setNombre(rs.getString("nombre"));
 					c.setApellido(rs.getString("apellido"));
+					c.setUser(rs.getString("user"));					
 					c.setDomicilio(rs.getString("domicilio"));
 					c.setTelefono(rs.getString("telefono"));
 					c.setEmail(rs.getString("email"));
@@ -261,6 +262,55 @@ public class DataCliente {
 			}			
 			return 0; 	 
 	  }
+	 
+	 
+	 public LinkedList<Cliente> listadoPorEstado(String estado){	
+		    DataLocalidad dl = new DataLocalidad();
+		    PreparedStatement stmt=null;
+			ResultSet rs=null;
+			LinkedList<Cliente> list= new LinkedList<>();
+			
+			try {
+				stmt=DbHandler.getInstancia().getConn().prepareStatement(
+				   "select id,nombre, apellido, user, password, domicilio, telefono, email, fechaInscripcion, idLocalidad, estado from cliente where isAdmin=? and estado=?");
+				stmt.setInt(1, 0);
+				stmt.setString(2, estado);
+				rs=stmt.executeQuery();
+				if(rs!=null) {
+					while(rs.next()) {
+						Cliente c=new Cliente();					
+						c.setId(rs.getInt("id"));
+						c.setNombre(rs.getString("nombre"));
+						c.setApellido(rs.getString("apellido"));
+						c.setUser(rs.getString("user"));
+						c.setPassword(rs.getString("password"));
+						c.setDomicilio(rs.getString("domicilio"));
+						c.setTelefono(rs.getString("telefono"));
+						c.setEmail(rs.getString("email"));
+						c.setFechaInscripcion(rs.getObject("fechaInscripcion",LocalDate.class));
+						c.setLocalidad(dl.buscarLocalidad(rs.getInt("idLocalidad")));						
+						c.setEstado(rs.getString("estado"));
+						list.add(c);
+					}
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+				
+			} finally {
+				try {
+					if(rs!=null) {rs.close();}
+					if(stmt!=null) {stmt.close();}
+					DbHandler.getInstancia().releaseConn();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}		
+			
+			return list;		
+		}
+	
+	 	 
 	 
 }
 

@@ -10,11 +10,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.LinkedList;
 
 import javax.servlet.http.HttpServletResponse;
 
 import entities.Autor;
+import entities.Comentario;
 import entities.Libro;
 
 
@@ -25,7 +27,7 @@ public class DataLibro {
 	    DataEditorial de = new DataEditorial();
 	    DataCategoria dc = new DataCategoria();
 	    
-	    Libro l=null;
+	    Libro l=null;	    	    
 		PreparedStatement stmt=null;	
 		ResultSet rs=null;		
 		try {
@@ -49,6 +51,9 @@ public class DataLibro {
 				l.setCategoria(dc.buscar(rs.getInt("idCategoria")));
 				//l.setImagen(rs.getBlob("imagen"));
 			    l.setAutores(buscaAutores(id));
+			    
+			    l.setComentarios(buscarComentarios(l.getId()));
+			    
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -64,6 +69,78 @@ public class DataLibro {
 		return l; 	 
   }
 	
+	
+	public void cargarComentario(Comentario c) {
+		PreparedStatement stmt= null;
+		ResultSet keyResultSet=null;
+		
+		try {
+			stmt=DbHandler.getInstancia().getConn().
+					prepareStatement(
+							"insert into comentarios_libro(idLibro, idCliente,fecha,comentario,calificacion) values(?,?,?,?,?)");				
+			stmt.setInt(1, c.getLibro().getId());
+			stmt.setInt(2,c.getUsuario().getId());
+			stmt.setObject(3, c.getFecha());
+			stmt.setString(4,c.getReseña());
+			stmt.setInt(5, c.getCalificacion());
+			stmt.executeUpdate();
+			
+		}  catch (SQLException e) {
+	        e.printStackTrace();
+		} finally {
+	        try {
+	            if(keyResultSet!=null)keyResultSet.close();
+	            if(stmt!=null)stmt.close();
+	            DbHandler.getInstancia().releaseConn();
+	        } catch (SQLException e) {
+	        	e.printStackTrace();
+	        }
+		}	
+		
+	}
+	
+	
+	private LinkedList<Comentario> buscarComentarios(int id) {
+	    		
+		DataCliente dc = new DataCliente(); 
+		PreparedStatement stmt=null;
+		ResultSet rs=null;
+		LinkedList<Comentario> list= new LinkedList<>();
+		
+		try {
+			stmt=DbHandler.getInstancia().getConn().prepareStatement(
+			   "select idCliente, fecha, comentario, calificacion from comentarios_libro where idLibro=?");
+			stmt.setInt(1, id);			
+			rs=stmt.executeQuery();
+			if(rs!=null) {
+				while(rs.next()) {				
+					Comentario c = new Comentario(); 					
+					c.setUsuario(dc.buscarClientePorId(rs.getInt("idCliente")));
+					c.setFecha(rs.getObject("fecha",LocalDateTime.class));
+					c.setReseña(rs.getString("comentario"));
+					c.setCalificacion(rs.getInt("calificacion"));					
+					list.add(c);
+				}
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+		} finally {
+			try {
+				if(rs!=null) {rs.close();}
+				if(stmt!=null) {stmt.close();}
+				DbHandler.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}		
+			
+		return list;
+	}
+
+
+
 	private LinkedList<Autor> buscaAutores(int id) {
 		PreparedStatement stmt=null;
 		ResultSet rs=null;
@@ -375,6 +452,77 @@ public class DataLibro {
 		
 	}
 	
+	void actualizaExistencia(int id, int stock) {
+		
+		PreparedStatement stmt= null;
+		try {
+			stmt=DbHandler.getInstancia().getConn().
+					prepareStatement("update libro set stock=? where id=?");
+			stmt.setInt(1,stock);
+			stmt.setInt(2,id);
+			stmt.executeUpdate();				       
+			
+		}  catch (SQLException e) {
+	        e.printStackTrace();
+		} finally {
+	        try {           
+	            if(stmt!=null)stmt.close();
+	            DbHandler.getInstancia().releaseConn();
+	        } catch (SQLException e) {
+	        	e.printStackTrace();
+	        }
+		}
+		
+	}
 	
+	
+	public LinkedList<Libro> listadoPorEstado(String estado){	
+	    DataEditorial de = new DataEditorial();
+	    DataCategoria dc = new DataCategoria();
+	    PreparedStatement stmt=null;
+		ResultSet rs=null;
+		LinkedList<Libro> list= new LinkedList<>();
+		
+		try {
+			stmt=DbHandler.getInstancia().getConn().prepareStatement("select distinct id,titulo, descripcion, nroEdicion, fechaEdicion, dimensiones, paginas, stock, precio, idEditorial, idCategoria, imagen from libro"
+					+ "  inner join pedido_libro pl on id=pl.idLibro inner join pedido p on p.nroPedido=pl.nroPedido where p.estado=?");
+			stmt.setString(1, estado);
+			rs=stmt.executeQuery();
+			if(rs!=null) {
+				while(rs.next()) {
+					Libro l=new Libro();					
+					l.setId(rs.getInt("id"));
+					l.setTitulo(rs.getString("titulo"));
+					l.setDescripcion(rs.getString("descripcion"));
+					l.setNroEdicion(rs.getInt("nroEdicion"));
+					l.setFechaEdicion(rs.getObject("fechaEdicion",LocalDate.class));
+					l.setDimensiones(rs.getString("dimensiones"));
+					l.setNroPaginas(rs.getInt("paginas"));
+					l.setExistencia(rs.getInt("stock"));
+					l.setPrecio(rs.getDouble("precio"));
+					l.setEditorial(de.buscar(rs.getInt("idEditorial")));
+					l.setCategoria(dc.buscar(rs.getInt("idCategoria")));
+					l.setAutores(buscaAutores(l.getId()));
+					l.setImagen(rs.getBinaryStream("imagen"));
+					
+					list.add(l);
+				}
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+		} finally {
+			try {
+				if(rs!=null) {rs.close();}
+				if(stmt!=null) {stmt.close();}
+				DbHandler.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}		
+		
+		return list;		
+	}
 		
 }

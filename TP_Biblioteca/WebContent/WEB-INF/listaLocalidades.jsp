@@ -22,7 +22,7 @@
 
 <h1> Listado de Localidades</h1>
               
-        <table>
+        <table id="myTable">
              <thead>
                 <tr>
                   <th>Numero</th>

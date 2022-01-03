@@ -7,6 +7,7 @@
 <head>
 <%
    LinkedList<Cliente> clientes = (LinkedList<Cliente>)request.getAttribute("Clientes");
+   LinkedList<Cliente> clientesEstado = (LinkedList<Cliente>)request.getAttribute("ClientesEstado");
    Cliente cl = (Cliente) (request.getSession().getAttribute("Cliente"));
    int admin = cl.getisAdmin();
 %>
@@ -16,7 +17,25 @@
 <link rel="stylesheet" href="estilos/busqueda.css">
 </head>
 <body>
-        <table>
+
+<h2>Filtrar</h2>
+
+<form action="ServletCliente?accion=listarPorEstado" method="post">
+  <input type="hidden" value="suspendido" name="estado">  </input> 
+  <button id="button" type="submit">Solo Suspendidos</button>
+</form>
+
+<form action="ServletCliente?accion=listarPorEstado" method="post">
+  <input type="hidden" value="habilitado" name="estado">  </input> 
+  <button id="button" type="submit">Solo Habilitados</button>
+</form>
+
+
+<form action="ServletCliente?accion=listar" method="post">
+  <button id="button" type="submit">Listar Todos </button>
+</form>	
+
+        <table id="myTable">
             <thead>
                 <tr>
                     <th>Numero</th>
@@ -35,8 +54,10 @@
                 </tr>
             </thead>
             <tbody>
-            <tr>
-             <%for(Cliente cli : clientes){ %>
+            <tr>   
+           <% LinkedList<Cliente> lista = new LinkedList<>();
+              lista = (clientesEstado == null)?(lista=clientes):(lista=clientesEstado);%>         	 
+             <%for(Cliente cli : lista){ %>             
                 <td data-label="id"> <%=cli.getId()%></td>
                 <td data-label="nombre"> <%=cli.getNombre()%></td>
                 <td data-label="apellido"> <%=cli.getApellido()%></td>

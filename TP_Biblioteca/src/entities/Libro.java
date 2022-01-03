@@ -4,7 +4,9 @@ import java.io.InputStream;
 import java.time.*;
 import java.util.LinkedList;
 
-public class Libro {
+
+
+public class Libro implements Comparable<Libro>{
 	
 	private int id;
 	private String titulo;
@@ -19,7 +21,7 @@ public class Libro {
 	private Categoria categoria;
 	private LinkedList<Autor> autores;
 	private InputStream imagen;
-	
+	private LinkedList<Comentario> comentarios;
 	
 	public int getId() {
 		return id;
@@ -93,9 +95,13 @@ public class Libro {
 	public void setAutores(LinkedList<Autor> autores) {
 		this.autores = autores;
 	}
-	
-	
-	
+			
+	public LinkedList<Comentario> getComentarios() {
+		return comentarios;
+	}
+	public void setComentarios(LinkedList<Comentario> comentarios) {
+		this.comentarios = comentarios;
+	}
 	public Libro(int id, String title, String description, int nroEdicion, LocalDate fechaEdicion, String dimensiones,
 			int nroPages, int existence, double price, Editorial editorial, Categoria categoria, LinkedList<Autor> autores) {
 		this.id = id;
@@ -121,6 +127,29 @@ public InputStream getImagen() {
 	}
 	public void setImagen(InputStream is) {
 		this.imagen = is;
+	}
+	
+	@Override
+	  public boolean equals(Object obj) {
+		  if(this == obj) {
+			  return true;
+		  }
+		  if(obj == null) {
+			  return false;
+		  }
+		  if(!(obj instanceof Libro)) {
+			  return false;
+		  }
+		  Libro other = (Libro) obj;
+		  if(id != other.id) {
+			  return false;
+		  }
+		  return true;
+	  }
+	@Override
+	public int compareTo(Libro o) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 }

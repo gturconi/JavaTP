@@ -16,9 +16,9 @@
 <body>
    <h1>
         Listado de pedidos
-    </h1>
+    </h1>            
     <div id="tabla">
-        <table>
+        <table id="myTable">
             <thead>
                 <tr>
                     <th>Numero</th><th>Fecha</th><th>Estado</th>
@@ -41,6 +41,6 @@
              <%}%>           
            <%}%>  
           </table>                   
-    </div>
+    </div>     
 </body>
 </html>

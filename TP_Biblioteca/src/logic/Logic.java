@@ -14,6 +14,7 @@ import data.DataPedido;
 import entities.Autor;
 import entities.Categoria;
 import entities.Cliente;
+import entities.Comentario;
 import entities.Editorial;
 import entities.Libro;
 import entities.Localidad;
@@ -70,8 +71,7 @@ public class Logic {
 	public Autor buscarAut(int id) {
 		return da.buscar(id);		
 	}
-	
-	
+		
 	public Autor buscarAutPorNombre(String nombre, String apellido) {
 		return da.buscarAutor(nombre, apellido);		
 	}
@@ -89,6 +89,10 @@ public class Logic {
 	
 	public LinkedList<Cliente> listadoCliente() {
 		return dc.listado();		
+	}
+	
+	public LinkedList<Cliente> listadoPorEstado(String estado) {
+		return dc.listadoPorEstado(estado);		
 	}
 	
 	public Cliente buscarCliente(String user, String pass) {
@@ -123,7 +127,7 @@ public class Logic {
 	public Categoria buscarCategoria(int id) {
 		return dcat.buscar(id);		
 	}	
-	
+		
 	public Categoria buscarCatPorNombre(String desc) {
 		return dcat.buscarCategoriaPorNombre(desc);		
 	}
@@ -157,9 +161,14 @@ public class Logic {
 		de.modificar(e);
 	}
 	
-	public Editorial buscarEdPorNombre(String ed) {
-		return de.buscarEditorialPorNombre(ed);		
+	public Editorial buscarEdPorNombre(String nombre) {
+		return de.buscarEditorialPorNombre(nombre);		
 	}
+	
+	public int buscarEdPorDescripcion(String nombre) {
+		return de.buscarEditorialPorDescripcion(nombre);		
+	}
+	
 	
 	public void agregarLibro(Libro l) {
 		dlib.agregar(l);
@@ -168,6 +177,11 @@ public class Logic {
 	public LinkedList<Libro> listadoLib() {
 		return dlib.listado();
 	}	
+	
+	public LinkedList<Libro> listarLibrosPorEstado(String estado) {
+		return dlib.listadoPorEstado(estado);
+	}
+	
 	
 	public void listarImgLib(int id, HttpServletResponse response) {
 		dlib.listarImg(id, response);
@@ -186,6 +200,10 @@ public class Logic {
 		dlib.modificar(l);
 	}
 	
+	public void cargarComentarioLib(Comentario c) {
+		dlib.cargarComentario(c);
+	}
+	
 	public LinkedList<Pedido> listadoPed() {
 		return dp.listado();		
 	}
@@ -194,5 +212,24 @@ public class Logic {
 		return dp.librosPedido(id);		
 	}
 	
+	public void agregarPedido(Pedido p) {
+		dp.agregarPedido(p);
+	}
+	
+	public void agregarLibroAPedido(Pedido p, Libro l) {
+		dp.agregarLibro(p, l);
+	}
+	
+	public Pedido buscarReserva(int idCl) {
+		return dp.buscaReserva(idCl);
+	}
+	
+	public LinkedList<Libro> listadoLibCliente(int idCliente) {
+		return dp.librosReservados(idCliente);		
+	}
+	
+	public void cancelarReserva(int idLibro, int idCliente) {
+		dp.cancelarReserva(idLibro, idCliente);
+	}	
 }
 

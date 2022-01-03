@@ -22,7 +22,7 @@
         Listado de autores
     </h1>
     <div id="tabla">
-        <table>
+        <table id="myTable">
             <thead>
                 <tr>
                     <th>Numero</th>
