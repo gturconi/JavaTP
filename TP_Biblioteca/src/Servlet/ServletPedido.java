@@ -15,7 +15,9 @@ import entities.Cliente;
 import entities.Libro;
 import entities.Pedido;
 import entities.PedidoLibro;
-import logic.Logic;
+import logic.LogicCliente;
+import logic.LogicLibro;
+import logic.LogicPedido;
 
 /**
  * Servlet implementation class ServletPedido
@@ -58,12 +60,12 @@ public class ServletPedido extends HttpServlet {
 
 	private void cancelarReserva(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
 		
-		Logic ctrl = new Logic();
+		LogicPedido ctrlped = new LogicPedido();
 		int idLibro = Integer.parseInt(request.getParameter("id"));
 		Cliente cliente = (Cliente) request.getSession().getAttribute("Cliente");
 		int idCliente = cliente.getId();
 				
-		ctrl.cancelarReserva(idLibro, idCliente);
+		ctrlped.cancelarReserva(idLibro, idCliente);
 		
 		request.setAttribute("mensaje", "Reserva cancelada");
 		request.getRequestDispatcher("WEB-INF/menuCliente.jsp").forward(request, response);
@@ -75,9 +77,12 @@ public class ServletPedido extends HttpServlet {
 		Cliente cliente = (Cliente) request.getSession().getAttribute("Cliente");
 		int idCliente = cliente.getId();
 		
-		Logic ctrl = new Logic();
-		Cliente cl = ctrl.buscarClientePorId(idCliente);
-		Libro lib= ctrl.buscarLib(idLibro);
+		LogicPedido ctrlped = new LogicPedido();
+		LogicLibro ctrllib = new LogicLibro();
+		LogicCliente ctrlcli = new LogicCliente();
+		Cliente cl = ctrlcli.buscarClientePorId(idCliente);
+		Libro lib= ctrllib.buscarLib(idLibro);
+		LinkedList<Libro> librosPedidos = ctrlped.listadoLibCliente(idCliente);
 		
 		if(cl.getEstado().equalsIgnoreCase("suspendido")) {
 			request.setAttribute("mensaje", "El usuario se encuentra actualmente suspendido");
@@ -85,10 +90,13 @@ public class ServletPedido extends HttpServlet {
 		}else if(lib.getExistencia()==0){
 			request.setAttribute("mensaje", "El libro no tiene stock");						
 			request.getRequestDispatcher("WEB-INF/menuCliente.jsp").forward(request, response);
+		}else if(librosPedidos.size() == 5) {
+			request.setAttribute("mensaje", "Ya ha alcanzado el limite de reservas");						
+			request.getRequestDispatcher("WEB-INF/menuCliente.jsp").forward(request, response);
 		}else {
-			Pedido ped = ctrl.buscarReserva(idCliente);
+			Pedido ped = ctrlped.buscarReserva(idCliente);
 			if(ped!=null) {
-				ctrl.agregarLibroAPedido(ped, lib);
+				ctrlped.agregarLibroAPedido(ped, lib);
 				request.setAttribute("mensaje", "Libro reservado");
 				request.getRequestDispatcher("WEB-INF/menuCliente.jsp").forward(request, response);
 			}else {
@@ -100,8 +108,8 @@ public class ServletPedido extends HttpServlet {
 		        LinkedList<Libro> libros = new LinkedList<Libro>();
 		        libros.add(lib);
 		        pedido.setLibro(libros);		        
-		        ctrl.agregarPedido(pedido);
-		        ctrl.agregarLibroAPedido(pedido, lib);
+		        ctrlped.agregarPedido(pedido);
+		        ctrlped.agregarLibroAPedido(pedido, lib);
 		        request.setAttribute("mensaje", "Libro reservado");
 				request.getRequestDispatcher("WEB-INF/menuCliente.jsp").forward(request, response);
 			}
@@ -112,15 +120,15 @@ public class ServletPedido extends HttpServlet {
 
 	private void buscar(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
         
-		Logic ctrl = new Logic();
+		LogicPedido ctrlped = new LogicPedido();
 		
-		LinkedList<Pedido> pedidos = ctrl.listadoPed();
+		LinkedList<Pedido> pedidos = ctrlped.listadoPed();
 		LinkedList<PedidoLibro> pl = new LinkedList<>();
 		
 		for(Pedido p: pedidos) {
 			PedidoLibro pedlib = new PedidoLibro();
 			pedlib.setPed(p);
-			pedlib.setLibros(ctrl.listadoLibPed(p.getNroPedido()));
+			pedlib.setLibros(ctrlped.listadoLibPed(p.getNroPedido()));
 			pl.add(pedlib);
 		}
 		

@@ -15,7 +15,12 @@ import entities.Cliente;
 import entities.Editorial;
 import entities.Libro;
 import entities.Localidad;
-import logic.Logic;
+import logic.LogicAutor;
+import logic.LogicCategoria;
+import logic.LogicCliente;
+import logic.LogicEditorial;
+import logic.LogicLibro;
+import logic.LogicLocalidad;
 
 /**
  * Servlet implementation class ServletMenu
@@ -45,21 +50,26 @@ public class ServletMenu extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 						
-		String accion = request.getParameter("accion");
-		Logic ctrl = new Logic();
+		String accion = request.getParameter("accion");		
+		LogicCategoria ctrlcat = new LogicCategoria();
+		LogicLocalidad ctrlloc = new LogicLocalidad();
+		LogicAutor ctrlaut = new LogicAutor();
+		LogicCliente ctrlcli = new LogicCliente();
+		LogicEditorial ctrled = new LogicEditorial();
+		LogicLibro ctrllib = new LogicLibro();
 		
 		if(accion.equalsIgnoreCase("buscarAutor")) {
 			request.getRequestDispatcher("WEB-INF/buscaAutor.jsp").forward(request, response);
 		}else if(accion.equalsIgnoreCase("anadirAutor")) {			
 			request.getRequestDispatcher("WEB-INF/añadirAutor.jsp").forward(request, response);
 		}else if(accion.equalsIgnoreCase("modificarAutor")) {
-			Autor a = ctrl.buscarAut(Integer.parseInt(request.getParameter("id")));
+			Autor a = ctrlaut.buscarAut(Integer.parseInt(request.getParameter("id")));
 			request.setAttribute("Autor", a);			
 			request.getRequestDispatcher("WEB-INF/modificarAutor.jsp").forward(request, response);			
 		}else if(accion.equalsIgnoreCase("modificarCuenta")) {
-			LinkedList<Localidad> localidades =  ctrl.listadoLoc();
+			LinkedList<Localidad> localidades =  ctrlloc.listadoLoc();
 			request.setAttribute("Localidades", localidades);
-			Cliente c = ctrl.buscarClientePorId(((Cliente) request.getSession().getAttribute("Cliente")).getId());
+			Cliente c = ctrlcli.buscarClientePorId(((Cliente) request.getSession().getAttribute("Cliente")).getId());
 			request.setAttribute("Cliente", c);
 			request.getRequestDispatcher("WEB-INF/modificarCuenta.jsp").forward(request, response);
 		}else if(accion.equalsIgnoreCase("buscarLocalidad")) {
@@ -67,13 +77,13 @@ public class ServletMenu extends HttpServlet {
 		}else if(accion.equalsIgnoreCase("anadirLocalidad")) {
 			request.getRequestDispatcher("WEB-INF/añadirLocalidad.jsp").forward(request, response);			
 		}else if(accion.equalsIgnoreCase("modificarLocalidad")) {
-			Localidad l = ctrl.buscarLoc(Integer.parseInt(request.getParameter("id")));
+			Localidad l = ctrlloc.buscarLoc(Integer.parseInt(request.getParameter("id")));
 			request.setAttribute("Localidad", l);
 			request.getRequestDispatcher("WEB-INF/modificarLocalidad.jsp").forward(request, response);			
 		}else if(accion.equalsIgnoreCase("buscarCategoria")) {
 			request.getRequestDispatcher("WEB-INF/buscaCategoria.jsp").forward(request, response);			
 		}else if(accion.equalsIgnoreCase("modificarCategoria")) {
-			Categoria c = ctrl.buscarCategoria(Integer.parseInt(request.getParameter("id")));
+			Categoria c = ctrlcat.buscarCategoria(Integer.parseInt(request.getParameter("id")));
 			request.setAttribute("Categoria", c);			
 			request.getRequestDispatcher("WEB-INF/modificarCategoria.jsp").forward(request, response);			
 		}else if(accion.equalsIgnoreCase("anadirCategoria")) {
@@ -81,28 +91,28 @@ public class ServletMenu extends HttpServlet {
 		}else if(accion.equalsIgnoreCase("buscarEditorial")) {
 			request.getRequestDispatcher("WEB-INF/buscaEditorial.jsp").forward(request, response);			
 		}else if(accion.equalsIgnoreCase("modificarEditorial")) {
-			Editorial e = ctrl.buscarEditorial(Integer.parseInt(request.getParameter("id")));
+			Editorial e = ctrled.buscarEditorial(Integer.parseInt(request.getParameter("id")));
 			request.setAttribute("Editorial", e);			
 			request.getRequestDispatcher("WEB-INF/modificarEditorial.jsp").forward(request, response);			
 		}else if(accion.equalsIgnoreCase("anadirEditorial")) {
 			request.getRequestDispatcher("WEB-INF/añadirEditorial.jsp").forward(request, response);	
 			
 		}else if(accion.equalsIgnoreCase("anadirLibro")) {
-		    LinkedList<Categoria> categorias = ctrl.listadoCategoria();
-		    LinkedList<Autor> autores = ctrl.listadoAut();
-		    LinkedList<Editorial> editoriales = ctrl.listadoEditorial();
+		    LinkedList<Categoria> categorias = ctrlcat.listadoCategoria();
+		    LinkedList<Autor> autores = ctrlaut.listadoAut();
+		    LinkedList<Editorial> editoriales = ctrled.listadoEditorial();
 		    
 		    request.setAttribute("Editoriales", editoriales);
 		    request.setAttribute("Categorias", categorias);
 		    request.setAttribute("Autores", autores);
 			request.getRequestDispatcher("WEB-INF/añadirLibro.jsp").forward(request, response);			
 		}else if(accion.equalsIgnoreCase("modificarLibro")) {
-			Libro l = ctrl.buscarLib(Integer.parseInt(request.getParameter("id")));
+			Libro l = ctrllib.buscarLib(Integer.parseInt(request.getParameter("id")));
 			request.setAttribute("Libro", l);			
 			request.setAttribute("id", request.getParameter("id"));
-			LinkedList<Categoria> categorias = ctrl.listadoCategoria();
-		    LinkedList<Autor> autores = ctrl.listadoAut();
-		    LinkedList<Editorial> editoriales = ctrl.listadoEditorial();
+			LinkedList<Categoria> categorias = ctrlcat.listadoCategoria();
+		    LinkedList<Autor> autores = ctrlaut.listadoAut();
+		    LinkedList<Editorial> editoriales = ctrled.listadoEditorial();
 		    
 		    request.setAttribute("Editoriales", editoriales);
 		    request.setAttribute("Categorias", categorias);

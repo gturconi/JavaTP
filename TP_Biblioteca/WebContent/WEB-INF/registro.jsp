@@ -33,7 +33,7 @@
  <option style="display: none;" value="" selected>Localidad</option>  
           <% 
              for(Localidad loc:localidades){
-            	 %> <option value='<%=loc.getNombre()%>'><%=loc.getNombre()%></option>
+            	 %> <option value='<%=loc.getId()%>'><%=loc.getNombre()%></option>
           <%
              }          
           %>                              
