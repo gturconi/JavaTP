@@ -1,13 +1,98 @@
 body{
 	margin: 0;
-	font-family: arial;
-		background:#E9DAD7;
+	font-family: arial; 
+	 background: #bf6843;
 }
 
-header {
-	width: 100%;
-	background: #4e4d4d;
+
+/* para cabecera biblioteca*/
+
+
+.hero{
+    width: 100%;
+    min-height: 100vh;
+    background: linear-gradient(180deg, #4e4d4d 0%, #1A1B1F 100%);
 }
+
+.nav__hero{
+    color: #fff;
+    height: 70px;
+    border-bottom: 1px solid rgba(255,255,255, 0.5);
+    background: linear-gradient(180deg, #550f2c 0%, #411023 100%);
+}
+
+.nav__container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: inherit;
+    padding: 0;
+}
+
+.logo__name{
+    font-size: 24px;
+    padding: 20px;
+}
+
+.point{
+    color: #ef8354;
+}
+
+
+.button2{
+	width: 100px;
+	height: 40px;
+	background:#ef8354;
+	border: none;
+	color: white;
+    display: inline-block;
+    padding: 10px;
+    text-decoration: none;
+    font-weight: 400;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.button2:hover{
+    border: 1px solid #411023;
+    background-color: #ffab66;
+    transform: scale(1.1);
+}
+
+
+/* para texto bienvenida */
+
+
+.hero__main{
+    display: flex;
+    align-items: center;
+    padding:0;
+    background: linear-gradient(180deg, #4e4d4d 5%, #1A1B1F 100%);
+}
+
+
+.hero__textos{
+	width: 100%;
+
+}
+
+.title{
+	margin-bottom: 35px;
+    font-size: 20px;
+    font-weight: 15;
+    color: #fff;
+}
+
+.title--active{
+    color: #ef8354;
+    font-weight: 700;
+}
+
+
+/* para menu */
+
+
+
 
 #btn_menu{
 	display: none;
@@ -36,7 +121,9 @@ label img{
 .navegacion {
 	width: 100%;
 	margin: 0 auto;
-	background: #4e4d4d;
+	background: #1A1B1F;
+	border-top: 1px solid rgba(255,255,255, 0.5);
+
 }
 
 
@@ -104,28 +191,6 @@ ul, ol {
 	position:relative;
 }
 
-/*
-.nav li ul li ul {
-	right:-140px;
-	top:0px;
-}
-
-.nav li ul li a{
-	display: block;
-	padding: 0 px;
-	color: white;
-	font-family: arial;
-	text-decoration: none;
-	padding: 0px 0px; 
-}
-
-.nav li ul li a{
-	background:#411023;
-	padding: 13px 18px; 
-	font-size: 13px;
-}
-
-*/
 
 @media screen and (max-width:700px){
 	header label{
@@ -134,9 +199,8 @@ ul, ol {
 
 	.navegacion{
 		position: absolute;
-		background: #4e4d4d;
+		background: #1A1B1F;
 		width: 70%;
-		/*margin-left: -30%;*/
 		transition: 0.5s;
 	}
 
@@ -153,13 +217,6 @@ ul, ol {
 		width: 100%;
 	}
 
-/*
-	.nav li ul li ul{
-		position: absolute;
-		width: 100%;
-		left:100%;
-	}
-*/
 	.nav li a {
 	display: block;
 	padding: 15px 20px; 
@@ -176,23 +233,23 @@ ul, ol {
 	flex-grow: 1;
 }
 
-/*
-.nav li ul li a{
-	display: block;
-	padding: 0 px;
-	color: white;
-	font-family: arial;
-	text-decoration: none;
-	padding: 0px 0px; 
-	width: 100%;
-}
 
-.nav li ul li a{
-	background:#411023;
-	padding: 13px 18px; 
-	font-size: 13px;
-	width: 100%;
-}
-
-*/
 	}
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

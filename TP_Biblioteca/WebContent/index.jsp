@@ -17,8 +17,8 @@
   <input class="controls" type="text" name="user" placeholder="Usuario" >
   <input class="controls" type="password" name="pass" placeholder="Contraseña" >  
     
-  <%if(null != request.getAttribute("mensaje")){
-	  out.println(request.getAttribute("mensaje"));  
+  <%if(null != request.getAttribute("errorMensaje")){
+	  out.println(request.getAttribute("errorMensaje"));  
   }else if(null != request.getAttribute("baja")){
 	  out.println(request.getAttribute("baja"));  
   }     

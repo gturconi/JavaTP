@@ -12,10 +12,34 @@
 %>
 <meta charset="ISO-8859-1">
 <link rel="stylesheet" type="text/css" href="estilos/registro.css">
+<link rel="stylesheet" type="text/css" href="estilos/menu.css">
 <link rel="icon" href="icons/libro.ico">
 <title>Modificar Cuenta</title>
 </head>
 <body style="background-color: #FFDEAD" >
+
+
+<!--   SOLUCIONAR IR PARA ATRAS
+<header>
+ <nav class="nav__hero">
+            <div class="container nav__container">
+                <div class="logo">
+                    <h2 class="logo__name">Biblioteca<span class="point"> Entre hojas </span></h2>
+                </div>
+                </div>
+                <div class="links">
+                <form  action="ServletMenu" method="post">
+                     <button class="button2" id="button" type="submit"> Home </button>
+                </div>
+            </div>
+        </nav>
+</header>
+
+-->
+
+
+
+
 
 <div class="contenedor">
  <section class="form-registrar">
@@ -33,7 +57,7 @@
           <% 
              for(Localidad loc:localidades){
             	 if(!(c.getLocalidad().getNombre().equals(loc.getNombre()))){
-            	   %> <option value='<%=loc.getId()%>'><%=loc.getNombre()%></option>
+            	   %> <option value='<%=loc.getNombre()%>'><%=loc.getNombre()%></option>
           <%}
              }          
           %>                              
