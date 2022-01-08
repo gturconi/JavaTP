@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import entities.Localidad;
-import logic.LogicLocalidad;
+import logic.Logic;
 
 
 @WebServlet("/ServletLocalidad")
@@ -49,49 +49,49 @@ public class ServletLocalidad extends HttpServlet {
 
 
 	private void borrar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		LogicLocalidad ctrlloc = new LogicLocalidad();
+		Logic ctrl = new Logic();
 		int id = Integer.parseInt(request.getParameter("id"));
-        ctrlloc.borrarLoc(id);
+		ctrl.borrarLoc(id);
 		listar(request,response);
 		
 	}
 
 
 	private void modificar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		LogicLocalidad ctrlloc = new LogicLocalidad();
+		Logic ctrl = new Logic();
 		int id = Integer.parseInt(request.getParameter("id"));
 		String nombre = request.getParameter("nombre");
 		
 		Localidad l = new Localidad();
 		l.setId(id);
 		l.setNombre(nombre);
-		ctrlloc.modificarLoc(l);
+		ctrl.modificarLoc(l);
 		listar(request,response);
 		
 	}
 
 
 	private void agregar(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
-		LogicLocalidad ctrlloc = new LogicLocalidad(); 
+		Logic ctrl = new Logic(); 
 		String nombre = request.getParameter("nombre");		
 		Localidad l = new Localidad();
 		l.setNombre(nombre);
 		
-		if(ctrlloc.buscarLocPorNombre(nombre)!=null) {
+		if(ctrl.buscarLocPorNombre(nombre)!=null) {
         	request.setAttribute("error", "Ya existe una localidad con ese nombre!");
         	request.getRequestDispatcher("WEB-INF/añadirLocalidad.jsp").forward(request, response);
         }else {
-        	ctrlloc.agregarLoc(l);
+        	ctrl.agregarLoc(l);
         	listar(request,response);	
         }						
 	}
 
 
 	private void buscar(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
-		LogicLocalidad ctrlloc = new LogicLocalidad();
+		Logic ctrl = new Logic();
 	    int id = Integer.parseInt(request.getParameter("id"));
 	    
-	    Localidad l = ctrlloc.buscarLoc(id);
+	    Localidad l = ctrl.buscarLoc(id);
 		
 	    if(l != null) {
 	    	request.setAttribute("Localidad",l);	
@@ -103,9 +103,9 @@ public class ServletLocalidad extends HttpServlet {
 
 
 	private void listar(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
-		LogicLocalidad ctrlloc = new LogicLocalidad(); 
+		Logic ctrl = new Logic(); 
 		
-		LinkedList<Localidad> localidades = ctrlloc.listadoLoc();
+		LinkedList<Localidad> localidades = ctrl.listadoLoc();
                            	
 		request.setAttribute("Localidades", localidades);
 	    

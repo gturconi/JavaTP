@@ -46,7 +46,7 @@
 				      <% 
                              for(Editorial ed:editoriales){
                             	 if(!(l.getEditorial().getNombre().equals(ed.getNombre()))){ 
-            	                %> <option value='<%=ed.getId()%>'><%=ed.getNombre()%></option>
+            	                %> <option value='<%=ed.getNombre()%>'><%=ed.getNombre()%></option>
                       <%}
                             }          
                       %>				                                                                                     
@@ -56,7 +56,7 @@
                       <%    
                              for(Categoria cat:categorias){
                             	 if(!(l.getCategoria().getDescripcion().equals(cat.getDescripcion()))){ 
-            	                %> <option value='<%=cat.getId()%>'><%=cat.getDescripcion()%></option>
+            	                %> <option value='<%=cat.getDescripcion()%>'><%=cat.getDescripcion()%></option>
                       <%}
                             }          
                       %>                                                                                                                
@@ -70,7 +70,7 @@
                             	 if(l.getAutores().contains(aut)){                             		 		
             	                %> <input  checked="true" type="checkbox" name="autores" value='<%=aut.getNombre() + "/" + aut.getApellido()%>'><%=aut.getNombre() + " " + aut.getApellido()%>
                       <%}else{ %>
-                    	   <input   type="checkbox" name="autores" value='<%=aut.getId()%>'><%=aut.getNombre() + " " + aut.getApellido()%>
+                    	   <input   type="checkbox" name="autores" value='<%=aut.getNombre() + "/" + aut.getApellido()%>'><%=aut.getNombre() + " " + aut.getApellido()%>
                      <% }
                             }          
                       %>                                                                

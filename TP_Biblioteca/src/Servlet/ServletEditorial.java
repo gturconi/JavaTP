@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import entities.Editorial;
-import logic.LogicEditorial;
+import logic.Logic;
 
 /**
  * Servlet implementation class ServletEditorial
@@ -55,23 +55,23 @@ public class ServletEditorial extends HttpServlet {
 }
 
 	private void borrar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		LogicEditorial ctrled = new LogicEditorial();
+		Logic ctrl = new Logic();
 		int id = Integer.parseInt(request.getParameter("id"));
-		ctrled.borrarEditorial(id);
+		ctrl.borrarEditorial(id);
         listar(request,response); 		
 	}
 
 	private void agregar(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
-		LogicEditorial ctrled = new LogicEditorial(); 
+		Logic ctrl = new Logic(); 
 		String nombre = request.getParameter("nombre");
 		Editorial e = new Editorial();		
 		e.setNombre(nombre);
 		
-		if(ctrled.buscarEdPorDescripcion(nombre)==1) {
+		if(ctrl.buscarEdPorDescripcion(nombre)==1) {
         	request.setAttribute("error", "Ya existe una editorial con ese nombre!");
         	request.getRequestDispatcher("WEB-INF/añadirEditorial.jsp").forward(request, response);
         }else {
-        	ctrled.agregarEditorial(e);
+        	ctrl.agregarEditorial(e);
         	listar(request,response);	
         }		
 				
@@ -79,21 +79,21 @@ public class ServletEditorial extends HttpServlet {
 	}
 
 	private void modificar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		LogicEditorial ctrled = new LogicEditorial();
+		Logic ctrl = new Logic();
 		int id = Integer.parseInt(request.getParameter("id"));
 		String nombre = request.getParameter("nombre");
 		
 		Editorial e = new Editorial();
 		e.setId(id);
 		e.setNombre(nombre);
-		ctrled.modificarEditorial(e);		
+		ctrl.modificarEditorial(e);		
 		listar(request,response);		
 	}
 
 	private void buscar(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
-		LogicEditorial ctrled = new LogicEditorial();
+		Logic ctrl = new Logic();
 	    int id = Integer.parseInt(request.getParameter("id"));	    
-	    Editorial editorial = ctrled.buscarEditorial(id);
+	    Editorial editorial = ctrl.buscarEditorial(id);
 	    if(editorial != null) {
 	    	request.setAttribute("Editorial", editorial);	
 	    }else {
@@ -105,9 +105,9 @@ public class ServletEditorial extends HttpServlet {
 	}
 
 	private void listar(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException {
-		LogicEditorial ctrled = new LogicEditorial(); 
+        Logic ctrl = new Logic(); 
 		
-		LinkedList<Editorial> editoriales = ctrled.listadoEditorial();
+		LinkedList<Editorial> editoriales = ctrl.listadoEditorial();
 		request.setAttribute("Editoriales", editoriales);
 		request.getRequestDispatcher("WEB-INF/listaEditoriales.jsp").forward(request, response);
 		

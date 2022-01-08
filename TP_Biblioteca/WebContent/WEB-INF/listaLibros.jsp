@@ -18,19 +18,18 @@
 <meta charset="ISO-8859-1" name="description" content="Bootstrap.">
 <title>Listado de Libros</title>
 
-<link rel="stylesheet" href="estilos/tabla.css">
-<link rel="stylesheet" href="estilos/HomePedido.css">   
+<link rel="stylesheet" href="estilos/tabla.css">  
 <link rel="stylesheet" href="estilos/jquery.dataTables.min.css">
+
+     
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css"></style>
+<!--<link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css"></style>-->
 <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
 
 </head>
 <body style="margin:20px auto">
-
-<% if(admin == 1){ %> 
 
 <h2>Filtrar</h2>
 
@@ -58,8 +57,7 @@
   <button id="button" type="submit">Listar Todos </button>
 </form>	
 
- <%}%>
- 
+
  <div class="container">
 
 <form class="formularioBusqueda" action="ServletLibro?accion=buscar" method="post">
@@ -69,21 +67,9 @@
 		
    <h1>
         Listado de libros
-    </h1>
-          
-
-<div class="container__box">
-     <%for(Libro l : libros){ %>
-            <div class="box">
-                <img src="ServletLibro?id=<%=l.getId()%>"/>
-                <h5><%=l.getTitulo()%></h5>
-                <h4><%=l.getEditorial().getNombre()%></td></h4>
-            </div>
-        <%}%>
-    </div>
-
-          
-        <table id="myTable" class="table table-striped">
+    </h1>      
+             
+        <table class="table table-striped">
            <thead>
                 <tr>
                     <th>Portada</th> 
@@ -97,7 +83,8 @@
             </thead>
             <tr>
             
-            
+            <!-- ACA HICE UN QUILOMBO PARA PODER MOSTRAR MAS DE UN AUTOR PARA UN MISMO LIBRO 
+            PORQUE TUVE QUE FUSIONAR FILAS, DE TODAS FORMAS ESTA INTERFAZ ES TEMPORAL JAJA -->
             <% LinkedList<Libro> lista = new LinkedList<>();
               lista = (librosEstado == null)?(lista=libros):(lista=librosEstado);%>
             <%for(Libro l : lista){ %>                
@@ -147,7 +134,7 @@
                       <%}%>
                </tr>                                                                                                                 					                                                                                                                                                                                                                
              <%}%> 
-                                                                  
+                                                                    
           </table>
    </div>                                                                     
    
@@ -158,8 +145,8 @@
                                      <%}%>  
 </body>
 <script>
-	$(document).ready(function(){
-	    $('#myTable').dataTable();
-	});
+$(document).ready(function(){
+    $('#myTable').dataTable();
+});
 </script>
 </html>

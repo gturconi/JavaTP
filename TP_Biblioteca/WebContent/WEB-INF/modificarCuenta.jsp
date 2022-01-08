@@ -57,7 +57,7 @@
           <% 
              for(Localidad loc:localidades){
             	 if(!(c.getLocalidad().getNombre().equals(loc.getNombre()))){
-            	   %> <option value='<%=loc.getId()%>'><%=loc.getNombre()%></option>
+            	   %> <option value='<%=loc.getNombre()%>'><%=loc.getNombre()%></option>
           <%}
              }          
           %>                              

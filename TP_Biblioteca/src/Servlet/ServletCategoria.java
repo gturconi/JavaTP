@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import entities.Categoria;
-import logic.LogicCategoria;
+import logic.Logic;
 
 /**
  * Servlet implementation class ServletCategoria
@@ -55,23 +55,23 @@ public class ServletCategoria extends HttpServlet {
 }
 
 	private void borrar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		LogicCategoria ctrlcat = new LogicCategoria();
+		Logic ctrl = new Logic();
 		int id = Integer.parseInt(request.getParameter("id"));
-		ctrlcat.borrarCategoria(id);
+		ctrl.borrarCategoria(id);
         listar(request,response); 		
 	}
 
 	private void agregar(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
-		LogicCategoria ctrlcat = new LogicCategoria(); 
+		Logic ctrl = new Logic(); 
 		String descripcion = request.getParameter("descripcion");
 		Categoria c = new Categoria();		
 		c.setDescripcion(descripcion);
 		
-		if(ctrlcat.buscarCatPorNombre(descripcion)!=null) {
+		if(ctrl.buscarCatPorNombre(descripcion)!=null) {
         	request.setAttribute("error", "Ya existe una categoria con esa descripcion!");
         	request.getRequestDispatcher("WEB-INF/añadirCategoria.jsp").forward(request, response);
         }else {
-        	ctrlcat.agregarCategoria(c);
+        	ctrl.agregarCategoria(c);
         	listar(request,response);	
         }		
 				
@@ -79,21 +79,21 @@ public class ServletCategoria extends HttpServlet {
 	}
 
 	private void modificar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		LogicCategoria ctrlcat = new LogicCategoria();
+		Logic ctrl = new Logic();
 		int id = Integer.parseInt(request.getParameter("id"));
 		String descripcion = request.getParameter("descripcion");
 		
 		Categoria c = new Categoria();
 		c.setId(id);
 		c.setDescripcion(descripcion);
-		ctrlcat.modificarCategoria(c);		
+		ctrl.modificarCategoria(c);		
 		listar(request,response);		
 	}
 
 	private void buscar(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
-		LogicCategoria ctrlcat = new LogicCategoria();
+		Logic ctrl = new Logic();
 	    int id = Integer.parseInt(request.getParameter("id"));	    
-	    Categoria categoria = ctrlcat.buscarCategoria(id);
+	    Categoria categoria = ctrl.buscarCategoria(id);
 	    if(categoria != null) {
 	    	request.setAttribute("Categoria", categoria);	
 	    }else {
@@ -105,9 +105,9 @@ public class ServletCategoria extends HttpServlet {
 	}
 
 	private void listar(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException {
-		LogicCategoria ctrlcat = new LogicCategoria(); 
+        Logic ctrl = new Logic(); 
 		
-		LinkedList<Categoria> categorias = ctrlcat.listadoCategoria();
+		LinkedList<Categoria> categorias = ctrl.listadoCategoria();
 		request.setAttribute("Categorias", categorias);
 		request.getRequestDispatcher("WEB-INF/listaCategorias.jsp").forward(request, response);
 		

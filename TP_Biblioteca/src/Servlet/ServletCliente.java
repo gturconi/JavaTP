@@ -12,8 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import entities.Cliente;
-import logic.LogicCliente;
-import logic.LogicLocalidad;
+import logic.Logic;
 
 /**
  * Servlet implementation class ServletCliente
@@ -59,29 +58,29 @@ public class ServletCliente extends HttpServlet {
 	}
 
 	private void listarPorEstado(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
-        LogicCliente ctrlcli = new LogicCliente();        
+        Logic ctrl = new Logic();        
         String estado = request.getParameter("estado");
                 
-		LinkedList<Cliente> clientesEstado = ctrlcli.listadoPorEstado(estado);
+		LinkedList<Cliente> clientesEstado = ctrl.listadoPorEstado(estado);
 		request.setAttribute("ClientesEstado", clientesEstado);
 		request.getRequestDispatcher("WEB-INF/listaClientes.jsp").forward(request, response);
 		
 	}
 
 	private void listar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		LogicCliente ctrlcli = new LogicCliente();
+		Logic ctrl = new Logic();
 		
-		LinkedList<Cliente> clientes = ctrlcli.listadoCliente();
+		LinkedList<Cliente> clientes = ctrl.listadoCliente();
 		request.setAttribute("Clientes", clientes);
 		request.getRequestDispatcher("WEB-INF/listaClientes.jsp").forward(request, response);		
 				
 	}
 
 	private void borrar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		LogicCliente ctrlcli = new LogicCliente();
+		Logic ctrl = new Logic();
 		
 		//Eliminamos al cliente
-		ctrlcli.borrarCliente(((Cliente) request.getSession().getAttribute("Cliente")).getId());
+		ctrl.borrarCliente(((Cliente) request.getSession().getAttribute("Cliente")).getId());
 		
 		//Cerramos la sesion
 		HttpSession session=request.getSession(false);
@@ -95,15 +94,14 @@ public class ServletCliente extends HttpServlet {
 
 	private void actualizar(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
 		
-		LogicCliente ctrlcli = new LogicCliente();
-        LogicLocalidad ctrlloc = new LogicLocalidad(); 
+        Logic ctrl = new Logic();
 		
 		String name = request.getParameter("name");				
         String surname = request.getParameter("surname");
         String address = request.getParameter("address");
         String tel = request.getParameter("tel");				
         String email = request.getParameter("email");
-        int city = Integer.parseInt(request.getParameter("city"));		
+        String city = request.getParameter("city");		
 		String user = request.getParameter("user");				
         String pass = request.getParameter("pass");
 		
@@ -115,25 +113,25 @@ public class ServletCliente extends HttpServlet {
         c.setEmail(email);
         c.setUser(user);
         c.setPassword(pass);
-        c.setLocalidad(ctrlloc.buscarLoc(city));
+        c.setLocalidad(ctrl.buscarLocPorNombre(city));
         c.setId(((Cliente) request.getSession().getAttribute("Cliente")).getId());
         
         /*VERIFICAR QUE EL USUARIO NO EXISTA*/        
-        if(ctrlcli.validarCliente(user) ==1) {
+        if(ctrl.validarCliente(user) ==1) {
         	request.setAttribute("errorMensaje", "Ya existe un usuario con ese nombre!");
         	request.getRequestDispatcher("WEB-INF/modificarCuenta.jsp").forward(request, response);
         }
         
-        ctrlcli.modificarCliente(c);
+        ctrl.modificarCliente(c);
         
         request.setAttribute("exito", "Los datos de la cuenta se han actualizado con exito!");
     	request.getRequestDispatcher("WEB-INF/modificarCuenta.jsp").forward(request, response);
 	}
 	
 	private void buscar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		LogicCliente ctrlcli = new LogicCliente();
+		Logic ctrl = new Logic();
 	    int id = Integer.parseInt(request.getParameter("id"));	    
-	    Cliente cliente = ctrlcli.buscarClientePorId(id);
+	    Cliente cliente = ctrl.buscarClientePorId(id);
 	    if(cliente != null) {
 	    	request.setAttribute("Cliente", cliente);	
 	    }else {

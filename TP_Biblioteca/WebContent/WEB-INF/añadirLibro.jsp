@@ -45,7 +45,7 @@
 				      <option style="display: none;" value="" selected>Editorial</option>
 				      <% 
                              for(Editorial ed:editoriales){
-            	                %> <option value='<%=ed.getId()%>'><%=ed.getNombre()%></option>
+            	                %> <option value='<%=ed.getNombre()%>'><%=ed.getNombre()%></option>
                       <%
                             }          
                       %>				                                                                                     
@@ -54,7 +54,7 @@
                    <option style="display: none;" value="" selected>Categoria</option>
                       <% 
                              for(Categoria cat:categorias){
-            	                %> <option value='<%=cat.getId()%>'><%=cat.getDescripcion()%></option>
+            	                %> <option value='<%=cat.getDescripcion()%>'><%=cat.getDescripcion()%></option>
                       <%
                             }          
                       %>                                                                                                                
@@ -65,7 +65,7 @@
                    <option style="display: none;" value="" selected>Categoria</option>
                       <% 
                              for(Autor aut:autores){
-            	                %> <input type="checkbox" name="autores" value='<%=aut.getId()%>'><%=aut.getNombre() + " " + aut.getApellido()%>
+            	                %> <input type="checkbox" name="autores" value='<%=aut.getNombre() + "/" + aut.getApellido()%>'><%=aut.getNombre() + " " + aut.getApellido()%>
                       <%
                             }          
                       %>                                                               

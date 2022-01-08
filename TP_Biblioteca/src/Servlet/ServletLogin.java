@@ -13,8 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import entities.Cliente;
 import entities.Localidad;
-import logic.LogicCliente;
-import logic.LogicLocalidad;
+import logic.Logic;
 
 /**
  * Servlet implementation class ServletLogin
@@ -67,15 +66,14 @@ public class ServletLogin extends HttpServlet {
 	}
 
 	private void altaCliente(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		LogicCliente ctrlcli = new LogicCliente();
-		LogicLocalidad ctrlloc = new LogicLocalidad();
+		Logic ctrl = new Logic();
 		
 		String name = request.getParameter("name");				
         String surname = request.getParameter("surname");
         String address = request.getParameter("address");
         String tel = request.getParameter("tel");				
         String email = request.getParameter("email");
-        int city = Integer.parseInt(request.getParameter("city"));		
+        String city = request.getParameter("city");		
 		String user = request.getParameter("user");				
         String pass = request.getParameter("pass");
 		                               
@@ -92,33 +90,33 @@ public class ServletLogin extends HttpServlet {
         LocalDate localDate = LocalDate.now();
         c.setFechaInscripcion(localDate);
         
-        c.setLocalidad(ctrlloc.buscarLoc(city));
+        c.setLocalidad(ctrl.buscarLocPorNombre(city));
         
         
         
-		LinkedList<Localidad> localidades =  ctrlloc.listadoLoc();
+		LinkedList<Localidad> localidades =  ctrl.listadoLoc();
 		
 		request.setAttribute("Localidades", localidades);
         
         /*VERIFICAR QUE EL USUARIO NO EXISTA*/        
-        if(ctrlcli.validarCliente(user) ==1) {
+        if(ctrl.validarCliente(user) ==1) {
         	
         	request.setAttribute("errorMensaje", "Ya existe un usuario con ese nombre!");
         	request.getRequestDispatcher("WEB-INF/registro.jsp").forward(request, response);
         }        
-        else if(ctrlcli.agregarCliente(c)== 1) {
+        else if(ctrl.agregarCliente(c)== 1) {
         	request.setAttribute("errorConexion", "No se pudo conectar con la base de datos");
         	request.getRequestDispatcher("WEB-INF/registro.jsp").forward(request, response);
         }else {
-        	request.setAttribute("mensaje", "Usuario registrado con exito!");
-        	request.getRequestDispatcher("index.jsp").forward(request, response);	
+        	request.setAttribute("altaMensaje", "Usuario registrado con exito!");
+        	request.getRequestDispatcher("WEB-INF/registro.jsp").forward(request, response);	
         }                
 	}
 
 	private void registrar(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
 		
-		LogicLocalidad ctrlloc = new LogicLocalidad();
-		LinkedList<Localidad> localidades =  ctrlloc.listadoLoc();
+		Logic ctrl = new Logic();
+		LinkedList<Localidad> localidades =  ctrl.listadoLoc();
 		
 		request.setAttribute("Localidades", localidades);
 		request.getRequestDispatcher("WEB-INF/registro.jsp").forward(request, response);
@@ -126,13 +124,13 @@ public class ServletLogin extends HttpServlet {
 
 	private void ingresar(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
         
-		LogicCliente ctrlcli = new LogicCliente();
+		Logic ctrl = new Logic();
 								
         String user = request.getParameter("user");				
         String pass = request.getParameter("pass");
 		                
         
-        Cliente cliente = ctrlcli.buscarCliente(user, pass);
+        Cliente cliente = ctrl.buscarCliente(user, pass);
         if(cliente != null) {
         	if(cliente.getisAdmin()==0) {
         		request.getSession().setAttribute("Cliente", cliente);
@@ -142,7 +140,7 @@ public class ServletLogin extends HttpServlet {
             	request.getRequestDispatcher("WEB-INF/menuAdmin.jsp").forward(request, response);
         	}        	
         }else{
-        	request.setAttribute("mensaje", "Usuario y/o contraseña incorrectos");
+        	request.setAttribute("errorMensaje", "Usuario y/o contraseña incorrectos");
         	request.getRequestDispatcher("index.jsp").forward(request, response);             	
         } 		
 	}

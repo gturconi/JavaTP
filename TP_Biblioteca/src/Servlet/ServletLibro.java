@@ -19,12 +19,7 @@ import entities.Autor;
 import entities.Cliente;
 import entities.Comentario;
 import entities.Libro;
-import logic.LogicAutor;
-import logic.LogicCategoria;
-import logic.LogicCliente;
-import logic.LogicEditorial;
-import logic.LogicLibro;
-import logic.LogicPedido;
+import logic.Logic;
 
 /**
  * Servlet implementation class ServletLibro
@@ -51,8 +46,8 @@ public class ServletLibro extends HttpServlet {
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		
 		int accion = Integer.parseInt(request.getParameter("id"));
-		LogicLibro ctrllib = new LogicLibro();
-		ctrllib.listarImgLib(accion, response);
+		Logic ctrl = new Logic();
+		ctrl.listarImgLib(accion, response);
 			
 		
 		
@@ -64,7 +59,7 @@ public class ServletLibro extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String accion = request.getParameter("accion");
-		if(accion.equalsIgnoreCase("listar")) {			
+		if(accion.equalsIgnoreCase("listar")) {
 			listar(request,response);				
 		}else if(accion.equalsIgnoreCase("buscar")) {
 			buscar(request,response);
@@ -87,8 +82,7 @@ public class ServletLibro extends HttpServlet {
 
 	private void comentarLibro(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
 		
-		LogicLibro ctrllib = new LogicLibro();
-		LogicCliente ctrlcli = new LogicCliente();
+		Logic ctrl = new Logic();
 		int id = Integer.parseInt(request.getParameter("id"));
 		int rate = Integer.parseInt(request.getParameter("rate"));
 		Cliente cliente = (Cliente) request.getSession().getAttribute("Cliente");
@@ -99,18 +93,18 @@ public class ServletLibro extends HttpServlet {
 		Comentario c = new Comentario();		
 		c.setCalificacion(rate);
 		c.setReseña(comentario);
-		c.setUsuario(ctrlcli.buscarClientePorId(idCliente));
-		c.setLibro(ctrllib.buscarLib(id));
+		c.setUsuario(ctrl.buscarClientePorId(idCliente));
+		c.setLibro(ctrl.buscarLib(id));
 		c.setFecha(localDate);
-		ctrllib.cargarComentarioLib(c);		
+		ctrl.cargarComentarioLib(c);		
 		detalleLibro(request,response);
 	}
 
 	private void listarPorEstado(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
 		
-		LogicLibro ctrllib = new LogicLibro();
+		Logic ctrl = new Logic();
 		String estado = request.getParameter("estado");
-		LinkedList<Libro> librosEstado = ctrllib.listarLibrosPorEstado(estado);
+		LinkedList<Libro> librosEstado = ctrl.listarLibrosPorEstado(estado);
 				
 		request.setAttribute("librosEstado", librosEstado);				
 		request.getRequestDispatcher("WEB-INF/listaLibros.jsp").forward(request, response);
@@ -120,16 +114,15 @@ public class ServletLibro extends HttpServlet {
 
 	private void detalleLibro(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
        
-		LogicLibro ctrllib = new LogicLibro();
-		LogicPedido ctrlped = new LogicPedido();
+		Logic ctrl = new Logic();
 		int id = Integer.parseInt(request.getParameter("id"));
 				
-		Libro l  = ctrllib.buscarLib(id);
+		Libro l  = ctrl.buscarLib(id);
 				
 		Cliente cliente = (Cliente) request.getSession().getAttribute("Cliente");
 		int idCliente = cliente.getId();
 		
-		LinkedList<Libro> librosPedidos = ctrlped.listadoLibCliente(idCliente);
+		LinkedList<Libro> librosPedidos = ctrl.listadoLibCliente(idCliente);
 		
 		request.setAttribute("Libro", l);
 		request.setAttribute("LibrosPedidos", librosPedidos);		
@@ -139,11 +132,7 @@ public class ServletLibro extends HttpServlet {
 
 	private void modificar(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
 		
-		LogicEditorial ctrled = new LogicEditorial();
-		LogicAutor ctrlaut = new LogicAutor();
-		LogicCategoria ctrlcat = new LogicCategoria();
-		LogicLibro ctrllib = new LogicLibro();
-		
+		Logic ctrl = new Logic();
 		int id = Integer.parseInt(request.getParameter("id"));
 		String titulo = request.getParameter("titulo");
 		String descripcion = request.getParameter("descripcion");
@@ -159,8 +148,8 @@ public class ServletLibro extends HttpServlet {
 		int paginas = Integer.parseInt(request.getParameter("paginas"));
 		int stock = Integer.parseInt(request.getParameter("stock"));
 		double precio = Double.parseDouble(request.getParameter("precio"));
-		int editorial = Integer.parseInt(request.getParameter("editorial"));
-		int categoria = Integer.parseInt(request.getParameter("categoria"));
+		String editorial = request.getParameter("editorial");
+		String categoria = request.getParameter("categoria");
 		
 		
 		String[] autores = request.getParameterValues("autores");
@@ -175,39 +164,37 @@ public class ServletLibro extends HttpServlet {
 		l.setNroPaginas(paginas);
 		l.setExistencia(stock);
 		l.setPrecio(precio);
-		l.setEditorial(ctrled.buscarEditorial(editorial));
-		l.setCategoria(ctrlcat.buscarCategoria(categoria));
+		l.setEditorial(ctrl.buscarEdPorNombre(editorial));
+		l.setCategoria(ctrl.buscarCatPorNombre(categoria));
 		
 		LinkedList<Autor> ats = new LinkedList<Autor>();
 		
 		for(int i=0; i<autores.length;i++) {
-			ats.add(ctrlaut.buscarAut(Integer.parseInt(autores[i])));
+			String[] nomyApe = autores[i].split("/");			
+			ats.add(ctrl.buscarAutPorNombre(nomyApe[0], nomyApe[1]));
 		}
 		
 		
 		
 		l.setAutores(ats);
 		
-		ctrllib.modificarLib(l);
+		ctrl.modificarLib(l);
 						
 		listar(request,response);
 		
 	}
 
 	private void borrar(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
-		LogicLibro ctrllib = new LogicLibro();
+		Logic ctrl = new Logic();
 		int id = Integer.parseInt(request.getParameter("id"));
 		
-		ctrllib.borrarLib(id);
+		ctrl.borrarLib(id);
 		listar(request,response);	    			
 	}
 
 	private void agregar(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
 		
-		LogicLibro ctrllib = new LogicLibro();
-		LogicCategoria ctrlcat = new LogicCategoria();
-		LogicAutor ctrlaut = new LogicAutor();
-		LogicEditorial ctrled = new LogicEditorial();
+		Logic ctrl = new Logic();
 				
 		String titulo = request.getParameter("titulo");
 		String descripcion = request.getParameter("descripcion");
@@ -221,8 +208,8 @@ public class ServletLibro extends HttpServlet {
 		int paginas = Integer.parseInt(request.getParameter("paginas"));
 		int stock = Integer.parseInt(request.getParameter("stock"));
 		double precio = Double.parseDouble(request.getParameter("precio"));
-		int editorial = Integer.parseInt(request.getParameter("editorial"));
-		int categoria = Integer.parseInt(request.getParameter("categoria"));
+		String editorial = request.getParameter("editorial");
+		String categoria = request.getParameter("categoria");
 		Part part = request.getPart("imagen");
 		
 		String[] autores = request.getParameterValues("autores");
@@ -236,29 +223,32 @@ public class ServletLibro extends HttpServlet {
 		l.setNroPaginas(paginas);
 		l.setExistencia(stock);
 		l.setPrecio(precio);
-		l.setEditorial(ctrled.buscarEditorial(editorial));
-		l.setCategoria(ctrlcat.buscarCategoria(categoria));
+		l.setEditorial(ctrl.buscarEdPorNombre(editorial));
+		l.setCategoria(ctrl.buscarCatPorNombre(categoria));
 		InputStream is = part.getInputStream();
 		l.setImagen(is);
 		
 		LinkedList<Autor> ats = new LinkedList<Autor>();
 				
-		for(int i=0; i<autores.length;i++) {			
-			ats.add(ctrlaut.buscarAut(Integer.parseInt(autores[i])));
+		for(int i=0; i<autores.length;i++) {
+			String[] nomyApe = autores[i].split("/");			
+			ats.add(ctrl.buscarAutPorNombre(nomyApe[0], nomyApe[1]));
 		}
+		
+		
 		
 		l.setAutores(ats);
 		
-		ctrllib.agregarLibro(l);
+		ctrl.agregarLibro(l);
 		
 		listar(request,response);
 		
 	}
 
 	private void buscar(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
-		LogicLibro ctrllib = new LogicLibro();
+		Logic ctrl = new Logic();
 	    int id = Integer.parseInt(request.getParameter("id"));	    
-	    Libro libro = ctrllib.buscarLib(id);
+	    Libro libro = ctrl.buscarLib(id);
 	    
 	    if(libro != null) {
 	    	request.setAttribute("Libro", libro);	
@@ -272,16 +262,13 @@ public class ServletLibro extends HttpServlet {
 	
 	private void listar(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
 		
-						
-		LogicLibro ctrllib = new LogicLibro();
-		LinkedList<Libro> libros = ctrllib.listadoLib();
-		LogicPedido ctrlped = new LogicPedido();
+		Logic ctrl = new Logic();
+		LinkedList<Libro> libros = ctrl.listadoLib();
 		
 		Cliente cliente = (Cliente) request.getSession().getAttribute("Cliente");
 		int idCliente = cliente.getId();
-				
 		
-		LinkedList<Libro> librosPedidos = ctrlped.listadoLibCliente(idCliente);
+		LinkedList<Libro> librosPedidos = ctrl.listadoLibCliente(idCliente);
 		
 		request.setAttribute("Libros", libros);
 		request.setAttribute("LibrosPedidos", librosPedidos);		

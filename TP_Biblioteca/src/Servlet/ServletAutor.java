@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import entities.Autor;
-import logic.LogicAutor;
+import logic.Logic;
 
 /**
  * Servlet implementation class ServletAutor
@@ -57,7 +57,7 @@ public class ServletAutor extends HttpServlet {
 	}
 		
 	private void modificar(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
-		LogicAutor ctrlaut = new LogicAutor();
+		Logic ctrl = new Logic();
 		int id = Integer.parseInt(request.getParameter("id"));
 		String nombre = request.getParameter("nombre");
 		String apellido = request.getParameter("apellido");
@@ -66,39 +66,39 @@ public class ServletAutor extends HttpServlet {
 		a.setId(id);
 		a.setNombre(nombre);
 		a.setApellido(apellido);
-		ctrlaut.modificarAut(a);
+		ctrl.modificarAut(a);
 		listar(request,response);
 		
 	}
 
 	private void borrar(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
-		LogicAutor ctrlaut = new LogicAutor();
+		Logic ctrl = new Logic();
 		int id = Integer.parseInt(request.getParameter("id"));
-		ctrlaut.borrarAut(id);
+		ctrl.borrarAut(id);
 		listar(request,response);
 	}
 
 	private void agregar(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
-		LogicAutor ctrlaut = new LogicAutor(); 
+		Logic ctrl = new Logic(); 
 		String nombre = request.getParameter("nombre");
 		String apellido = request.getParameter("apellido");
 		Autor a = new Autor();
 		a.setNombre(nombre);
 		a.setApellido(apellido);
-		if(ctrlaut.buscarAutPorNombre(nombre, apellido)!=null) {
+		if(ctrl.buscarAutPorNombre(nombre, apellido)!=null) {
         	request.setAttribute("error", "Ya existe un autor con ese nombre y apellido!");
         	request.getRequestDispatcher("WEB-INF/añadirAutor.jsp").forward(request, response);
         }else {
-        	ctrlaut.agregarAut(a);
+        	ctrl.agregarAut(a);
         	listar(request,response);	
         }		
 		
 	}
 
 	private void buscar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		LogicAutor ctrlaut = new LogicAutor();
+		Logic ctrl = new Logic();
 	    int id = Integer.parseInt(request.getParameter("id"));	    
-	    Autor autor = ctrlaut.buscarAut(id);
+	    Autor autor = ctrl.buscarAut(id);
 	    if(autor != null) {
 	    	request.setAttribute("Autor", autor);	
 	    }else {
@@ -110,9 +110,9 @@ public class ServletAutor extends HttpServlet {
 	}
 
 	protected void listar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		LogicAutor ctrlaut = new LogicAutor(); 
+		Logic ctrl = new Logic(); 
 		
-		LinkedList<Autor> autores = ctrlaut.listadoAut();
+		LinkedList<Autor> autores = ctrl.listadoAut();
 		request.setAttribute("Autores", autores);
 		request.getRequestDispatcher("WEB-INF/listaAutores.jsp").forward(request, response);
 	}
