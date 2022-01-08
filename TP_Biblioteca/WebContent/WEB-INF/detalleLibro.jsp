@@ -3,7 +3,7 @@
 <%@page import="entities.Libro" %>
 <%@page import="entities.Comentario" %>
 <%@page import="entities.Cliente" %>
-
+<%@page import="java.time.format.DateTimeFormatter" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -14,7 +14,9 @@
    LinkedList<Libro> librosPedidos = (LinkedList<Libro>)request.getAttribute("LibrosPedidos");
    Cliente cl = (Cliente) (request.getSession().getAttribute("Cliente"));
    int admin = cl.getisAdmin();
-         
+   
+   String DATE_FORMATTER= "yyyy-MM-dd HH:mm:ss";
+   DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMATTER);         
 %>
 <link rel="stylesheet" href="estilos/tabla.css">
 <link rel="stylesheet" href="estilos/starRating.css">
@@ -33,8 +35,7 @@
                     <th>Editorial</th><th>Categoria</th>
                   <% if(admin != 1){ %>  <th>Solicitar</th> <%}%>
                     <% if(admin == 1){ %><th>Eliminar</th><th>Modificar</th><%}%> 
-                    <th>Nombre Autor</th><th>Apellido Autor</th>
-                    <th>Comentarios</th>
+                    <th>Nombre Autor</th><th>Apellido Autor</th>                    
                                                                                                                     
                 </tr>
             </thead>
@@ -88,7 +89,7 @@
                         <td> <%=l.getAutores().get(i).getNombre()%></td> 
                         <td> <%=l.getAutores().get(i).getApellido()%></td>  
                         </tr>                                                     
-                 <%}%>                                                                                                                                                                                                                      
+                   <%}%>                                                                                                                                                                                                                      
           </table>
           
                <form action="ServletLibro?accion=comentarLibro" method="post">
@@ -106,7 +107,7 @@
                      <label for="star1" title="text">&#9733</label> 
                 </div>               
                 <p><label for="descripcion">Comentarios</label>
-                    <textarea name="comentario" id="comentario" rows="6" cols="60"></textarea>
+                    <textarea name="comentario" id="comentario" rows="6" cols="60" required></textarea>
                     <input type="hidden" value=<%=String.valueOf(l.getId())%> name="id">  </input>
                     <button id="button" type="submit">Enviar</button> 
                 </p>
@@ -119,7 +120,7 @@
                  <tr>
                  <%for(Comentario c : l.getComentarios()){ %>
                    <td>Usuario: <%=c.getUsuario().getUser()%></td>
-                   <td>Fecha y Hora: <%=c.getFecha()%></td>                   
+                   <td>Fecha y Hora: <%=c.getFecha().format(formatter)%></td>                   
                   <td> 
                    Calificacion:  
                    <%for(int i = 1; i<=c.getCalificacion();i++){ %>
