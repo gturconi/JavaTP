@@ -309,6 +309,29 @@ public class DataCliente {
 			
 			return list;		
 		}
+
+	public void actualizarEstadoCliente(int id, String estado) {
+		PreparedStatement stmt= null;	
+		try {
+			stmt=DbHandler.getInstancia().getConn().
+					prepareStatement(
+							"update cliente set estado=? where id=?");
+			stmt.setString(1, estado);
+			stmt.setInt(2, id);							
+			stmt.executeUpdate();
+							
+		}  catch (SQLException e) {
+	        e.printStackTrace();
+		} finally {
+	        try {            
+	            if(stmt!=null)stmt.close();
+	            DbHandler.getInstancia().releaseConn();
+	        } catch (SQLException e) {
+	        	e.printStackTrace();
+	        }
+		}	
+		
+	}
 	
 	 	 
 	 

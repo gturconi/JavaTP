@@ -45,4 +45,9 @@ public class LogicCliente {
 	public void modificarCliente(Cliente c) {
 		dc.modificar(c);
 	}
+
+	public void actualizarEstadoCliente(int id, String string) {
+		dc.actualizarEstadoCliente(id,string);
+		
+	}
 }

@@ -12,7 +12,7 @@ import entities.Pedido;
 
 public class DataPedido {
 
-	public LinkedList<Pedido> listado(){
+	public LinkedList<Pedido> listado(String estado){
 		DataCliente dc = new DataCliente();;		
 		PreparedStatement stmt=null;
 		ResultSet rs=null;
@@ -20,7 +20,7 @@ public class DataPedido {
 		
 		try{ stmt=DbHandler.getInstancia().getConn().
 				prepareStatement("select nroPedido,fecha, estado, idCliente from pedido where estado=?");
-		    stmt.setString(1, "reservado");
+		    stmt.setString(1, estado);
 		    rs= stmt.executeQuery();
 			if(rs!=null) {
 				while(rs.next()) {
@@ -186,7 +186,7 @@ public class DataPedido {
 	
 	
 	//DEVUELVE LOS LIBROS RESERVADOS PARA UN CLIENTE EN PARTICULAR
-	public LinkedList<Libro> librosReservados(int idCliente) {
+	public LinkedList<Libro> librosPorEstado(int idCliente, String estado) {
 		PreparedStatement stmt=null;
 		ResultSet rs=null;
 		LinkedList<Libro> list= new LinkedList<>();    
@@ -196,7 +196,7 @@ public class DataPedido {
 			stmt=DbHandler.getInstancia().getConn().prepareStatement(
 					"select nroPedido from pedido where idCliente=? and estado=?");
 			stmt.setInt(1, idCliente);
-			stmt.setString(2, "reservado");
+			stmt.setString(2, estado);
 			rs=stmt.executeQuery();
 						
 			if(rs!=null) {
@@ -255,10 +255,10 @@ public class DataPedido {
 		LinkedList<Libro> libros = new LinkedList<Libro>();
 		libros = librosPedido(nroPedido);
 		
-		quitarLibro(nroPedido,idLibro);
-		
-		if (libros.size() == 1) {
-			actualizarEstado(nroPedido,idLibro ,"cancelado");
+		if (libros.size() > 1) {
+		   quitarLibro(nroPedido,idLibro); //Solo quitamos ese libro pero no cancelamos el pedido completo
+		}else{
+           actualizarEstado(nroPedido,idLibro ,"cancelado");
 		}		
 	}
 
@@ -273,7 +273,7 @@ public class DataPedido {
 			stmt.setString(1, estado);		
 			stmt.setInt(2, nroPedido);
 			stmt.executeUpdate();
-        if(estado.equals("cancelado") || estado.equals("reservado")) {
+        if( idLibro != -1  && (estado.equals("cancelado") || estado.equals("reservado"))) {
         	Libro l = dlib.buscar(idLibro);
         	dlib.actualizaExistencia(l.getId(), l.getExistencia()+1);
         }
@@ -311,6 +311,10 @@ public class DataPedido {
 	        }
 		}
 		
+	}
+
+	public void confirmarPedido(int nroPed) {
+		actualizarEstado(nroPed,-1 ,"en curso");		
 	}
 			
 }

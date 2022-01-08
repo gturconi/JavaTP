@@ -10,6 +10,7 @@
 <%
    LinkedList<Libro> libros = (LinkedList<Libro>)request.getAttribute("Libros");
    LinkedList<Libro> librosPedidos = (LinkedList<Libro>)request.getAttribute("LibrosPedidos");
+   LinkedList<Libro> librosRetirados = (LinkedList<Libro>)request.getAttribute("LibrosRetirados");
    LinkedList<Libro> librosEstado = (LinkedList<Libro>)request.getAttribute("librosEstado");
    Cliente cl = (Cliente) (request.getSession().getAttribute("Cliente"));
    int admin = cl.getisAdmin();
@@ -72,8 +73,10 @@
     </h1>
           
 
+<% LinkedList<Libro> lista = new LinkedList<>();
+   lista = (librosEstado == null)?(lista=libros):(lista=librosEstado);%>
 <div class="container__box">
-     <%for(Libro l : libros){ %>
+     <%for(Libro l : lista){ %>
             <div class="box">
                 <img src="ServletLibro?id=<%=l.getId()%>"/>
                 <h5><%=l.getTitulo()%></h5>
@@ -95,11 +98,10 @@
                                                                                                                     
                 </tr>
             </thead>
+            <%if(lista.size()>0){%> <!--Esta validacion es necesaria ya que de lo contrario lanza una advertencia -->
             <tr>
             
             
-            <% LinkedList<Libro> lista = new LinkedList<>();
-              lista = (librosEstado == null)?(lista=libros):(lista=librosEstado);%>
             <%for(Libro l : lista){ %>                
                 <td> <img src="ServletLibro?id=<%=l.getId()%>" width="60px" height="60px"/> </td>                                 
                 <td><%=l.getId()%></td>
@@ -117,16 +119,18 @@
                                
               <% if(admin != 1){ %>  
                 <td>                   
-                 <% if(!librosPedidos.contains(l)){ %>
+                 <% if(!librosPedidos.contains(l) && !librosRetirados.contains(l)){ %>
                  <form action="ServletPedido?accion=reservaLibro" method="post">
                  <input type="hidden" value=<%=String.valueOf(l.getId())%> name="id">  </input>			 
                  <button id="button" type="submit">Reservar Libro</button>
                  </form>
-                 <%}else{%>
+                 <%}else if (librosPedidos.contains(l)){%>
                    <form action="ServletPedido?accion=cancelarReserva" method="post">
                      <input type="hidden" value=<%=String.valueOf(l.getId())%> name="id">  </input>			 
                     <button id="button" type="submit">Cancelar Reserva</button>
                    </form>
+                 <%}else{%>
+                    <label>Pendiente de devolución</label> 
                  <%}%>                  
                   </td>
                <%}%>   
@@ -145,9 +149,9 @@
 			            </form>			            
                      </td>                     
                       <%}%>
-               </tr>                                                                                                                 					                                                                                                                                                                                                                
-             <%}%> 
-                                                                  
+               </tr>
+               <%}%>                                                                                                                 					                                                                                                                                                                                                                
+            <%}%>                                                                   
           </table>
    </div>                                                                     
    

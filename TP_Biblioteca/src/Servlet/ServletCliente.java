@@ -53,9 +53,24 @@ public class ServletCliente extends HttpServlet {
 			buscar(request,response);
 		}else if(accion.equalsIgnoreCase("listarPorEstado")) {
 			listarPorEstado(request,response);
+		}else if(accion.equalsIgnoreCase("suspender") || accion.equalsIgnoreCase("habilitar")) {
+			actualizarEstadoCliente(request,response);
 		}
 		
 		
+	}
+
+	private void actualizarEstadoCliente(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		LogicCliente ctrlcli = new LogicCliente();  		
+		int n = Integer.parseInt(request.getParameter("estado"));
+		int id = Integer.parseInt(request.getParameter("id"));
+		
+		if(n==0) {
+			ctrlcli.actualizarEstadoCliente(id,"suspendido");
+		}else {
+			ctrlcli.actualizarEstadoCliente(id,"habilitado");
+		}
+		listar(request,response);
 	}
 
 	private void listarPorEstado(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {

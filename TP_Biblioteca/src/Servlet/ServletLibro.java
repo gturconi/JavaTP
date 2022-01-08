@@ -111,6 +111,7 @@ public class ServletLibro extends HttpServlet {
 		LogicLibro ctrllib = new LogicLibro();
 		String estado = request.getParameter("estado");
 		LinkedList<Libro> librosEstado = ctrllib.listarLibrosPorEstado(estado);
+		
 				
 		request.setAttribute("librosEstado", librosEstado);				
 		request.getRequestDispatcher("WEB-INF/listaLibros.jsp").forward(request, response);
@@ -129,7 +130,7 @@ public class ServletLibro extends HttpServlet {
 		Cliente cliente = (Cliente) request.getSession().getAttribute("Cliente");
 		int idCliente = cliente.getId();
 		
-		LinkedList<Libro> librosPedidos = ctrlped.listadoLibCliente(idCliente);
+		LinkedList<Libro> librosPedidos = ctrlped.listadoLibCliente(idCliente, "reservado");
 		
 		request.setAttribute("Libro", l);
 		request.setAttribute("LibrosPedidos", librosPedidos);		
@@ -281,10 +282,12 @@ public class ServletLibro extends HttpServlet {
 		int idCliente = cliente.getId();
 				
 		
-		LinkedList<Libro> librosPedidos = ctrlped.listadoLibCliente(idCliente);
+		LinkedList<Libro> librosPedidos = ctrlped.listadoLibCliente(idCliente,"reservado");
+		LinkedList<Libro> librosRetirados = ctrlped.listadoLibCliente(idCliente,"en curso");
 		
 		request.setAttribute("Libros", libros);
-		request.setAttribute("LibrosPedidos", librosPedidos);		
+		request.setAttribute("LibrosPedidos", librosPedidos);
+		request.setAttribute("LibrosRetirados", librosRetirados);
 		request.getRequestDispatcher("WEB-INF/listaLibros.jsp").forward(request, response);
 		
 	}
