@@ -13,25 +13,51 @@
 <title>Clientes</title>
 <link rel="stylesheet" href="estilos/tabla.css">
 <link rel="stylesheet" href="estilos/busqueda.css">
+<link rel="stylesheet" href="estilos/header.css">
+<link rel="stylesheet" href="estilos/menuFiltrar.css">
 </head>
 <body>
 
-<h2>Filtrar</h2>
 
-<form action="ServletCliente?accion=listarPorEstado" method="post">
-  <input type="hidden" value="suspendido" name="estado">  </input> 
-  <button id="button" type="submit">Solo Suspendidos</button>
-</form>
+<header>
+ <nav class="nav__hero">
+            <div class="container nav__container">
+                <div class="logo">
+                    <h2 class="logo__name">Biblioteca<span class="point"> Entre hojas </span></h2>
+                </div>
+            </div>
+        </nav> 
+</header>
 
-<form action="ServletCliente?accion=listarPorEstado" method="post">
-  <input type="hidden" value="habilitado" name="estado">  </input> 
-  <button id="button" type="submit">Solo Habilitados</button>
-</form>
+ <section class="container hero__main">  
+            <div class="hero__textos">
+                <h2 class="title2"> Filtrar por :</h2> 
+            </div>
+</section> 
 
 
-<form action="ServletCliente?accion=listar" method="post">
-  <button id="button" type="submit">Listar Todos </button>
-</form>	
+
+<ul class="menuFiltrar">
+			<li>
+				<form action="ServletCliente?accion=listarPorEstado" method="post">
+					<input type="hidden" value="suspendido" name="estado">  </input> 
+					<button id="button" type="submit">Solo Suspendidos</button>
+ 				 </form>
+			</li>
+			<li>
+				<form action="ServletCliente?accion=listarPorEstado" method="post">
+					<input type="hidden" value="habilitado" name="estado">  </input> 
+					<button id="button" type="submit">Solo Habilitados</button>
+  				</form>
+			</li>
+			<li>
+ 				<form action="ServletCliente?accion=listar" method="post">
+					<button id="button" type="submit">Listar Todos </button>
+  				</form>
+			</li>
+</ul>
+
+<h1> Listado de Clientes</h1>
 
         <table id="myTable">
             <thead>
