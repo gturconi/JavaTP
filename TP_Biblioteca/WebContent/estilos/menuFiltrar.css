@@ -1,0 +1,31 @@
+@charset "ISO-8859-1";
+
+.menuFiltrar{
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	display: flex;
+	background: #1A1B1F;
+	width: 100%;
+}
+
+.menuFiltrar li button{
+	border: none;
+	text-decoration: none;
+	color: #fff;
+	padding: 20px;
+	width:170px;
+	display: block;
+	background: #1A1B1F;
+	
+}
+
+.menuFiltrar li{
+	display: inline-block;
+	text-align: center;
+	border-right: 1px solid #fff;
+}
+
+.menuFiltrar li button:hover{
+	background: #ef8354;
+}
