@@ -10,14 +10,31 @@
 <meta charset="ISO-8859-1">
 <link rel="stylesheet" type="text/css" href="estilos/menu.css">
 <link rel="stylesheet" type="text/css" href="estilos/botonesListar.css">
+<link rel="stylesheet" type="text/css" href="estilos/menu2.css">
 <link rel="icon" href="icons/libro.ico">
 <title>Bienvenido Cliente</title>
 </head>
 <body>
 
-<h1>Bienvenido Cliente <%=cliente.getNombre()%> <%=cliente.getApellido()%> de <%=cliente.getLocalidad().getNombre()%></h1>
 
 <header>
+ <nav class="nav__hero">
+            <div class="container nav__container">
+                <div class="logo">
+                    <h2 class="logo__name">Biblioteca<span class="point"> Entre hojas </span></h2>
+                </div>
+            </div>
+        </nav>
+
+
+ <section class="container hero__main">  
+            <div class="hero__textos">
+                <h1 class="title"> ¡ Bienvenido Cliente <span class="title--active"><%=cliente.getNombre()%> <%=cliente.getApellido()%></span> de <%=cliente.getLocalidad().getNombre()%> !</h1> 
+            </div>
+        </section> 
+        
+</header>
+
 		<nav class="navegacion">
 			<ul class = "nav">
 				<li><a href="#">Cuenta</a>
@@ -80,7 +97,7 @@
 							</form>													
 						</li>
 						<li>
-							<form> <!-- llamar servlet para buscar editorial-->
+							<form action="ServletMenu?accion=buscarEditorial" method="post">
 								<button id="button" type="submit">Editorial</button>
 							</form>
 						</li>
@@ -113,6 +130,44 @@
 	  out.println(request.getAttribute("mensaje"));    
   }	  
   %>
+	
+	<div class="slider">
+			<ul>
+				<li>
+  <img src="pictures/banner1.png" alt="">
+ </li>
+				<li>
+  <img src="pictures/banner2.png" alt="">
+</li>
+				<li>
+  <img src="pictures/banner3.png" alt="">
+</li>
+				<li>
+  <img src="pictures/banner4.png" alt="">
+</li>
+			</ul>
+		</div>
+		
+		
+		
+		
+<footer>	
+		<div class="contact">
+            <div class="item__contact">
+                <h3 class="contact__title">Biblioteca Entre Hojas</h3>
+            </div>
+            <div class="item__contact">
+                <h3 class="contact__title">bibliotecaentrehojas@gmail.com</h3>
+            </div>
+            <div class="item__contact">
+                <h3 class="contact__title">Galeria Stigliano</h3>
+            </div>
+             <div class="item__contact">
+                <h3 class="contact__title">Derechos Reservados</h3>
+            </div>
+        </div>
+</footer>	
+	
 	
 </body>
 </html>
