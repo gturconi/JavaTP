@@ -8,12 +8,35 @@
 
 <title>Añadir Localidad</title>
 <link rel="stylesheet" href="estilos/tabla.css">
+<link rel="stylesheet" href="estilos/busqueda.css">
+<link rel="stylesheet" href="estilos/header.css">
 </head>
 <body>
-<form action="ServletLocalidad?accion=agregar" method="post">
-				<input class="controlr" type="text" placeholder="Ingrese el nombre de la localidad" maxlength="20" name="nombre"required>		
-				<button class="button" type="submit">Añadir Localidad</button>
+
+<header>
+ <nav class="nav__hero">
+            <div class="container nav__container">
+                <div class="logo">
+                    <h2 class="logo__name">Biblioteca<span class="point"> Entre hojas </span></h2>
+                </div>
+            </div>
+        </nav> 
+</header>
+
+<h1>Añadir Localidad</h1>
+
+<div class="container">
+    <div class="card">
+      	<img src="pictures/añadir.png" alt="">
+     	 <h4> Añadir </h4>
+      		<form class="formulario" action="ServletLocalidad?accion=agregar" method="post">
+				<input id="campoTexto" type="text" placeholder="Ingrese el nombre" maxlength="20" name="nombre"required>		
+				<button id="boton" type="submit">Añadir Localidad</button>
 			</form>
+    </div>  
+</div>
+
+
 <%if(null != request.getAttribute("error")){
 	  out.println(request.getAttribute("error"));    
   }	  

@@ -32,7 +32,7 @@
     <div class="cardAutor">
       <img src="pictures/añadir.png" alt="">
       <h4> Añadir </h4>
-      <form class="formulariAutor" action="ServletAutor?accion=agregar" method="post">
+      <form class="formularioAutor" action="ServletAutor?accion=agregar" method="post">
         <input id="campoTextoAutor" type="text" placeholder="Ingrese el nombre " maxlength="20" name="nombre" required> 
         <input id="campoTextoAutor" type="text" placeholder="Ingrese el apellido " maxlength="20" name="apellido" required> 
         <button id="botonAutor" type="submit">Añadir Autor</button>
