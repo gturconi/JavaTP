@@ -13,22 +13,14 @@ h1{
 
 
 
-.container{
-	width: 100%;
-	max-width:1200px;
-	height: 430px;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	margin:30px auto;
-}
+
 
 .container .card{
 	width: 330px;
 	height: 430px;
 	border-radius: 8px;
 	overflow: hidden;
-	margin: 20px;
+	margin: 20px auto;
 	text-align: center;
 	border: #ef8354 5px solid;
 	background: #4e4d4d ;
@@ -97,24 +89,12 @@ h1{
 }
 
 
-
-
-.containerAutor{
-	width: 100%;
-	max-width:1200px;
-	height: 500px;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	margin:30px auto;
-}
-
 .containerAutor .cardAutor{
 	width: 330px;
 	height: 500px;
 	border-radius: 8px;
 	overflow: hidden;
-	margin: 20px;
+	margin: 20px auto;
 	text-align: center;
 	border: #ef8354 5px solid;
 	background: #4e4d4d ;
