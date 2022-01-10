@@ -20,8 +20,18 @@
 <link rel="icon" href="icons/libros.ico">
 <title>Listado de Libros</title>
 
+
+<link rel="stylesheet" href="estilos/header.css">
+
 <link rel="stylesheet" href="estilos/tabla.css">
-<link rel="stylesheet" href="estilos/HomePedido.css">   
+<!--  <link rel="stylesheet" href="estilos/HomePedido.css">   <link rel="stylesheet" href="estilos/header.css"> -->
+
+
+<link rel="stylesheet" href="estilos/menuFiltrar2.css">
+ <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+
+
+
 <link rel="stylesheet" href="estilos/jquery.dataTables.min.css">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css"></style>
@@ -30,35 +40,65 @@
 
 
 </head>
-<body style="margin:20px auto">
+<body>
+
+<header>
+ <nav class="nav__hero">
+            <div class="container nav__container">
+                <div class="logo">
+                    <h2 class="logo__name">Biblioteca<span class="point"> Entre hojas </span></h2>
+                </div>
+            </div>
+        </nav> 
+</header>
+
 
 <% if(admin == 1){ %> 
 
-<h2>Filtrar</h2>
+ <section class="container hero__main">  
+            <div class="hero__textos">
+                <h2 class="title2"> Filtrar por :</h2> 
+            </div>
+</section> 
 
-<form action="ServletLibro?accion=listarPorEstado" method="post">
-  <input type="hidden" value="reservado" name="estado">  </input> 
-  <button id="button" type="submit">Solo Reservados</button>
-</form>
+ <nav>
+        <input type="checkbox" id="check">
+        <label for="check" class="checkbtn">
+            <i class="fas fa-bars"></i>
+        </label>
+        <ul>
+            <li>
+            	<form action="ServletLibro?accion=listarPorEstado" method="post">
+ 					 <input type="hidden" value="reservado" name="estado">  </input> 
+ 					 <button id="button" type="submit">Solo Reservados</button>
+				</form>
+			</li>
+            <li>
+            	<form action="ServletLibro?accion=listarPorEstado" method="post">
+  					<input type="hidden" value="cancelado" name="estado">  </input> 
+  					<button id="button" type="submit">Solo Cancelados</button>
+				</form>
+            </li>
+            <li>
+            	<form action="ServletLibro?accion=listarPorEstado" method="post">
+  					<input type="hidden" value="en curso" name="estado">  </input> 
+  					<button id="button" type="submit">Solo En Curso </button>
+				</form>
+            </li>
+            <li>
+            	<form action="ServletLibro?accion=listarPorEstado" method="post">
+  					<input type="hidden" value="finalizado" name="estado">  </input> 
+  					<button id="button" type="submit">Solo Finalizados</button>
+				</form>
+            </li>
+            <li>
+            	<form action="ServletLibro?accion=listar" method="post">
+  					<button id="button" type="submit">Listar Todos </button>
+				</form>	
+            </li>
+        </ul>
+    </nav>
 
-<form action="ServletLibro?accion=listarPorEstado" method="post">
-  <input type="hidden" value="cancelado" name="estado">  </input> 
-  <button id="button" type="submit">Solo Cancelados</button>
-</form>
-
-<form action="ServletLibro?accion=listarPorEstado" method="post">
-  <input type="hidden" value="en curso" name="estado">  </input> 
-  <button id="button" type="submit">Solo En Curso </button>
-</form>
-
-<form action="ServletLibro?accion=listarPorEstado" method="post">
-  <input type="hidden" value="finalizado" name="estado">  </input> 
-  <button id="button" type="submit">Solo Finalizados</button>
-</form>
-
-<form action="ServletLibro?accion=listar" method="post">
-  <button id="button" type="submit">Listar Todos </button>
-</form>	
 
  <%}%>
  
@@ -76,6 +116,8 @@
 
 <% LinkedList<Libro> lista = new LinkedList<>();
    lista = (librosEstado == null)?(lista=libros):(lista=librosEstado);%>
+   
+<!--    
 <div class="container__box">
      <%for(Libro l : lista){ %>
             <div class="box">
@@ -85,7 +127,7 @@
             </div>
         <%}%>
     </div>
-
+-->
           
         <table id="myTable" class="table table-striped">
            <thead>
