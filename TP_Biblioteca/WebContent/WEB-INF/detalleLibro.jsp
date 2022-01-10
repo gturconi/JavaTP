@@ -21,6 +21,7 @@
 <link rel="stylesheet" href="estilos/tabla.css">
 <link rel="stylesheet" href="estilos/starRating.css">
 <meta charset="UTF-8">
+<link rel="icon" href="icons/libros.ico">
 <title>Detalle del libro</title>
 </head>
 <body>

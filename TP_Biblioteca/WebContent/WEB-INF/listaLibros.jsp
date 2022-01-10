@@ -17,6 +17,7 @@
          
 %>
 <meta charset="ISO-8859-1" name="description" content="Bootstrap.">
+<link rel="icon" href="icons/libros.ico">
 <title>Listado de Libros</title>
 
 <link rel="stylesheet" href="estilos/tabla.css">

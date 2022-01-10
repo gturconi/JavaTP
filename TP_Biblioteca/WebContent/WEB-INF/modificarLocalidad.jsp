@@ -8,6 +8,7 @@
 Localidad l = (Localidad) request.getAttribute("Localidad");      
 %>
 <meta charset="ISO-8859-1">
+<link rel="icon" href="icons/localidad.ico">
 <title>Editar Localidad</title>
 <link rel="stylesheet" href="estilos/busqueda.css">
 </head>

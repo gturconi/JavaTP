@@ -13,6 +13,7 @@
    int admin = cl.getisAdmin();
 %>
 <meta charset="ISO-8859-1">
+<link rel="icon" href="icons/libros.ico">
 <title>Buscar Libro</title>
 <link rel="stylesheet" href="estilos/tabla.css">
 <link rel="stylesheet" href="estilos/buscar.css">

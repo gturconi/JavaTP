@@ -10,6 +10,7 @@
    LinkedList<Cliente> clientesEstado = (LinkedList<Cliente>)request.getAttribute("ClientesEstado");  
 %>
 <meta charset="ISO-8859-1">
+<link rel="icon" href="icons/cliente.ico">
 <title>Clientes</title>
 <link rel="stylesheet" href="estilos/tabla.css">
 <link rel="stylesheet" href="estilos/busqueda.css">
@@ -93,7 +94,7 @@
                 <td data-label="localidad"> <%=cli.getLocalidad().getNombre()%></td>
                 <td data-label="estado"> <%=cli.getEstado()%></td>
                 <%if(cli.getEstado().equalsIgnoreCase("habilitado")){ %>
-                <td>                
+                <td data-label="accion">                
                       <form action="ServletCliente?accion=suspender" method="post">
                            <input type="hidden" value=<%=cli.getId()%> name="id">  </input>  
                            <input type="hidden" value=0 name="estado">  </input>                           								           
@@ -101,11 +102,11 @@
 			          </form>                                                  
                 </td>
                 <%}else{%> 
-                     <td>
+                     <td data-label="accion">
                        <form action="ServletCliente?accion=habilitar" method="post">
                            <input type="hidden" value=<%=cli.getId()%> name="id">  </input> 
                            <input type="hidden" value=1 name="estado">  </input>                             								           
-				           <button id="button" type="submit">Habilitar Cliente</button>
+				           <button id="boton" type="submit">Habilitar Cliente</button>
 			          </form>
                      </td>  
                 <%}%>   

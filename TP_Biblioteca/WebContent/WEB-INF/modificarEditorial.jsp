@@ -8,6 +8,7 @@
    Editorial e = (Editorial) request.getAttribute("Editorial");      
 %>
 <meta charset="ISO-8859-1">
+<link rel="icon" href="icons/editorial.ico">
 <title>Editar Editorial</title>
 <link rel="stylesheet" href="estilos/busqueda.css">
 </head>

@@ -9,6 +9,7 @@
 %>
 <meta charset="ISO-8859-1">
 <link rel="stylesheet" href="estilos/busqueda.css">
+<link rel="icon" href="icons/autor.ico">
 <title>Editar Autor</title>
 </head>
 <body>

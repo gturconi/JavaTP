@@ -10,6 +10,7 @@
    LinkedList<PedidoLibro> pedidos = (LinkedList<PedidoLibro>)request.getAttribute("Pedidos");   
 %>
 <meta charset="ISO-8859-1">
+<link rel="icon" href="icons/pedido.ico">
 <title>Listado de Pedidos Reservados</title>
 <link rel="stylesheet" href="estilos/tabla.css">
 </head>

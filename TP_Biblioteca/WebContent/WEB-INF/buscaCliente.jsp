@@ -11,6 +11,7 @@
    int admin = user.getisAdmin();
 %>
 <meta charset="ISO-8859-1">
+<link rel="icon" href="icons/cliente.ico">
 <title>Buscar cliente</title>
 <link rel="stylesheet" href="estilos/tabla.css">
 <link rel="stylesheet" href="estilos/busqueda.css">

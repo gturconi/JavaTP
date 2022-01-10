@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="estilos/tabla.css">
 <link rel="stylesheet" href="estilos/busqueda.css">
 <link rel="stylesheet" href="estilos/header.css">
+<link rel="icon" href="icons/localidad.ico">
 <title>Buscar Localidad</title>
 </head>
 <body>

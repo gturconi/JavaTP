@@ -12,6 +12,7 @@
    int admin = cl.getisAdmin();
 %>
 <meta charset="ISO-8859-1">
+<link rel="icon" href="icons/autor.ico">
 <title>Buscar Autor</title>
 <link rel="stylesheet" href="estilos/tabla.css">
 <link rel="stylesheet" href="estilos/busqueda.css">
