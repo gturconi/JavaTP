@@ -3,6 +3,26 @@ body{
     font-family: arial;
 }
 
+/* para botones de habilitar/suspender cliente */
+
+#boton{
+	width: 100%;
+	height: 40px;
+	background:#411023;
+	border: none;
+	color: white;
+	margin-bottom: 0px;
+}
+
+#boton:hover{
+	background: #ef8354;
+}
+
+
+/*tabla para mostrar datos de listados responsive*/
+
+
+
 .table-striped thead th{ 
     text-transform: uppercase;
     background-color: #411023;
