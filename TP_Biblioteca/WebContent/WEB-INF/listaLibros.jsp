@@ -21,9 +21,11 @@
 <title>Listado de Libros</title>
 
 
-<link rel="stylesheet" href="estilos/header.css">
 
+<link rel="stylesheet" href="estilos/header.css">
 <link rel="stylesheet" href="estilos/tabla.css">
+<link rel="stylesheet" href="estilos/busqueda.css">
+
 <!--  <link rel="stylesheet" href="estilos/HomePedido.css">   <link rel="stylesheet" href="estilos/header.css"> -->
 
 
@@ -102,13 +104,7 @@
 
  <%}%>
  
- <div class="container">
 
-<form class="formularioBusqueda" action="ServletLibro?accion=buscar" method="post">
-				<input id="campoTexto" type="text" placeholder="Ingrese id del libro " maxlength="10" name="id" required> 
-				<button id= "botonBuscar" type="submit">Buscar Libro</button>
-	</form>	
-		
    <h1>
         Listado de libros
     </h1>
@@ -197,12 +193,29 @@
             <%}%>                                                                   
           </table>
    </div>                                                                     
-   
-                                   <% if(admin == 1){ %>
-                                    <form action="ServletMenu?accion=anadirLibro" method="post">				 
-                                        <button id="button" type="submit">Añadir Libro</button>
-                                    </form>
-                                     <%}%>  
+ 
+
+     <div class="container">
+		<div class="card">
+			<img src="pictures/lupaBusqueda.png" alt="">
+				<h4> Buscar </h4>
+				<form class="formulario" action="ServletLibro?accion=buscar" method="post">
+					<input id="campoTexto" type="text" placeholder="Ingrese id  " maxlength="10" name="id" required> 
+					<button id= "boton" type="submit">Buscar Libro</button>
+				</form>	
+		</div>
+    
+     <% if(admin == 1){ %>
+     <div class="card">
+     	 <img src="pictures/añadir.png" alt="">
+     	 <h4> Añadir </h4>
+      	<form class="formulario" action="ServletMenu?accion=anadirLibro" method="post">      
+        	 <button id="boton_Añadir" type="submit">Añadir Libro</button>
+      </form>
+    </div>                                     
+      <%}%>  
+   </div>  
+     
 </body>
 <script>
 	$(document).ready(function(){
