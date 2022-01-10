@@ -15,8 +15,9 @@
 <meta charset="ISO-8859-1">
 <link rel="icon" href="icons/libros.ico">
 <title>Buscar Libro</title>
+
 <link rel="stylesheet" href="estilos/tabla.css">
-<link rel="stylesheet" href="estilos/buscar.css">
+<link rel="stylesheet" href="estilos/busqueda.css">
 <link rel="stylesheet" href="estilos/header.css">
 </head>
 <body>
@@ -34,10 +35,23 @@
 
 
 <h1>Busqueda de Libro</h1>
+
+<div class="container">
+    <div class="card">
+      <img src="pictures/lupaBusqueda.png" alt="">
+      <h4> Buscar </h4>
+      <form class="formulario" action="ServletLibro?accion=buscar" method="post">
+        <input id="campoTexto" type="text" placeholder="Ingrese id  " maxlength="10" name="id" required> 
+        <button id= "boton" type="submit">Buscar Libro</button>
+      </form>
+    </div>  
+  </div> 
+ <!--  
 <form class="formularioBusqueda" action="ServletLibro?accion=buscar" method="post">
 				<input id="campoTexto" type="text" placeholder="Ingrese id del libro " maxlength="10" name="id" required> 
 				<button id= "botonBuscar" type="submit">Buscar Libro</button>
 	</form>
+	--> 
 <%if(null != request.getAttribute("error")){
 	  out.println(request.getAttribute("error"));    
   }	  
