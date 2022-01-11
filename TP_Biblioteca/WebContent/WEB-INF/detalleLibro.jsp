@@ -19,6 +19,9 @@
    DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMATTER);         
 %>
 <link rel="stylesheet" href="estilos/tabla.css">
+
+<link rel="stylesheet" href="estilos/comentarios.css">
+
 <link rel="stylesheet" href="estilos/starRating.css">
 <meta charset="UTF-8">
 <link rel="icon" href="icons/libros.ico">
@@ -92,9 +95,15 @@
                         </tr>                                                     
                    <%}%>                                                                                                                                                                                                                      
           </table>
+                
           
                <form action="ServletLibro?accion=comentarLibro" method="post">
-               
+               <div class="estrellas">
+               <div class="footer-textos">
+                    <h2>¡ Califica el libro !</h2>
+                        <p class="footer-textos__p1">Obtendremos su puntuacion.</p1>
+                </div>
+                <div class="estrellas__centro">
                <div class="rate">
                      <input type="radio" id="star5" name="rate" value="5" required />
                      <label for="star5" title="text">&#9733</label>
@@ -106,14 +115,40 @@
                      <label for="star2" title="text">&#9733</label>
                      <input type="radio" id="star1" name="rate" value="1" required/>
                      <label for="star1" title="text">&#9733</label> 
-                </div>               
+                </div>  
+                </div>
+                </div>
+                
+                
+                <section class="contacto">
+            <div class="contenedor">
+                <div class="footer-textos">
+                    <h2>¡ Realiza un comentario !</h2>
+                        <p class="footer-textos__p1">Escribenos tu opinion acerca de este libro.</p1>
+                </div>
+                <form action="enviarMail.php" class="formulario" method="POST">
+                         <textarea name="comentario" id="comentario" rows="6" cols="60" required></textarea>
+                    <div class="derecha">
+                    	<input type="hidden" value=<%=String.valueOf(l.getId())%> name="id">  </input>
+                    	<button id="button" type="submit">Enviar</button>
+
+                    </div>
+                </form>
+                </div>
+         </section>
+                
+                
+                <!--  
+                             
                 <p><label for="descripcion">Comentarios</label>
                     <textarea name="comentario" id="comentario" rows="6" cols="60" required></textarea>
                     <input type="hidden" value=<%=String.valueOf(l.getId())%> name="id">  </input>
                     <button id="button" type="submit">Enviar</button> 
-                </p>
+                </p>  -->
+                
+                
                </form>
-               
+                
                <table>
                  <thead>                    
                  </thead>
