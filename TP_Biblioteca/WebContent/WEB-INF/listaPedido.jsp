@@ -11,38 +11,70 @@
 %>
 <meta charset="ISO-8859-1">
 <link rel="icon" href="icons/pedido.ico">
-<title>Listado de Pedidos Reservados</title>
+<title>Listado Pedidos </title>
+
+<link rel="stylesheet" href="estilos/header.css">
 <link rel="stylesheet" href="estilos/tabla.css">
+<link rel="stylesheet" href="estilos/busqueda.css">
+<link rel="stylesheet" href="estilos/menuFiltrar2.css">
+ <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
 
-<h2>Filtrar</h2>
+<header>
+ <nav class="nav__hero">
+            <div class="container nav__container">
+                <div class="logo">
+                    <h2 class="logo__name">Biblioteca<span class="point"> Entre hojas </span></h2>
+                </div>
+            </div>
+        </nav> 
+</header>
 
-<form action="ServletPedido?accion=listar" method="post">
-  <input type="hidden" value="reservado" name="estado">  </input> 
-  <button id="button" type="submit">Solo Reservados</button>
-</form>
-
-<form action="ServletPedido?accion=listar" method="post">
-  <input type="hidden" value="cancelado" name="estado">  </input> 
-  <button id="button" type="submit">Solo Cancelados</button>
-</form>
-
-<form action="ServletPedido?accion=listar" method="post">
-  <input type="hidden" value="en curso" name="estado">  </input> 
-  <button id="button" type="submit">Solo En Curso </button>
-</form>
-
-<form action="ServletPedido?accion=listar" method="post">
-  <input type="hidden" value="finalizado" name="estado">  </input> 
-  <button id="button" type="submit">Solo Finalizados</button>
-</form>
+<section class="container hero__main">  
+            <div class="hero__textos">
+                <h2 class="title2"> Filtrar por :</h2> 
+            </div>
+</section> 
 
 
+ <nav>
+        <input type="checkbox" id="check">
+        <label for="check" class="checkbtn">
+            <i class="fas fa-bars"></i>
+        </label>
+        <ul>
+            <li>
+            	<form action="ServletPedido?accion=listar" method="post">
+  					<input type="hidden" value="reservado" name="estado">  </input> 
+  					<button id="button" type="submit">Solo Reservados</button>
+				</form>
+			</li>
+            <li>
+            	<form action="ServletPedido?accion=listar" method="post">
+  					<input type="hidden" value="cancelado" name="estado">  </input> 
+ 					 <button id="button" type="submit">Solo Cancelados</button>
+				</form>
+            </li>
+            <li>
+            	<form action="ServletPedido?accion=listar" method="post">
+  					<input type="hidden" value="en curso" name="estado">  </input> 
+  						<button id="button" type="submit">Solo En Curso </button>
+				</form>
+            </li>
+            <li>
+            	<form action="ServletPedido?accion=listar" method="post">
+  					<input type="hidden" value="finalizado" name="estado">  </input> 
+  					<button id="button" type="submit">Solo Finalizados</button>
+				</form>
+            </li>
+        </ul>
+    </nav>
 
-   <h1>
-        Listado de pedidos
-    </h1>            
+
+   <h1>Listado de pedidos </h1> 
+        
+              
     <div id="tabla">
         <table id="myTable">
             <thead>
@@ -56,22 +88,24 @@
               <%for(PedidoLibro pl : pedidos){
             	String c = String.valueOf(pl.getLibros().size());
             	%>                
-                <td rowspan=<%=c%>> <%=pl.getPed().getNroPedido()%></td>
-                <td rowspan=<%=c%>> <%=pl.getPed().getFecha()%></td>
-                <td rowspan=<%=c%>> <%=pl.getPed().getEstado()%>
+                <td data-label="nro" rowspan=<%=c%>> <%=pl.getPed().getNroPedido()%></td>
+                <td data-label="fecha" rowspan=<%=c%>> <%=pl.getPed().getFecha()%></td>
+                <td data-label="estado" rowspan=<%=c%>> <%=pl.getPed().getEstado()%>
                  <%if(pl.getPed().getEstado().equalsIgnoreCase("reservado")){%>
                      <form action="ServletPedido?accion=confirmarPedido" method="post">
                        <input type="hidden" value=<%=pl.getPed().getNroPedido()%> name="nro">  </input>			 
-                       <button id="button" type="submit">Confirmar Pedido</button>
+                       <button id="boton" type="submit">Confirmar Pedido</button>
                      </form>
                  <%}%>                 
                 </td>
-                <td rowspan=<%=c%>> <%=pl.getPed().getCliente().getId()%>             
+                <td data-label="idCliente" rowspan=<%=c%>> <%=pl.getPed().getCliente().getId()%>             
              <%for(int i=0; i<pl.getLibros().size();i++) {%>
-                   <%if(i>0){%> <tr> <%}%> 
-                   <td> <%=pl.getLibros().get(i).getId()%></td> 
-                   <td> <%=pl.getLibros().get(i).getTitulo()%></td> </tr>  
-             <%}%>           
+                   <%if(i>0){%>  
+                   <td data-label="idLibro"> <%=pl.getLibros().get(i).getId()%></td> 
+                   <td data-label="titulo"> <%=pl.getLibros().get(i).getTitulo()%></td>
+                   <%}%> 
+             <%}%> 
+             </tr>            
            <%}%>  
           </table>                   
     </div>     
