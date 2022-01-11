@@ -13,7 +13,7 @@
 %>
 
 <meta charset="ISO-8859-1">
-<title>Localidades</title>
+<title>Listado Localidades</title>
 <link rel="stylesheet" href="estilos/tabla.css">
 <link rel="stylesheet" href="estilos/busqueda.css">
  <link rel="stylesheet" href="estilos/header.css">
@@ -49,13 +49,13 @@
                 <td data-label="id"> <%=loc.getId()%></td>
                 <td data-label="nombre"> <%=loc.getNombre()%></td>
                 <% if(admin == 1){ %>
-                <td>
+                <td data-label="eliminar">
                       <form action="ServletLocalidad?accion=borrar" method="post">
                            <input type="image"  id="botonEliminar" src="icons/trash-fill.png"/>								           
 				           <input type="hidden" value=<%=String.valueOf(loc.getId())%> name="id">  </input>
 			          </form>                                                  
                      </td> 
-                     <td>
+                     <td data-label="modificar">
                        <form action="ServletMenu?accion=modificarLocalidad" method="post">
                                 <input type="image"  id="button" src="icons/pencil.png"/>				 								
 								 <input type="hidden" value=<%=String.valueOf(loc.getId())%> name="id">  </input>					

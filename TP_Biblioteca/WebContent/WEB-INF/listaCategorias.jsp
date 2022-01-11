@@ -14,7 +14,7 @@
 %>
 <meta charset="ISO-8859-1">
 <link rel="icon" href="icons/categoria.ico">
-<title>Categoria</title>
+<title>Listado Categorias</title>
 <link rel="stylesheet" href="estilos/tabla.css">
 <link rel="stylesheet" href="estilos/busqueda.css">
  <link rel="stylesheet" href="estilos/header.css">
@@ -47,14 +47,14 @@
                 <td data-label="id"> <%=c.getId()%></td>
                 <td data-label="descripcion"> <%=c.getDescripcion()%></td>
                 <% if(admin == 1){ %>
-                     <td>
+                     <td data-label="eliminar">
                       <form class="formularioEliminar" action="ServletCategoria?accion=borrar" method="post">				
 				         
 				           <input type="image"  id="botonEliminar" src="icons/trash-fill.png"/>				           				           
 				           <input type="hidden" value=<%=String.valueOf(c.getId())%> name="id">  </input>
 			          </form>                                                  
                      </td> 
-                     <td>
+                     <td data-label="modificar">
                        <form action="ServletMenu?accion=modificarCategoria" method="post">
                                 <input type="image"  id="button" src="icons/pencil.png"/>				 							
 								 <input type="hidden" value=<%=String.valueOf(c.getId())%> name="id">  </input>					

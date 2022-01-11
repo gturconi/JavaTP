@@ -18,7 +18,7 @@
 %>
 <meta charset="ISO-8859-1" name="description" content="Bootstrap.">
 <link rel="icon" href="icons/libros.ico">
-<title>Listado de Libros</title>
+<title>Listado Libros</title>
 
 
 
@@ -142,17 +142,17 @@
             
             
             <%for(Libro l : lista){ %>                
-                <td> <img src="ServletLibro?id=<%=l.getId()%>" width="60px" height="60px"/> </td>                                 
-                <td><%=l.getId()%></td>
-                <td><%=l.getTitulo()%></td>
-                <td><%=l.getDescripcion()%></td>                     
+                <td data-label="portada"> <img src="ServletLibro?id=<%=l.getId()%>" width="60px" height="60px"/> </td>                                 
+                <td data-label="id"><%=l.getId()%></td>
+                <td data-label="titulo"><%=l.getTitulo()%></td>
+                <td data-label="descripcion"><%=l.getDescripcion()%></td>                     
                 
-                <td><%=l.getPrecio()%></td>
+                <td data-label="precio"><%=l.getPrecio()%></td>
                
-                <td>
+                <td data-label="detalles">
                     <form action="ServletLibro?accion=detalleLibro" method="post">
                        <input type="hidden" value=<%=String.valueOf(l.getId())%> name="id">  </input>			 
-                       <button id="button" type="submit">Ver detalles</button>
+                       <button id="boton" type="submit">Ver detalles</button>
                     </form>                
                 </td>
                                
@@ -174,14 +174,14 @@
                   </td>
                <%}%>   
                 <% if(admin == 1){ %>
-                <td>                      
+                <td data-label="eliminar">                      
                       <form class="formularioEliminar" action="ServletLibro?accion=borrar" method="post">				
 				           <input type="image"  id="botonEliminar" src="icons/trash-fill.png"/>
 				           <input type="hidden" value=<%=String.valueOf(l.getId())%> name="id">  </input>
 			          </form>                                                  
                      </td>
                       
-                    <td>
+                    <td data-label="modificar">
                        <form action="ServletMenu?accion=modificarLibro" method="post">				 
 								<input type="image"  id="button" src="icons/pencil.png"/>
 								 <input type="hidden" value=<%=String.valueOf(l.getId())%> name="id">  </input>					

@@ -15,7 +15,7 @@
 %>
 <meta charset="ISO-8859-1">
 <link rel="icon" href="icons/libros.ico">
-<title>Libro Nuevo</title>
+<title>Añadir Libro</title>
 <link rel="stylesheet" href="estilos/tabla.css">
 </head>
 <body>

@@ -11,7 +11,7 @@
 %>
 <meta charset="ISO-8859-1">
 <link rel="icon" href="icons/cliente.ico">
-<title>Clientes</title>
+<title>Listado Clientes</title>
 <link rel="stylesheet" href="estilos/tabla.css">
 <link rel="stylesheet" href="estilos/busqueda.css">
 <link rel="stylesheet" href="estilos/header.css">
@@ -98,7 +98,7 @@
                       <form action="ServletCliente?accion=suspender" method="post">
                            <input type="hidden" value=<%=cli.getId()%> name="id">  </input>  
                            <input type="hidden" value=0 name="estado">  </input>                           								           
-				           <button id="button" type="submit">Suspender Cliente</button>
+				           <button id="boton" type="submit">Suspender Cliente</button>
 			          </form>                                                  
                 </td>
                 <%}else{%> 

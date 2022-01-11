@@ -14,7 +14,7 @@
 %>
 <meta charset="ISO-8859-1">
 <link rel="icon" href="icons/editorial.ico">
-<title>Editorial</title>
+<title>Listado Editoriales</title>
 <link rel="stylesheet" href="estilos/tabla.css">
 <link rel="stylesheet" href="estilos/busqueda.css">
  <link rel="stylesheet" href="estilos/header.css">
@@ -49,14 +49,14 @@
                 <td data-label="id"> <%=e.getId()%></td>
                 <td data-label="nombre"> <%=e.getNombre()%></td>
                 <% if(admin == 1){ %>
-                     <td>
+                     <td data-label="eliminar">
                       <form class="formularioEliminar" action="ServletEditorial?accion=borrar" method="post">				
 				         
 				           <input type="image"  id="botonEliminar" src="icons/trash-fill.png"/>				           				           
 				           <input type="hidden" value=<%=String.valueOf(e.getId())%> name="id">  </input>
 			          </form>                                                  
                      </td> 
-                     <td>
+                     <td data-label="modificar">
                        <form action="ServletMenu?accion=modificarEditorial" method="post">
                                 <input type="image"  id="button" src="icons/pencil.png"/>				 							
 								 <input type="hidden" value=<%=String.valueOf(e.getId())%> name="id">  </input>					
