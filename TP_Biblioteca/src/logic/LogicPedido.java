@@ -46,6 +46,10 @@ public class LogicPedido {
 	public void confirmarPedido(int nroPed) {
 		dp.confirmarPedido(nroPed);
 	}
+	
+	public void finalizarPedido(int nroPed) {
+		dp.finalizarPedido(nroPed);
+	}
 
 	public String validarReserva(Cliente cl, Libro lib, LinkedList<Libro> libros) {
 		if(cl.getEstado().equalsIgnoreCase("suspendido")) {
@@ -57,6 +61,13 @@ public class LogicPedido {
 		}else {
 			return " ";
 		} 	
+		
+	}
+
+	public void anularPedido(int nroPed,String idCl) {
+		LinkedList<Libro> libros = new LinkedList<Libro>();
+		libros = dp.librosPedido(nroPed);
+		dp.actualizarEstado(nroPed,libros,"cancelado");
 		
 	}
 }

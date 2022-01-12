@@ -20,8 +20,8 @@
       <h4> Modificar </h4>
       <form class="formularioAutor" action="ServletAutor?accion=modificar" method="post">
 			<input type="hidden" value=<%=a.getId()%> name="id"> 
-			<input id="campoTextoAutor" type="text" value=<%=a.getNombre()%> maxlength="20" name="nombre"required>
-			<input id="campoTextoAutor" type="text" value=<%=a.getApellido()%> maxlength="20" name="apellido"required>				
+			<input id="campoTextoAutor" type="text" value='<%=a.getNombre()%>' maxlength="20" name="nombre"required>
+			<input id="campoTextoAutor" type="text" value='<%=a.getApellido()%>' maxlength="20" name="apellido"required>				
 			<button id="botonAutor" type="submit">Modificar Autor</button>
 	  </form>
     </div>  

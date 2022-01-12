@@ -20,7 +20,7 @@ Localidad l = (Localidad) request.getAttribute("Localidad");
       <h4> Modificar </h4>
       <form class="formulario" action="ServletLocalidad?accion=modificar" method="post">
 			<input type="hidden" value=<%=l.getId()%> name="id"> 
-			<input id="campoTexto" type="text" value=<%=l.getNombre()%> maxlength="20" name="nombre"required>				
+			<input id="campoTexto" type="text" value='<%=l.getNombre()%>' maxlength="20" name="nombre"required>				
 			<button id="boton" type="submit">Modificar Localidad</button>
 	  </form>
     </div>  

@@ -56,8 +56,29 @@ public class ServletPedido extends HttpServlet {
 			cancelarReserva(request,response);
 		}else if(accion.equalsIgnoreCase("confirmarPedido")) {
 			confirmarPedido(request,response);
+		}else if(accion.equalsIgnoreCase("finalizarPedido")) {
+			finalizarPedido(request,response);
+		}else if(accion.equalsIgnoreCase("anularPedido")) {
+			anularPedido(request,response);
 		}		
         				
+	}
+
+	private void anularPedido(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
+		LogicPedido ctrlped = new LogicPedido();
+		int nroPed = Integer.parseInt(request.getParameter("nro"));
+		String idCl = request.getParameter("idCl");
+		ctrlped.anularPedido(nroPed,idCl);
+		request.setAttribute("mensaje", "Pedido anulado");
+		request.getRequestDispatcher("WEB-INF/menuAdmin.jsp").forward(request, response);
+	}
+
+	private void finalizarPedido(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		LogicPedido ctrlped = new LogicPedido();
+		int nroPed = Integer.parseInt(request.getParameter("nro"));
+		ctrlped.finalizarPedido(nroPed);
+		request.setAttribute("mensaje", "Pedido finalizado");
+		request.getRequestDispatcher("WEB-INF/menuAdmin.jsp").forward(request, response);
 	}
 
 	private void confirmarPedido(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {

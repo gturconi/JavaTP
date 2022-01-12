@@ -81,41 +81,7 @@ pageEncoding="ISO-8859-1"%>
 							</form>
 						</li>
 					</ul>
-				</li>
-				<li><a href="#">Busquedas</a>
-					<ul>
-						<li>
-						    <form action="ServletMenu?accion=buscarLocalidad" method="post">
-                                <button id="button" type="submit">Localidad</button>
-                            </form>																			
-						</li>
-						<li>
-							<form action="ServletMenu?accion=buscarAutor" method="post">				 
-								<button id="button" type="submit">Autor</button>
-							</form>
-						</li>
-						<li>
-							<form action="ServletMenu?accion=buscarCategoria" method="post">				 
-								<button id="button" type="submit">Categoria</button>
-							</form>
-						</li>
-						<li>
-							<form> <!-- llamar servlet para buscar editorial-->
-								<button id="button" type="submit">Editorial</button>
-							</form>
-						</li>
-						<li>
-							<form> <!-- llamar servlet para buscar libro-->
-								<button id="button" type="submit">Libro</button>
-							</form>
-						</li>
-						<li>
-							<form> <!-- llamar servlet para buscar pedido-->
-								<button id="button" type="submit">Pedido</button>
-							</form>
-						</li>
-					</ul>
-				</li>				
+				</li>								
 			</ul>
 		</nav>		
 	</header>

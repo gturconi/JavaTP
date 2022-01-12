@@ -13,7 +13,7 @@ import entities.Pedido;
 public class DataPedido {
 
 	public LinkedList<Pedido> listado(String estado){
-		DataCliente dc = new DataCliente();;		
+		DataCliente dc = new DataCliente();		
 		PreparedStatement stmt=null;
 		ResultSet rs=null;
 		LinkedList<Pedido> list= new LinkedList<>();
@@ -48,6 +48,7 @@ public class DataPedido {
 		
 		return list;		
 	}
+
 
 	public LinkedList<Libro> librosPedido(int id) {
 		PreparedStatement stmt=null;
@@ -257,12 +258,12 @@ public class DataPedido {
 		
 		if (libros.size() > 1) {
 		   quitarLibro(nroPedido,idLibro); //Solo quitamos ese libro pero no cancelamos el pedido completo
-		}else{
-           actualizarEstado(nroPedido,idLibro ,"cancelado");
+		}else{				
+           actualizarEstado(nroPedido,libros,"cancelado");
 		}		
 	}
 
-	private void actualizarEstado(int nroPedido,int idLibro ,String estado) {
+	public void actualizarEstado(int nroPedido,LinkedList<Libro> libros ,String estado) {
 		
 		DataLibro dlib = new DataLibro();
 		PreparedStatement stmt= null;	
@@ -273,9 +274,10 @@ public class DataPedido {
 			stmt.setString(1, estado);		
 			stmt.setInt(2, nroPedido);
 			stmt.executeUpdate();
-        if( idLibro != -1  && (estado.equals("cancelado") || estado.equals("reservado"))) {
-        	Libro l = dlib.buscar(idLibro);
-        	dlib.actualizaExistencia(l.getId(), l.getExistencia()+1);
+        if( libros != null  && (estado.equals("cancelado") || estado.equals("finalizado"))) {
+          for(Libro l: libros) {
+        	  dlib.actualizaExistencia(l.getId(), l.getExistencia()+1);  
+          }	        	        	
         }
 			
 		}  catch (SQLException e) {
@@ -314,7 +316,12 @@ public class DataPedido {
 	}
 
 	public void confirmarPedido(int nroPed) {
-		actualizarEstado(nroPed,-1 ,"en curso");		
+		actualizarEstado(nroPed,null ,"en curso");		
 	}
-			
+	
+	public void finalizarPedido(int nroPed) {
+		LinkedList<Libro> libros = new LinkedList<Libro>();
+		libros = librosPedido(nroPed);		
+		actualizarEstado(nroPed,libros,"finalizado");		
+	}
 }

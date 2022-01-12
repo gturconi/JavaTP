@@ -20,7 +20,7 @@
       <h4> Modificar </h4>
       <form class="formulario" action="ServletCategoria?accion=modificar" method="post">
 			<input type="hidden" value=<%=c.getId()%> name="id"> 
-			<input id="campoTexto" type="text" value=<%=c.getDescripcion()%> maxlength="20" name="descripcion"required>				
+			<input id="campoTexto" type="text" value='<%=c.getDescripcion()%>' maxlength="20" name="descripcion"required>				
 			<button id="boton" type="submit">Modificar Categoria</button>
 	  </form>
     </div>  

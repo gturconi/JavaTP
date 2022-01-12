@@ -20,7 +20,7 @@
       <h4> Modificar </h4>
       <form class="formulario" action="ServletEditorial?accion=modificar" method="post">
 			<input type="hidden" value=<%=e.getId()%> name="id"> 
-			<input id="campoTexto" type="text" value=<%=e.getNombre()%> maxlength="20" name="nombre"required>				
+			<input id="campoTexto" type="text" value='<%=e.getNombre()%>' maxlength="20" name="nombre"required>				
 			<button id="boton" type="submit">Modificar Editorial</button>
 	  </form>
     </div>  

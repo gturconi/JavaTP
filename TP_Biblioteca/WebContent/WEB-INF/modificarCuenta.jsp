@@ -23,11 +23,11 @@
         <h5> Ingrese los nuevos datos de su cuenta</h5>
         </br>
         <form class="formulario" action="ServletCliente?accion=actualizar" method="post">
-        <input class="controlr" type="text" name="name" value=<%=c.getNombre()%> required>
-        <input class="controlr" type="text" name="surname" value=<%=c.getApellido()%> required >
-        <input class="controlr" type="text" name="address" value=<%=c.getDomicilio()%> required >
-        <input class="controlr" type="text" name="tel" value=<%=c.getTelefono()%> required >
-        <input class="controlr" type="text" name="email" value=<%=c.getEmail()%> required >                                
+        <input class="controlr" type="text" name="name" value='<%=c.getNombre()%>' required>
+        <input class="controlr" type="text" name="surname" value='<%=c.getApellido()%>' required >
+        <input class="controlr" type="text" name="address" value='<%=c.getDomicilio()%>' required >
+        <input class="controlr" type="text" name="tel" value='<%=c.getTelefono()%>' required >
+        <input class="controlr" type="text" name="email" value='<%=c.getEmail()%>' required >                                
           <select name="city" class="controlr" required>
  <option style="display: none;" <%=c.getLocalidad().getNombre()%> selected><%=c.getLocalidad().getNombre()%></option>  
           <% 

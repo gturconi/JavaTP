@@ -20,7 +20,7 @@
 <header>
 		<nav class="navegacion">
 			<ul class = "nav">
-				<li><a href="#">Cuenta</a>
+				<li><a href="#">Mi Cuenta</a>
 					<ul class = "subMenu">
 						<li>
 						<form action="ServletMenu?accion=modificarCuenta" method="post">
@@ -60,52 +60,9 @@
 							<form action="ServletLibro?accion=listar" method="post">
                                 <button id="button" type="submit">Libros</button>
                             </form>
-						</li>
-						<li>
-							<form> <!-- llamar servlet para mostrar listado de pedidos-->
-								<button id="button" type="submit">Pedidos</button>
-							</form>
-						</li>
+						</li>						
 					</ul>
-				<li><a href="#">Busquedas</a>
-					<ul>
-						<li>
-							<form action="ServletMenu?accion=buscarAutor" method="post">				 
-								<button id="button" type="submit">Autor</button>
-							</form>
-						</li>
-						<li>
-						    <form action="ServletMenu?accion=buscarCategoria" method="post">				 
-								<button id="button" type="submit">Categoria</button>
-							</form>													
-						</li>
-						<li>
-							<form> <!-- llamar servlet para buscar editorial-->
-								<button id="button" type="submit">Editorial</button>
-							</form>
-						</li>
-						<li>
-							<form> <!-- llamar servlet para buscar libro-->
-								<button id="button" type="submit">Libro</button>
-							</form>
-						</li>
-						<li>
-							<form> <!-- llamar servlet para buscar pedido-->
-								<button id="button" type="submit">Pedido</button>
-							</form>
-						</li>
-					</ul>
-				</li>
-				</li>
-				<li><a href="#">Pedido</a>
-					<ul>
-						<li>
-							<form> <!-- llamar servlet para realizar pedido-->
-								<button id="button" type="submit">Realizar</button>
-							</form>
-						</li>
-					</ul>
-				</li>
+				</li>				
 			</ul>
 		</nav>
 	</header>
