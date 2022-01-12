@@ -20,6 +20,7 @@
    LinkedList<Autor> autores = (LinkedList<Autor>)request.getAttribute("Autores");
 %>
 <meta charset="ISO-8859-1">
+<link rel="icon" href="icons/libros.ico">
 <title>Editar libro</title>
 </head>
 <body>

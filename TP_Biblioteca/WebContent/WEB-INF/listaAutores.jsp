@@ -13,11 +13,26 @@
 %>
 
 <meta charset="ISO-8859-1">
-<title>Autores</title>
-<link rel="stylesheet" href="estilos/tabla.css">
-<link rel="stylesheet" href="estilos/busqueda.css">
+<link rel="icon" href="icons/autor.ico">
+<title>Listado Autores</title>
+ <link rel="stylesheet" href="estilos/tabla.css">
+ <link rel="stylesheet" href="estilos/busqueda.css">
+ <link rel="stylesheet" href="estilos/header.css">
+
 </head>
 <body>
+
+<header>
+ <nav class="nav__hero">
+            <div class="container nav__container">
+                <div class="logo">
+                    <h2 class="logo__name">Biblioteca<span class="point"> Entre hojas </span></h2>
+                </div>
+            </div>
+        </nav> 
+</header>
+
+
     <h1>
         Listado de autores
     </h1>
@@ -37,13 +52,13 @@
                 <td data-label="nombre"> <%=aut.getNombre()%></td>
                 <td data-label="apellido"> <%=aut.getApellido()%></td>
                 <% if(admin == 1){ %>
-                <td>                
+                <td data-label="eliminar">                
                       <form class="formularioEliminar" action="ServletAutor?accion=borrar" method="post">
                            <input type="image"  id="botonEliminar" src="icons/trash-fill.png"/> 								           
 				           <input type="hidden" value=<%=String.valueOf(aut.getId())%> name="id">  </input>
 			          </form>                                                  
                      </td> 
-                     <td>
+                     <td data-label="modificar">
                        <form action="ServletMenu?accion=modificarAutor" method="post">				 
 								<input type="image"  id="button" src="icons/pencil.png"/>
 								 <input type="hidden" value=<%=String.valueOf(aut.getId())%> name="id">  </input>					

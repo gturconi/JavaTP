@@ -13,11 +13,25 @@
    int admin = cl.getisAdmin();
 %>
 <meta charset="ISO-8859-1">
-<title>Categoria</title>
+<link rel="icon" href="icons/categoria.ico">
+<title>Listado Categorias</title>
 <link rel="stylesheet" href="estilos/tabla.css">
 <link rel="stylesheet" href="estilos/busqueda.css">
+ <link rel="stylesheet" href="estilos/header.css">
 </head>
 <body>
+
+<header>
+ <nav class="nav__hero">
+            <div class="container nav__container">
+                <div class="logo">
+                    <h2 class="logo__name">Biblioteca<span class="point"> Entre hojas </span></h2>
+                </div>
+            </div>
+        </nav> 
+</header>
+
+<h1> Listado de Categorias</h1>
 	 	
   <div id="tabla">
         <table id="myTable">
@@ -33,14 +47,14 @@
                 <td data-label="id"> <%=c.getId()%></td>
                 <td data-label="descripcion"> <%=c.getDescripcion()%></td>
                 <% if(admin == 1){ %>
-                     <td>
+                     <td data-label="eliminar">
                       <form class="formularioEliminar" action="ServletCategoria?accion=borrar" method="post">				
 				         
 				           <input type="image"  id="botonEliminar" src="icons/trash-fill.png"/>				           				           
 				           <input type="hidden" value=<%=String.valueOf(c.getId())%> name="id">  </input>
 			          </form>                                                  
                      </td> 
-                     <td>
+                     <td data-label="modificar">
                        <form action="ServletMenu?accion=modificarCategoria" method="post">
                                 <input type="image"  id="button" src="icons/pencil.png"/>				 							
 								 <input type="hidden" value=<%=String.valueOf(c.getId())%> name="id">  </input>					

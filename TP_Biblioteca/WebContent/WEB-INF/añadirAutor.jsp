@@ -6,12 +6,24 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-
+<link rel="icon" href="icons/autor.ico">
 <title>Añadir Autor</title>
 <link rel="stylesheet" href="estilos/tabla.css">
 <link rel="stylesheet" href="estilos/busqueda.css">
+<link rel="stylesheet" href="estilos/header.css">
 
 <body>
+
+<header>
+ <nav class="nav__hero">
+            <div class="container nav__container">
+                <div class="logo">
+                    <h2 class="logo__name">Biblioteca<span class="point"> Entre hojas </span></h2>
+                </div>
+            </div>
+        </nav> 
+</header>
+
 
 <h1>Añadir Autor</h1>
 
@@ -20,7 +32,7 @@
     <div class="cardAutor">
       <img src="pictures/añadir.png" alt="">
       <h4> Añadir </h4>
-      <form class="formulariAutor" action="ServletAutor?accion=agregar" method="post">
+      <form class="formularioAutor" action="ServletAutor?accion=agregar" method="post">
         <input id="campoTextoAutor" type="text" placeholder="Ingrese el nombre " maxlength="20" name="nombre" required> 
         <input id="campoTextoAutor" type="text" placeholder="Ingrese el apellido " maxlength="20" name="apellido" required> 
         <button id="botonAutor" type="submit">Añadir Autor</button>

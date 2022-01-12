@@ -11,11 +11,26 @@
    int admin = user.getisAdmin();
 %>
 <meta charset="ISO-8859-1">
+<link rel="icon" href="icons/cliente.ico">
 <title>Buscar cliente</title>
 <link rel="stylesheet" href="estilos/tabla.css">
 <link rel="stylesheet" href="estilos/busqueda.css">
+<link rel="stylesheet" href="estilos/header.css">
 </head>
 <body>
+
+<header>
+ <nav class="nav__hero">
+            <div class="container nav__container">
+                <div class="logo">
+                    <h2 class="logo__name">Biblioteca<span class="point"> Entre hojas </span></h2>
+                </div>
+            </div>
+        </nav> 
+</header>
+
+
+
    <h1>Busqueda de Cliente</h1>
    
 <div class="container">

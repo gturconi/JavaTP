@@ -14,7 +14,8 @@
    LinkedList<Autor> autores = (LinkedList<Autor>)request.getAttribute("Autores");
 %>
 <meta charset="ISO-8859-1">
-<title>Libro Nuevo</title>
+<link rel="icon" href="icons/libros.ico">
+<title>Añadir Libro</title>
 <link rel="stylesheet" href="estilos/tabla.css">
 </head>
 <body>
