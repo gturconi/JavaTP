@@ -161,12 +161,12 @@
                  <% if(!librosPedidos.contains(l) && !librosRetirados.contains(l)){ %>
                  <form action="ServletPedido?accion=reservaLibro" method="post">
                  <input type="hidden" value=<%=String.valueOf(l.getId())%> name="id">  </input>			 
-                 <button id="button" type="submit">Reservar Libro</button>
+                 <button id="boton" type="submit">Reservar Libro</button>
                  </form>
                  <%}else if (librosPedidos.contains(l)){%>
                    <form action="ServletPedido?accion=cancelarReserva" method="post">
                      <input type="hidden" value=<%=String.valueOf(l.getId())%> name="id">  </input>			 
-                    <button id="button" type="submit">Cancelar Reserva</button>
+                    <button id="boton" type="submit">Cancelar Reserva</button>
                    </form>
                  <%}else{%>
                     <label>Pendiente de devolución</label> 
