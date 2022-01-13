@@ -10,32 +10,66 @@
    LinkedList<PedidoLibro> pedidos = (LinkedList<PedidoLibro>)request.getAttribute("Pedidos");   
 %>
 <meta charset="ISO-8859-1">
-<title>Listado de Pedidos Reservados</title>
+<link rel="icon" href="icons/pedido.ico">
+<title>Listado de Pedidos </title>
+<link rel="stylesheet" href="estilos/header.css">
 <link rel="stylesheet" href="estilos/tabla.css">
+<link rel="stylesheet" href="estilos/busqueda.css">
+<link rel="stylesheet" href="estilos/menuFiltrar2.css">
+ <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
 
-<h2>Filtrar</h2>
+<header>
+ <nav class="nav__hero">
+            <div class="container nav__container">
+                <div class="logo">
+                    <h2 class="logo__name">Biblioteca<span class="point"> Entre hojas </span></h2>
+                </div>
+            </div>
+        </nav> 
+</header>
 
-<form action="ServletPedido?accion=listar" method="post">
-  <input type="hidden" value="reservado" name="estado">  </input> 
-  <button id="button" type="submit">Solo Reservados</button>
-</form>
+<section class="container hero__main">  
+            <div class="hero__textos">
+                <h2 class="title2"> Filtrar por :</h2> 
+            </div>
+</section> 
 
-<form action="ServletPedido?accion=listar" method="post">
-  <input type="hidden" value="cancelado" name="estado">  </input> 
-  <button id="button" type="submit">Solo Cancelados</button>
-</form>
 
-<form action="ServletPedido?accion=listar" method="post">
-  <input type="hidden" value="en curso" name="estado">  </input> 
-  <button id="button" type="submit">Solo En Curso </button>
-</form>
+<nav>
+        <input type="checkbox" id="check">
+        <label for="check" class="checkbtn">
+            <i class="fas fa-bars"></i>
+        </label>
+        <ul>
+            <li>
+            	<form action="ServletPedido?accion=listar" method="post">
+  					<input type="hidden" value="reservado" name="estado">  </input> 
+  					<button id="button" type="submit">Solo Reservados</button>
+				</form>
+			</li>
+            <li>
+            	<form action="ServletPedido?accion=listar" method="post">
+  					<input type="hidden" value="cancelado" name="estado">  </input> 
+ 					 <button id="button" type="submit">Solo Cancelados</button>
+				</form>
+            </li>
+            <li>
+            	<form action="ServletPedido?accion=listar" method="post">
+  					<input type="hidden" value="en curso" name="estado">  </input> 
+  						<button id="button" type="submit">Solo En Curso </button>
+				</form>
+            </li>
+            <li>
+            	<form action="ServletPedido?accion=listar" method="post">
+  					<input type="hidden" value="finalizado" name="estado">  </input> 
+  					<button id="button" type="submit">Solo Finalizados</button>
+				</form>
+            </li>
+        </ul>
+    </nav>
 
-<form action="ServletPedido?accion=listar" method="post">
-  <input type="hidden" value="finalizado" name="estado">  </input> 
-  <button id="button" type="submit">Solo Finalizados</button>
-</form>
 
    <h1>
         Listado de pedidos
