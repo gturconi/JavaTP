@@ -69,8 +69,8 @@ public class ServletMenu extends HttpServlet {
 		}else if(accion.equalsIgnoreCase("modificarCuenta")) {
 			LinkedList<Localidad> localidades =  ctrlloc.listadoLoc();
 			request.setAttribute("Localidades", localidades);
-			Cliente c = ctrlcli.buscarClientePorId(((Cliente) request.getSession().getAttribute("Cliente")).getId());
-			request.setAttribute("Cliente", c);
+		//	Cliente c = ctrlcli.buscarClientePorId(((Cliente) request.getSession().getAttribute("Cliente")).getId());
+		//	request.setAttribute("Cliente", c);
 			request.getRequestDispatcher("WEB-INF/modificarCuenta.jsp").forward(request, response);
 		}else if(accion.equalsIgnoreCase("buscarLocalidad")) {
 			request.getRequestDispatcher("WEB-INF/buscaLocalidad.jsp").forward(request, response);

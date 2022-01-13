@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import entities.Cliente;
+import entities.Localidad;
 import logic.LogicCliente;
 import logic.LogicLocalidad;
 
@@ -111,8 +112,9 @@ public class ServletCliente extends HttpServlet {
 	private void actualizar(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
 		
 		LogicCliente ctrlcli = new LogicCliente();
-        LogicLocalidad ctrlloc = new LogicLocalidad(); 
-		
+        LogicLocalidad ctrlloc = new LogicLocalidad();
+        
+        
 		String name = request.getParameter("name");				
         String surname = request.getParameter("surname");
         String address = request.getParameter("address");
@@ -133,16 +135,22 @@ public class ServletCliente extends HttpServlet {
         c.setLocalidad(ctrlloc.buscarLoc(city));
         c.setId(((Cliente) request.getSession().getAttribute("Cliente")).getId());
         
+        
+        LinkedList<Localidad> localidades =  ctrlloc.listadoLoc();
+		
+		request.setAttribute("Localidades", localidades);
+		
+        
         /*VERIFICAR QUE EL USUARIO NO EXISTA*/        
         if(ctrlcli.validarCliente(user) ==1) {
         	request.setAttribute("errorMensaje", "Ya existe un usuario con ese nombre!");
         	request.getRequestDispatcher("WEB-INF/modificarCuenta.jsp").forward(request, response);
-        }
+        }else {
+        	ctrlcli.modificarCliente(c);        
+            request.setAttribute("exito", "Los datos de la cuenta se han actualizado con exito!");
+        	request.getRequestDispatcher("WEB-INF/modificarCuenta.jsp").forward(request, response);	
+        }        
         
-        ctrlcli.modificarCliente(c);
-        
-        request.setAttribute("exito", "Los datos de la cuenta se han actualizado con exito!");
-    	request.getRequestDispatcher("WEB-INF/modificarCuenta.jsp").forward(request, response);
 	}
 	
 	private void buscar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

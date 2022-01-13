@@ -10,6 +10,7 @@
 <link rel="stylesheet" type="text/css" href="estilos/menu.css">
 <link rel="stylesheet" type="text/css" href="estilos/botonesListar.css">
 <link rel="stylesheet" type="text/css" href="estilos/menu2.css">
+<link rel="stylesheet" type="text/css" href="estilos/mensaje.css">
 <link rel="icon" href="icons/libro.ico">
 <title>Bienvenido Cliente</title>
 </head>
@@ -82,9 +83,9 @@
 			</ul>
 		</nav>
 	<%if(null != request.getAttribute("mensaje")){
-	  out.println(request.getAttribute("mensaje"));    
-  }	  
-  %>
+	%><p id="mensaje"><%out.println(request.getAttribute("mensaje"));%> </p>    
+  <%}%> 
+  
 
 	<div class="slider">
 			<ul>

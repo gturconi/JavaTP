@@ -7,6 +7,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <link rel="stylesheet" type="text/css" href="estilos/registro.css">
+<link rel="stylesheet" type="text/css" href="estilos/mensaje.css">
 <link rel="icon" href="icons/libro.ico">
 
 
@@ -47,11 +48,11 @@
 </section>    
   </div>
 <%if(null != request.getAttribute("altaMensaje")){
-	  out.println(request.getAttribute("altaMensaje"));  
+	%><p id="mensaje"><% out.println(request.getAttribute("altaMensaje"));%> </p> <% 
   }else if(null != request.getAttribute("errorMensaje")){
-	  out.println(request.getAttribute("errorMensaje"));
+	  %><p id="mensaje"><% out.println(request.getAttribute("errorMensaje"));%> </p><%
   }else if(null != request.getAttribute("errorConexion")){
-	  out.println(request.getAttribute("errorConexion"));
+	  %><p id="mensaje"><%out.println(request.getAttribute("errorConexion"));%> </p><%
   }     
   %>
 

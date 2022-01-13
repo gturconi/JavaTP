@@ -8,11 +8,12 @@
 <head>
 <%
     LinkedList<Localidad> localidades = (LinkedList<Localidad>)request.getAttribute("Localidades");
-    Cliente c = (Cliente) request.getAttribute("Cliente");        
+    Cliente c = (Cliente)session.getAttribute("Cliente");        
 %>
 <meta charset="ISO-8859-1">
 <link rel="stylesheet" type="text/css" href="estilos/registro.css">
  <link rel="stylesheet" href="estilos/header.css">
+ <link rel="stylesheet" type="text/css" href="estilos/mensaje.css">
 <link rel="icon" href="icons/libro.ico">
 <title>Modificar Cuenta</title>
 </head>
@@ -38,29 +39,25 @@
         <input class="controlr" type="text" name="surname" value='<%=c.getApellido()%>' required >
         <input class="controlr" type="text" name="address" value='<%=c.getDomicilio()%>' required >
         <input class="controlr" type="text" name="tel" value='<%=c.getTelefono()%>' required >
-        <input class="controlr" type="text" name="email" value='<%=c.getEmail()%>' required >                                
-          <select name="city" class="controlr" required>
- <option style="display: none;" <%=c.getLocalidad().getNombre()%> selected><%=c.getLocalidad().getNombre()%></option>  
-          <% 
-             for(Localidad loc:localidades){
-            	 if(!(c.getLocalidad().getNombre().equals(loc.getNombre()))){
-            	   %> <option value='<%=loc.getId()%>'><%=loc.getNombre()%></option>
-          <%}
-             }          
-          %>                              
-</select>
-<input class="controlr" type="text" name="user" placeholder="Usuario" required >
-<input class="controlr" type="password" name="pass" placeholder="Contraseña" required >                   
-  <input class="button1" type="submit" name="send" value="Actualizar datos">                      
+        <input class="controlr" type="text" name="email" value='<%=c.getEmail()%>' required >
+                  <select name="city" class="controlr" required>
+ <option style="display: none;" <%=c.getLocalidad().getNombre()%> selected><%=c.getLocalidad().getNombre()%></option>             
+            <% for(Localidad loc:localidades){            	 
+               %> <option value='<%=loc.getId()%>'><%=loc.getNombre()%></option><%           
+             }%>                                                  
+                  </select>
+           <input class="controlr" type="text" name="user" placeholder="Usuario" required >
+           <input class="controlr" type="password" name="pass" placeholder="Contraseña" required >                   
+           <input class="button1" type="submit" name="send" value="Actualizar datos">                      
         </form>
       </div>
-    </div>
-</section>    
-
+      </section>
+    </div>                            
+              
 <%if(null != request.getAttribute("exito")){
-	  out.println(request.getAttribute("exito"));  
+	%><p id="mensaje"><%out.println(request.getAttribute("exito"));%></p><%  
   }else if(null != request.getAttribute("errorMensaje")){
-	  out.println(request.getAttribute("errorMensaje"));
+	  %><p id="mensaje"><% out.println(request.getAttribute("errorMensaje"));%></p><%
   }	  
   %>
 

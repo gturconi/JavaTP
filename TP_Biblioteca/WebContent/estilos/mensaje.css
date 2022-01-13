@@ -1,0 +1,10 @@
+@charset "ISO-8859-1";
+#mensaje{
+	background-repeat: no-repeat;
+    background-position: 10px center;
+	background-image: url('https://i.imgur.com/Z8q7ww7.png');		 
+	color: #9F6000;
+    background-color: #FEEFB3;    
+    text-align:center;
+    font-size: 30px;    
+}

@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="estilos/tabla.css">
 <link rel="stylesheet" href="estilos/busqueda.css">
 <link rel="stylesheet" href="estilos/header.css">
+<link rel="stylesheet" type="text/css" href="estilos/mensaje.css">
 </head>
 <body>   
 
@@ -49,7 +50,7 @@
   </div> 
 
 <%if(null != request.getAttribute("error")){
-	  out.println(request.getAttribute("error"));    
+	%><p id="mensaje"><%out.println(request.getAttribute("error"));%> </p><%    
   }	  
   %>	
 <% if(autor!=null){%>	
