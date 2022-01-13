@@ -12,10 +12,21 @@
 %>
 <meta charset="ISO-8859-1">
 <link rel="stylesheet" type="text/css" href="estilos/registro.css">
+ <link rel="stylesheet" href="estilos/header.css">
 <link rel="icon" href="icons/libro.ico">
 <title>Modificar Cuenta</title>
 </head>
-<body style="background-color: #FFDEAD" >
+<body style="background-color: #E9DAD7;" >
+
+<header>
+ <nav class="nav__hero">
+            <div class="container nav__container">
+                <div class="logo">
+                    <h2 class="logo__name">Biblioteca<span class="point"> Entre hojas </span></h2>
+                </div>
+            </div>
+        </nav> 
+</header>
 
 <div class="contenedor">
  <section class="form-registrar">
