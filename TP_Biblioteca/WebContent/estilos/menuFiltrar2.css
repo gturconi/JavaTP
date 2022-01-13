@@ -53,8 +53,13 @@ li #button:hover{
 }
 
 
+
 @media (max-width: 952px){
     nav ul li #button{
+        font-size: 16px;
+    }
+    
+     nav .ul2 li #button{
         font-size: 16px;
     }
 }
@@ -66,7 +71,7 @@ li #button:hover{
     ul{
         position: fixed;
         width: 140px;
-        height: 290px;
+        height: auto;
         background: #411023;
         top: 238px;
         left: -100%;
@@ -74,6 +79,7 @@ li #button:hover{
         transition: all .5s;
         z-index: 1;
     }
+    
     nav ul li{
         display: block;
         line-height: 30px;
@@ -87,4 +93,5 @@ li #button:hover{
     #check:checked ~ ul{
         left:0;
     }
+    
 }
