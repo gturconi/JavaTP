@@ -17,32 +17,54 @@
 <link rel="icon" href="icons/libros.ico">
 <title>Añadir Libro</title>
 <link rel="stylesheet" href="estilos/tabla.css">
+<link rel="stylesheet" href="estilos/busqueda.css">
+<link rel="stylesheet" href="estilos/header.css">
 </head>
 <body>
 
+<!--  
 <form class="formularioBusqueda" action="ServletLibro?accion=buscar" method="post">
 				<input id="campoTexto" type="text" placeholder="Ingrese id del libro " maxlength="10" name="id" required> 
 				<button id= "botonBuscar" type="submit">Buscar Libro</button>
 	</form>
 
+-->
+<header>
+ <nav class="nav__hero">
+            <div class="container nav__container">
+                <div class="logo">
+                    <h2 class="logo__name">Biblioteca<span class="point"> Entre hojas </span></h2>
+                </div>
+            </div>
+        </nav> 
+</header>
 
-<form action="ServletLibro?accion=agregar" method="post" enctype="multipart/form-data">
-				<input class="controlr" type="text" placeholder="Ingrese el titulo" maxlength="20" name="titulo"required>
-				<input class="controlr" type="text" placeholder="Ingrese la descripcion" maxlength="20" name="descripcion" required>
-				<input class="controlr" type="number" placeholder="Ingrese el numero de la edicion" maxlength="20" name="edicion" required>
-				
-				 <label for="start">Fecha de edicion:</label>
 
-                 <input class="controlr" type="date" id="start" value="2018-07-22" min="1900-01-01" max="2021-12-31" name="fecha" required>
-								 
-                <label >Dimensiones</label>   								 
-				<input class="controlr" type="number" placeholder="H" maxlength="20" name="alto" size=4  required>
-				<label >x</label>
-				<input class="controlr" type="number" placeholder="W" maxlength="20" name="ancho" size=4 required>
-				<input class="controlr" type="number" placeholder="Paginas" maxlength="20" name="paginas" required>
-				<input class="controlr" type="number" placeholder="Stock" maxlength="20" name="stock" required>
-				<input class="controlr" type="number" placeholder="Precio" maxlength="20" name="precio" required>
-				<select name="editorial" class="controlr" required>
+<h1>Añadir Libro</h1>
+
+<div class="containerLibro">
+    <div class="cardLibro">
+      <img src="pictures/añadir.png" alt="">
+      <h4> Añadir </h4>
+      <form class="formularioLibro" action="ServletLibro?accion=agregar" method="post" enctype="multipart/form-data">
+        <input id="campoTextoLibro" type="text" placeholder="Ingrese el titulo" maxlength="20" name="titulo"required> 
+        <input id="campoTextoLibro" type="text" placeholder="Ingrese la descripcion" maxlength="20" name="descripcion" required>
+        <input id="campoTextoLibro" type="number" placeholder="Ingrese el numero de la edicion" maxlength="20" name="edicion" required>
+        
+        <h3 for="start">Fecha de edicion:</h3>
+        
+         <input id="campoTextoLibro" type="date" id="start" value="2018-07-22" min="1900-01-01" max="2021-12-31" name="fecha" required>
+        
+        <h3 >Dimensiones</h3> 
+        
+        <input id="campoTextoLibro" type="number" placeholder="alto (cm)" maxlength="20" name="alto" size=4  required>
+        <h3 id="h3_2" >x</h3>
+        <input id="campoTextoLibro" type="number" placeholder="ancho (cm)" maxlength="20" name="ancho" size=4 required>
+         <input id="campoTextoLibro" type="number" placeholder="Paginas" maxlength="20" name="paginas" required>
+         <input id="campoTextoLibro" type="number" placeholder="Stock" maxlength="20" name="stock" required>
+           <input id="campoTextoLibro" type="number" placeholder="Precio" maxlength="20" name="precio" required>
+        
+        <select name="editorial" id="campoTextoEditorial"  required>
 				      <option style="display: none;" value="" selected>Editorial</option>
 				      <% 
                              for(Editorial ed:editoriales){
@@ -51,7 +73,7 @@
                             }          
                       %>				                                                                                     
                 </select>
-                <select name="categoria" class="controlr" required>
+                <select name="categoria" id="campoTextoCategoria" required>
                    <option style="display: none;" value="" selected>Categoria</option>
                       <% 
                              for(Categoria cat:categorias){
@@ -62,21 +84,28 @@
                 </select>
                 
                   <label>    
-                     <span>Seleccione el/los autores</span>                     
+                     <h3>Seleccione el/los autores</h3>                     
                    <option style="display: none;" value="" selected>Categoria</option>
                       <% 
-                             for(Autor aut:autores){
-            	                %> <input type="checkbox" name="autores" value='<%=aut.getId()%>'><%=aut.getNombre() + " " + aut.getApellido()%>
+                             for(Autor aut:autores){%>
+                            	 <label class="contieneAutores"> 
+            	                 <input class="checkbox-inline" type="checkbox" name="autores" value='<%=aut.getId()%>'> <%=aut.getNombre() + " " + aut.getApellido()%>
+            	                </label> 
                       <%
                             }          
                       %>                                                               
                   </label> 
-                              
-                   <b>Subir portada </b><br/><br/>                  
+        
+         <h3>Subir portada </h3><br/><br/>                  
                      <input type="file" name="imagen" required="required"/><br/><br/>                   
                                                                                                                                                           
-				<button class="button" type="submit">Añadir Libro</button>
-			</form>
+        
+        <button id="botonLibro" type="submit">Añadir Libro</button>
+       </form>  
+    </div>  
+</div>
+
+
 <%if(null != request.getAttribute("error")){
 	  out.println(request.getAttribute("error"));    
   }	  
