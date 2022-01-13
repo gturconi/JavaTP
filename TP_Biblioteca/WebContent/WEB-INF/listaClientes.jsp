@@ -15,7 +15,8 @@
 <link rel="stylesheet" href="estilos/tabla.css">
 <link rel="stylesheet" href="estilos/busqueda.css">
 <link rel="stylesheet" href="estilos/header.css">
-<link rel="stylesheet" href="estilos/menuFiltrar.css">
+<link rel="stylesheet" href="estilos/menuFiltrar2.css">
+ <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
 
@@ -37,8 +38,12 @@
 </section> 
 
 
-
-<ul class="menuFiltrar">
+<nav>
+        <input type="checkbox" id="check">
+        <label for="check" class="checkbtn">
+            <i class="fas fa-bars"></i>
+        </label>
+<ul>
 			<li>
 				<form action="ServletCliente?accion=listarPorEstado" method="post">
 					<input type="hidden" value="suspendido" name="estado">  </input> 
@@ -57,6 +62,7 @@
   				</form>
 			</li>
 </ul>
+</nav>
 
 <h1> Listado de Clientes</h1>
 

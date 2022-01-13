@@ -1,5 +1,10 @@
 @charset "ISO-8859-1";
 
+body{
+	margin: 0;
+	font-family: arial; 
+	 background: #808080;
+}
 
 .slider {
 	width: 100%;
@@ -52,7 +57,8 @@
     width: 25%;
     padding: 60px 0;
     text-align: center;
-    background: linear-gradient(180deg, #ef8354 0%, #bf6843 100%);
+    background: linear-gradient(180deg, #808080 0%, #404040 100%);
+    
 
 }
 
@@ -77,10 +83,9 @@
 
 
 @media screen and (max-width:700px){
-	
 	   .item__contact{
         width: 100%;
-        padding: 30px 0;
+        height: auto;
     }
       .container--modifier{
         width: 90%;

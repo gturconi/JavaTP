@@ -6,10 +6,13 @@
 }
 
 .cuerpo {
-	font-family: arial;
-	background-image: url('../pictures/biblioteca.jpg');	
-	background-size: 100%;
+  font-family: arial;
+  height: 100vh;
+  background: url('../pictures/biblioteca.jpg') 50% fixed;
+  background-size: cover;
 }
+
+
 
 .form-login p{
 	height: 45px;
