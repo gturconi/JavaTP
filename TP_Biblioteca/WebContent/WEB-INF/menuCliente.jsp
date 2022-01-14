@@ -12,6 +12,7 @@
 <link rel="stylesheet" type="text/css" href="estilos/menu2.css">
 <link rel="stylesheet" type="text/css" href="estilos/mensaje.css">
 <link rel="icon" href="icons/libro.ico">
+<script src="https://kit.fontawesome.com/cbd6eda0d3.js" crossorigin="anonymous"></script>
 <title>Bienvenido Cliente</title>
 </head>
 <body>
@@ -21,6 +22,7 @@
             <div class="container nav__container">
                 <div class="logo">
                     <h2 class="logo__name">Biblioteca<span class="point"> Entre hojas </span></h2>
+                </div>
                 </div>
             </div>
         </nav>

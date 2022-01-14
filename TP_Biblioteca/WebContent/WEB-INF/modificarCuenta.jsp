@@ -8,13 +8,15 @@
 <head>
 <%
     LinkedList<Localidad> localidades = (LinkedList<Localidad>)request.getAttribute("Localidades");
-    Cliente c = (Cliente)session.getAttribute("Cliente");        
+	Cliente c = (Cliente) (request.getSession().getAttribute("Cliente"));     
+    int admin = c.getisAdmin();
 %>
 <meta charset="ISO-8859-1">
 <link rel="stylesheet" type="text/css" href="estilos/registro.css">
  <link rel="stylesheet" href="estilos/header.css">
  <link rel="stylesheet" type="text/css" href="estilos/mensaje.css">
 <link rel="icon" href="icons/libro.ico">
+<script src="https://kit.fontawesome.com/cbd6eda0d3.js" crossorigin="anonymous"></script>
 <title>Modificar Cuenta</title>
 </head>
 <body style="background-color: #E9DAD7;" >
@@ -25,6 +27,19 @@
                 <div class="logo">
                     <h2 class="logo__name">Biblioteca<span class="point"> Entre hojas </span></h2>
                 </div>
+                <div>
+                <% if(admin != 1){ %>  
+                <form action="ServletMenu?accion=irMenuCliente" method="post">
+						<button class="botonAtras" type="submit"><i class="fas fa-arrow-left"></i></button> 
+               	</form>
+                 <%}%>
+                    <% if(admin == 1){ %>
+                 <form action="ServletMenu?accion=irMenuAdmin" method="post">
+						<button class="botonAtras" type="submit"><i class="fas fa-arrow-left"></i></button> 
+               	</form>
+                    <%}%> 
+                	
+				</div>	
             </div>
         </nav> 
 </header>

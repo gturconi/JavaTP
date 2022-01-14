@@ -7,15 +7,17 @@
 <head>
 <%
    LinkedList<Cliente> clientes = (LinkedList<Cliente>)request.getAttribute("Clientes");
-   LinkedList<Cliente> clientesEstado = (LinkedList<Cliente>)request.getAttribute("ClientesEstado");  
+   LinkedList<Cliente> clientesEstado = (LinkedList<Cliente>)request.getAttribute("ClientesEstado");
+   Cliente cl = (Cliente) (request.getSession().getAttribute("Cliente"));
+   int admin = cl.getisAdmin();
 %>
 <meta charset="ISO-8859-1">
 <link rel="icon" href="icons/cliente.ico">
 <title>Listado Clientes</title>
 <link rel="stylesheet" href="estilos/tabla.css">
 <link rel="stylesheet" href="estilos/busqueda.css">
-<link rel="stylesheet" href="estilos/header.css">
 <link rel="stylesheet" href="estilos/menuFiltrar2.css">
+<link rel="stylesheet" href="estilos/header.css">
  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
@@ -27,6 +29,14 @@
                 <div class="logo">
                     <h2 class="logo__name">Biblioteca<span class="point"> Entre hojas </span></h2>
                 </div>
+                 <div>
+                    <% if(admin == 1){ %>
+                 <form action="ServletMenu?accion=irMenuAdmin" method="post">
+						<button class="botonAtras" type="submit"><i class="fas fa-arrow-left"></i></button> 
+               	</form>
+                    <%}%> 
+                	
+				</div>	
             </div>
         </nav> 
 </header>

@@ -11,11 +11,14 @@ body{
 
 .hero{
     width: 100%;
+    max-width: 3000px;
     min-height: 100vh;
     background: linear-gradient(180deg, #4e4d4d 0%, #1A1B1F 100%);
 }
 
 .nav__hero{
+	width: 100%;
+	max-width: 3000px;
     color: #fff;
     height: 70px;
     border-bottom: 1px solid rgba(255,255,255, 0.5);
@@ -28,6 +31,8 @@ body{
     justify-content: space-between;
     height: inherit;
     padding: 0;
+    position:relative;
+    width: 100%;
 }
 
 .logo__name{
@@ -52,6 +57,7 @@ body{
     font-weight: 400;
     border-radius: 10px;
     cursor: pointer;
+    margin-left: 80%;
 }
 
 .button2:hover{
@@ -84,9 +90,50 @@ body{
 }
 
 
+.botonAtras{
+	width: 50px;
+	height: 40px;
+	background:#ef8354;
+	border: none;
+	color: white;
+    display: inline-block;
+    padding: 10px;
+    text-decoration: none;
+    font-weight: 400;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+.botonAtras:hover{
+    border: 1px solid #411023;
+    background-color: #ffab66;
+    transform: scale(1.1);
+}
 
 
 
+.botonAtrasLibro{
+	width: 50px;
+	height: 40px;
+	background:#ef8354;
+	border: none;
+	color: white;
+    display: inline-block;
+    padding: 10px;
+    text-decoration: none;
+    font-weight: 400;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top:15px;
+    margin-right: 20px;
+}
+
+.botonAtrasLibro:hover{
+    border: 1px solid #411023;
+    background-color: #ffab66;
+    transform: scale(1.1);
+}
 
 
 

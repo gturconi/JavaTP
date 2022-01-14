@@ -1,13 +1,16 @@
 <%@page import="java.util.LinkedList" %>
 <%@page import="entities.PedidoLibro" %>
 <%@page import="entities.Libro" %>
+<%@page import="entities.Cliente" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
 <%
-   LinkedList<PedidoLibro> pedidos = (LinkedList<PedidoLibro>)request.getAttribute("Pedidos");   
+   LinkedList<PedidoLibro> pedidos = (LinkedList<PedidoLibro>)request.getAttribute("Pedidos");  
+Cliente cl = (Cliente) (request.getSession().getAttribute("Cliente"));
+int admin = cl.getisAdmin();
 %>
 <meta charset="ISO-8859-1">
 <link rel="icon" href="icons/pedido.ico">
@@ -17,6 +20,7 @@
 <link rel="stylesheet" href="estilos/busqueda.css">
 <link rel="stylesheet" href="estilos/menuFiltrar2.css">
  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+ <script src="https://kit.fontawesome.com/cbd6eda0d3.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -26,6 +30,19 @@
                 <div class="logo">
                     <h2 class="logo__name">Biblioteca<span class="point"> Entre hojas </span></h2>
                 </div>
+                 <div>
+                <% if(admin != 1){ %>  
+                <form action="ServletMenu?accion=irMenuCliente" method="post">
+						<button class="botonAtras" type="submit"><i class="fas fa-arrow-left"></i></button> 
+               	</form>
+                 <%}%>
+                    <% if(admin == 1){ %>
+                 <form action="ServletMenu?accion=irMenuAdmin" method="post">
+						<button class="botonAtras" type="submit"><i class="fas fa-arrow-left"></i></button> 
+               	</form>
+                    <%}%> 
+                	
+				</div>
             </div>
         </nav> 
 </header>

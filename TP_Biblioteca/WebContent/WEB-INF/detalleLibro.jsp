@@ -26,6 +26,7 @@
 <link rel="stylesheet" href="estilos/starRating.css">
 <meta charset="UTF-8">
 <link rel="icon" href="icons/libros.ico">
+ <script src="https://kit.fontawesome.com/cbd6eda0d3.js" crossorigin="anonymous"></script>
 <title>Detalle del libro</title>
 </head>
 <body>
@@ -36,6 +37,19 @@
                 <div class="logo">
                     <h2 class="logo__name">Biblioteca<span class="point"> Entre hojas </span></h2>
                 </div>
+                  <div>
+                <% if(admin != 1){ %>  
+                <form action="ServletMenu?accion=irMenuCliente" method="post">
+						<button class="botonAtras" type="submit"><i class="fas fa-arrow-left"></i></button> 
+               	</form>
+                 <%}%>
+                    <% if(admin == 1){ %>
+                 <form action="ServletMenu?accion=irMenuAdmin" method="post">
+						<button class="botonAtras" type="submit"><i class="fas fa-arrow-left"></i></button> 
+               	</form>
+                    <%}%> 
+                	
+				</div>	
             </div>
         </nav> 
 </header>
@@ -54,7 +68,7 @@
                     <th>Paginas</th><th>Stock</th><th>Precio</th>
                     <th>Editorial</th><th>Categoria</th>
                   <% if(admin != 1){ %>  <th>Solicitar</th> <%}%>
-                    <% if(admin == 1){ %><th>Eliminar</th><th>Modificar</th><%}%> 
+             <% if(admin == 1){ %><th>Eliminar</th><th>Modificar</th><%}%> 
                     <th>Nombre Autor</th><th>Apellido Autor</th>                    
                                                                                                                     
                 </tr>
@@ -88,7 +102,7 @@
                  <%}%>                  
                   </td>
                <%}%>   
-                <% if(admin == 1){ %>
+      <% if(admin == 1){ %>
                 <td data-label="borrar"rowspan=<%=String.valueOf(l.getAutores().size())%> >                     
                       <form class="formularioEliminar" action="ServletLibro?accion=borrar" method="post">				
 				           <input type="image"  id="botonEliminar" src="icons/trash-fill.png"/>
@@ -101,7 +115,7 @@
 								<input type="image"  id="button" src="icons/pencil.png"/>
 								 <input type="hidden" value=<%=String.valueOf(l.getId())%> name="id">  </input>					
 			            </form>			            
-                     </td>
+                     </td>  
                       <%}%>         
                                                                                                  					                                                              
                    <%for(int i=0; i<l.getAutores().size();i++) {%>                             

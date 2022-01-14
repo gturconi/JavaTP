@@ -72,6 +72,13 @@ public class ServletMenu extends HttpServlet {
 		//	Cliente c = ctrlcli.buscarClientePorId(((Cliente) request.getSession().getAttribute("Cliente")).getId());
 		//	request.setAttribute("Cliente", c);
 			request.getRequestDispatcher("WEB-INF/modificarCuenta.jsp").forward(request, response);
+			
+		}else if(accion.equalsIgnoreCase("irMenuCliente")) {
+			request.getRequestDispatcher("WEB-INF/menuCliente.jsp").forward(request, response);
+			
+		}else if(accion.equalsIgnoreCase("irMenuAdmin")) {
+			request.getRequestDispatcher("WEB-INF/menuAdmin.jsp").forward(request, response);
+			
 		}else if(accion.equalsIgnoreCase("buscarLocalidad")) {
 			request.getRequestDispatcher("WEB-INF/buscaLocalidad.jsp").forward(request, response);
 		}else if(accion.equalsIgnoreCase("anadirLocalidad")) {
@@ -118,7 +125,8 @@ public class ServletMenu extends HttpServlet {
 		    request.setAttribute("Categorias", categorias);
 		    request.setAttribute("Autores", autores);
 			request.getRequestDispatcher("WEB-INF/modificarLibro.jsp").forward(request, response);			
-		}						
+		}
+		
 	}
 
 }
