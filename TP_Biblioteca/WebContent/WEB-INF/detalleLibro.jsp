@@ -27,6 +27,7 @@
 <meta charset="UTF-8">
 <link rel="icon" href="icons/libros.ico">
  <script src="https://kit.fontawesome.com/cbd6eda0d3.js" crossorigin="anonymous"></script>
+ <link rel="stylesheet" href="estilos/slider.css">
 <title>Detalle del libro</title>
 </head>
 <body>
@@ -57,7 +58,34 @@
 
     <h1 class="titulo1" >Detalle libro: <%=l.getTitulo()%> </h1>
 
+ <div class="container-slider2">
+  <div class="slider2">
+		<div class="slider__section2">
+          <img src="ServletLibro?id=<%=l.getId()%>" class="slider__img2">    
+    </div>
+    <div class="capa" >
+    	<p> Id: <%=l.getId()%> <p>
+    	<p> Titulo: <%=l.getTitulo()%> <p>
+    	<p> Descripcion: <%=l.getDescripcion()%> <p>
+    	<p> Nro Edicion: <%=l.getNroEdicion()%> <p>
+    	<p> Fecha Edicion: <%=l.getFechaEdicion()%> <p>
+    	<p> Dimensiones: <%=l.getDimensiones()%> <p>
+    	<p> Nro paginas: <%=l.getNroPaginas()%> <p>
+    	<p> Stock: <%=l.getExistencia()%> <p>   	
+    	<p> Precio: <%=l.getPrecio()%> <p>
+    	<p> Editorial: <%=l.getEditorial().getNombre()%> <p>
+    	<p> Categoria:  <%=l.getCategoria().getDescripcion()%> <p>
+    	<%for(int i=0; i<l.getAutores().size();i++) {%>                             
+             <%if(i>0){%> 
+                <p> Nombre Autor:  <%=l.getAutores().get(i).getNombre()%>  <p>
+    			<p> Apellido Autor:  <%=l.getAutores().get(i).getApellido()%>  <p>
+             <%}%>                     
+        <%}%>                                           
+   </div>
+  </div>
+ </div>
 
+<!--  
 
   <table class="table table-striped">
            <thead>
@@ -125,7 +153,7 @@
                         </tr>                                                     
                    <%}%>                                                                                                                                                                                                                      
           </table>
-                
+         -->       
 
           
                <form action="ServletLibro?accion=comentarLibro" method="post">
@@ -151,21 +179,21 @@
                 </div>
                 
                 
-                <section class="contacto">
+      <section class="contacto">
             <div class="contenedor">
                 <div class="footer-textos">
                     <h2>¡ Realiza un comentario !</h2>
-                        <p class="footer-textos__p1">Escribenos tu opinion acerca de este libro.</p1>
+                    <p class="footer-textos__p1">Escribenos tu opinion acerca de este libro.</p1>
                 </div>
-                <form action="enviarMail.php" class="formulario" method="POST">
-                         <textarea name="comentario" id="comentario" rows="6" cols="60" required></textarea>
+                <div class="formulario">
+                    <textarea name="comentario" id="comentario" rows="6" cols="60" required></textarea>
                     <div class="derecha">
                     	<input type="hidden" value=<%=String.valueOf(l.getId())%> name="id"> 
                     	<button id="button" type="submit">Enviar</button>
                     </div>
-                </form>
-                </div>
-         </section>
+                <div>
+            </div>
+      </section>
                 
                 
                 <!--  
