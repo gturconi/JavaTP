@@ -11,13 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import entities.Autor;
 import entities.Categoria;
-import entities.Cliente;
 import entities.Editorial;
 import entities.Libro;
 import entities.Localidad;
 import logic.LogicAutor;
 import logic.LogicCategoria;
-import logic.LogicCliente;
 import logic.LogicEditorial;
 import logic.LogicLibro;
 import logic.LogicLocalidad;
@@ -53,8 +51,7 @@ public class ServletMenu extends HttpServlet {
 		String accion = request.getParameter("accion");		
 		LogicCategoria ctrlcat = new LogicCategoria();
 		LogicLocalidad ctrlloc = new LogicLocalidad();
-		LogicAutor ctrlaut = new LogicAutor();
-		LogicCliente ctrlcli = new LogicCliente();
+		LogicAutor ctrlaut = new LogicAutor();		
 		LogicEditorial ctrled = new LogicEditorial();
 		LogicLibro ctrllib = new LogicLibro();
 		
@@ -68,9 +65,7 @@ public class ServletMenu extends HttpServlet {
 			request.getRequestDispatcher("WEB-INF/modificarAutor.jsp").forward(request, response);			
 		}else if(accion.equalsIgnoreCase("modificarCuenta")) {
 			LinkedList<Localidad> localidades =  ctrlloc.listadoLoc();
-			request.setAttribute("Localidades", localidades);
-		//	Cliente c = ctrlcli.buscarClientePorId(((Cliente) request.getSession().getAttribute("Cliente")).getId());
-		//	request.setAttribute("Cliente", c);
+			request.setAttribute("Localidades", localidades);		
 			request.getRequestDispatcher("WEB-INF/modificarCuenta.jsp").forward(request, response);
 			
 		}else if(accion.equalsIgnoreCase("irMenuCliente")) {

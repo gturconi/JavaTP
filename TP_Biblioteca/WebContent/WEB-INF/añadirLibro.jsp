@@ -65,8 +65,8 @@
       <img src="pictures/añadir.png" alt="">
       <h4> Añadir </h4>
       <form class="formularioLibro" action="ServletLibro?accion=agregar" method="post" enctype="multipart/form-data">
-        <input id="campoTextoLibro" type="text" placeholder="Ingrese el titulo" maxlength="20" name="titulo"required> 
-        <input id="campoTextoLibro" type="text" placeholder="Ingrese la descripcion" maxlength="20" name="descripcion" required>
+        <input id="campoTextoLibro" type="text" placeholder="Ingrese el titulo" maxlength="200" name="titulo"required> 
+        <input id="campoTextoLibro" type="text" placeholder="Ingrese la descripcion" maxlength="1000" name="descripcion" required>
         <input id="campoTextoLibro" type="number" placeholder="Ingrese el numero de la edicion" maxlength="20" name="edicion" required>
         
         <h3 for="start">Fecha de edicion:</h3>
