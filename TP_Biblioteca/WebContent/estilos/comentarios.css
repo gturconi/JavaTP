@@ -47,6 +47,7 @@
 	text-align: center;
 	color:#411023;
 	margin-top: 30px;
+	margin-bottom: 30px;
 }
 
 
@@ -85,16 +86,14 @@ form{
 .estrellas{
     display: flex;
     flex-direction: column;
-    margin:auto;
+    margin:100px auto;
     width: 70%;
 }
 
 .estrellas__centro{
     display: flex;
     flex-direction: column;
-    margin-left: 20%;
-    width: 50%;
-    height:auto;
+    margin:auto;
 }
 
 .contacto  textarea{
