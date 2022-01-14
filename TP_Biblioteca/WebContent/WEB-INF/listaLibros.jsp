@@ -41,7 +41,7 @@
 <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
-
+<link rel="stylesheet" href="estilos/slider.css">
 </head>
 <body>
 
@@ -127,17 +127,21 @@
 <% LinkedList<Libro> lista = new LinkedList<>();
    lista = (librosEstado == null)?(lista=libros):(lista=librosEstado);%>
    
-<!--    
-<div class="container__box">
-     <%for(Libro l : lista){ %>
-            <div class="box">
-                <img src="ServletLibro?id=<%=l.getId()%>"/>
-                <h5><%=l.getTitulo()%></h5>
-                <h4><%=l.getEditorial().getNombre()%></td></h4>
-            </div>
-        <%}%>
+ <div class="container-slider">
+  <div class="slider" id="slider">
+   <%for(Libro l : lista){ %>
+		<div class="slider__section">
+          <img src="ServletLibro?id=<%=l.getId()%>" class="slider__img">    
     </div>
--->
+    <%}%>
+  </div>
+  <div class="slider__btn slider__btn--right" id="btn-right">&#62;</div>
+  <div class="slider__btn slider__btn--left" id="btn-left">&#60;</div>
+ </div>
+
+
+<script src="js/slider.js"></script>
+
           
         <table id="myTable" class="table table-striped">
            <thead>
