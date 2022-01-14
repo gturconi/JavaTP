@@ -58,3 +58,12 @@
 	background: #ef8354;
 }
 
+
+@media (max-width: 858px){
+
+
+.form-login{
+	width: 90%;
+	height: auto;
+}
+}

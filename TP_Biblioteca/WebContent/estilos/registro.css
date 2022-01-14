@@ -93,3 +93,11 @@
 	background: #ef8354;
 }
 
+@media (max-width: 858px){
+
+
+.form-registrar{
+	width: 90%;
+	height: auto;
+}
+}
