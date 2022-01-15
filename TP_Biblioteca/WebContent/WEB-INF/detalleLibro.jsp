@@ -106,8 +106,7 @@
                      <label for="star1" title="text">&#9733</label> 
                 </div>  
                 </div>
-                </div>
-                
+                </div> 
                 
       <section class="contacto">
             <div class="contenedor">
@@ -124,7 +123,8 @@
                 <div>
             </div>
       </section>
-             
+        </form> 
+        <div class="cajaComentarios">   
                <table>
                  <thead>
                  	<th>Usuario</th>  
@@ -147,6 +147,6 @@
                   <%}%>
                 </tbody> 
                </table>
-                
+            </div>     
 </body>
 </html>
