@@ -42,12 +42,12 @@
                   <div>
                 <% if(admin != 1){ %>  
                 <form action="ServletMenu?accion=irMenuCliente" method="post">
-						<button class="botonAtras" type="submit"><i class="fas fa-arrow-left"></i></button> 
+						<button class="botonAtrasDetalleLibro" type="submit"><i class="fas fa-arrow-left"></i></button> 
                	</form>
                  <%}%>
                     <% if(admin == 1){ %>
                  <form action="ServletMenu?accion=irMenuAdmin" method="post">
-						<button class="botonAtras" type="submit"><i class="fas fa-arrow-left"></i></button> 
+						<button class="botonAtrasDetalleLibro" type="submit"><i class="fas fa-arrow-left"></i></button> 
                	</form>
                     <%}%> 
                 	
@@ -57,9 +57,6 @@
 </header>
 
 
-    <!--  <h1 class="titulo1" >Detalle libro </h1>-->
-    
-    
     
     <div class="principal">
      <section class="container__fototexto">  
@@ -228,33 +225,25 @@
                 <div>
             </div>
       </section>
-                
-                
-                <!--  
-                             
-                <p><label for="descripcion">Comentarios</label>
-                    <textarea name="comentario" id="comentario" rows="6" cols="60" required></textarea>
-                    <input type="hidden" value=<%=String.valueOf(l.getId())%> name="id">  </input>
-                    <button id="button" type="submit">Enviar</button> 
-                </p>  -->
-                
-                
-                
+             
                <table>
-                 <thead>                    
+                 <thead>
+                 	<th>Usuario</th>  
+                 	<th>Fecha y hora</th> 
+                 	<th>Calificacion</th>    
+                 	<th>Comentario</th>                   
                  </thead>
                 <tbody> 
                  <tr>
                  <%for(Comentario c : l.getComentarios()){ %>
-                   <td>Usuario: <%=c.getUsuario().getUser()%></td>
-                   <td>Fecha y Hora: <%=c.getFecha().format(formatter)%></td>                   
-                  <td> 
-                   Calificacion:  
+                   <td data-label="Usuario"> <%=c.getUsuario().getUser()%></td>
+                   <td data-label="Fecha y hora"> <%=c.getFecha().format(formatter)%></td>                   
+                  <td data-label="calificacion">  
                    <%for(int i = 1; i<=c.getCalificacion();i++){ %>
                        <label title="text">&#9733</label>
                    <%}%>                  
                   </td> 
-                   <td>Comentario: <%=c.getReseña()%></td>                                                            
+                   <td data-label="comentario"> <%=c.getReseña()%></td>                                                            
                  </tr>
                   <%}%>
                 </tbody> 
