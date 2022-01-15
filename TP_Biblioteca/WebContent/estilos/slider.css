@@ -24,7 +24,7 @@
 .slider__img{
 	display: block;
 	width: 100%;
-	height: 100%;
+	height: 110%; /*PARA QUE NO SE VEA UN ESPACIO EN BLANCO CON ALGUNAS IMAGENES*/ 
 	object-fit: cover;
 }
 

@@ -106,6 +106,7 @@
                             }          
                       %>                                                                
                   </label>
+                 
                   
                                 
 				<button id="botonLibro" type="submit">Modificar Libro</button>
