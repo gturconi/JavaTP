@@ -105,37 +105,37 @@ int admin = cl.getisAdmin();
               <%for(PedidoLibro pl : pedidos){
             	String c = String.valueOf(pl.getLibros().size());
             	%>                
-                <td rowspan=<%=c%>> <%=pl.getPed().getNroPedido()%></td>
-                <td rowspan=<%=c%>> <%=pl.getPed().getFecha()%></td>                
-                <td rowspan=<%=c%>> <%=pl.getPed().getEstado()%>
+                <td data-label="Numero" rowspan=<%=c%>> <%=pl.getPed().getNroPedido()%></td>
+                <td data-label="Fecha"rowspan=<%=c%>> <%=pl.getPed().getFecha()%></td>                
+                <td data-label="Estado"rowspan=<%=c%>> <%=pl.getPed().getEstado()%>
                  <%if(pl.getPed().getEstado().equalsIgnoreCase("reservado")){%>
                      <form action="ServletPedido?accion=confirmarPedido" method="post">
                        <input type="hidden" value=<%=pl.getPed().getNroPedido()%> name="nro">  </input>			 
-                       <button id="button" type="submit">Confirmar Pedido</button>
+                       <button id="boton" type="submit">Confirmar Pedido</button>
                      </form>
                  <%}%>
                  <%if(pl.getPed().getEstado().equalsIgnoreCase("en curso")){%>
                      <form action="ServletPedido?accion=finalizarPedido" method="post">
                        <input type="hidden" value=<%=pl.getPed().getNroPedido()%> name="nro">  </input>			 
-                       <button id="button" type="submit">Finalizar Pedido</button>
+                       <button id="boton" type="submit">Finalizar Pedido</button>
                      </form>
                  <%}%>                 
                 </td>
-                <td rowspan=<%=c%>>
+                <td data-label="Anular pedido"rowspan=<%=c%>>
                 <%if(pl.getPed().getEstado().equalsIgnoreCase("reservado")){%> 
                     <form action="ServletPedido?accion=anularPedido" method="post">
                        <input type="hidden" value=<%=pl.getPed().getNroPedido()%> name="nro">  </input>
                        <input type="hidden" value=<%=pl.getPed().getCliente().getId()%> name="idCl">  </input>
-                       <button id="button" type="submit">Anular Pedido</button>
+                       <button id="boton" type="submit">Anular Pedido</button>
                     </form>
                 <%}%>    
                 </td>
                 
-                <td rowspan=<%=c%>> <%=pl.getPed().getCliente().getId()%>             
+                <td data-label="Id Cliente"rowspan=<%=c%>> <%=pl.getPed().getCliente().getId()%>             
              <%for(int i=0; i<pl.getLibros().size();i++) {%>
                    <%if(i>0){%> <tr> <%}%> 
-                   <td> <%=pl.getLibros().get(i).getId()%></td> 
-                   <td> <%=pl.getLibros().get(i).getTitulo()%></td> </tr>  
+                   <td data-label="Id libro"> <%=pl.getLibros().get(i).getId()%></td> 
+                   <td data-label="Titulo"> <%=pl.getLibros().get(i).getTitulo()%></td> </tr>  
              <%}%>           
            <%}%>  
           </table>                   
