@@ -27,7 +27,8 @@
 <meta charset="UTF-8">
 <link rel="icon" href="icons/libros.ico">
  <script src="https://kit.fontawesome.com/cbd6eda0d3.js" crossorigin="anonymous"></script>
- <link rel="stylesheet" href="estilos/slider.css">
+
+ <link rel="stylesheet" href="estilos/imagenTexto.css">
 <title>Detalle del libro</title>
 </head>
 <body>
@@ -56,12 +57,44 @@
 </header>
 
 
-    <h1 class="titulo1" >Detalle libro: <%=l.getTitulo()%> </h1>
+    <!--  <h1 class="titulo1" >Detalle libro </h1>-->
+    
+    
+    
+    <div class="principal">
+     <section class="container__fototexto">  
+            <div class="textos">
+                <h1 class="title">Titulo: <span class="title--active"><%=l.getTitulo()%></span></h1> 
+                <p class="copy"> Id: <span class="copy__active"><%=l.getId()%></span><p>
+                <p class="copy"> Descripcion: <span class="copy__active"><%=l.getDescripcion()%></span><p>
+                <p class="copy"> Nro Edicion: <span class="copy__active"><%=l.getNroEdicion()%></span><p>
+                <p class="copy"> Fecha Edicion: <span class="copy__active"><%=l.getFechaEdicion()%></span><p>
+                <p class="copy"> Dimensiones: <span class="copy__active"><%=l.getDimensiones()%></span><p>
+                <p class="copy"> Nro paginas: <span class="copy__active"><%=l.getExistencia()%></span><p>
+                <p class="copy"> Stock: <span class="copy__active"><%=l.getNroPaginas()%></span><p>
+                <p class="copy"> Precio: <span class="copy__active"><%=l.getPrecio()%></span><p>
+                <p class="copy"> Editorial: <span class="copy__active"><%=l.getEditorial().getNombre()%></span><p>
+                <p class="copy"> Categoria: <span class="copy__active"><%=l.getCategoria().getDescripcion()%></span><p>
+                <%for(int i=0; i<l.getAutores().size();i++) {%> 
+                 	<p class="copy"> Nombre Autor: <span class="copy__active"><%=l.getAutores().get(i).getNombre()%></span><p>    
+                 	<p class="copy"> Apellido Autor: <span class="copy__active"><%=l.getAutores().get(i).getApellido()%></span><p>                                           
+        		<%}%> 
+            </div>
+            <div class="slider2">
+				<div class="slider__section2">
+ 	  				<img src="ServletLibro?id=<%=l.getId()%>" class="slider__img2">  	    
+    			</div>
+            </div>
+        </section>
+    </div>
+ 
+    
 
+<!-- 
  <div class="container-slider2">
   <div class="slider2">
 		<div class="slider__section2">
-          <img src="ServletLibro?id=<%=l.getId()%>" class="slider__img2">    
+ 	  <img src="ServletLibro?id=<%=l.getId()%>" class="slider__img2">  	    
     </div>
     <div class="capa" >
     	<p> Id: <%=l.getId()%> <p>
@@ -76,14 +109,15 @@
     	<p> Editorial: <%=l.getEditorial().getNombre()%> <p>
     	<p> Categoria:  <%=l.getCategoria().getDescripcion()%> <p>
     	<%for(int i=0; i<l.getAutores().size();i++) {%>                             
-             <%if(i>0){%> 
                 <p> Nombre Autor:  <%=l.getAutores().get(i).getNombre()%>  <p>
-    			<p> Apellido Autor:  <%=l.getAutores().get(i).getApellido()%>  <p>
-             <%}%>                     
+    			<p> Apellido Autor:  <%=l.getAutores().get(i).getApellido()%>  <p>                    
         <%}%>                                           
    </div>
   </div>
  </div>
+
+-->
+
 
 <!--  
 
