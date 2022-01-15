@@ -40,6 +40,7 @@
 <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
 <link rel="stylesheet" href="estilos/slider.css">
+<link rel="stylesheet" href="estilos/slideShow.css">
 </head>
 <body>
 
@@ -124,7 +125,27 @@
 
 <% LinkedList<Libro> lista = new LinkedList<>();
    lista = (librosEstado == null)?(lista=libros):(lista=librosEstado);%>
-   
+ 
+ 
+ <div class="slideshow-container">
+
+<%for(Libro l : lista){%>
+
+<div class="mySlides fade">  
+   <img src="ServletLibro?id=<%=l.getId()%>" style="width:100%" class="imgs">    
+</div>
+<%}%>
+<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+<a class="next" onclick="plusSlides(1)">&#10095;</a>
+</div>
+<br> 
+ <script src="js/slideShow.js"></script>
+ 
+ 
+ 
+ 
+ 
+ 
  <div class="container-slider">
   <div class="slider" id="slider">
    <%for(Libro l : lista){ %>
@@ -139,7 +160,7 @@
 
 
 <script src="js/slider.js"></script>
-
+ 
           
         <table id="myTable" class="table table-striped">
            <thead>
