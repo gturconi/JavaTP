@@ -27,8 +27,6 @@
 <link rel="stylesheet" href="estilos/busqueda.css">
   <script src="https://kit.fontawesome.com/cbd6eda0d3.js" crossorigin="anonymous"></script>
 
-<!--  <link rel="stylesheet" href="estilos/HomePedido.css">   <link rel="stylesheet" href="estilos/header.css"> -->
-
 
 <link rel="stylesheet" href="estilos/menuFiltrar2.css">
  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
