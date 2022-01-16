@@ -49,9 +49,13 @@ pageEncoding="ISO-8859-1"%>
 						    </form>
 						</li>
 						<li>
-						<form action="ServletCliente?accion=eliminarCuenta" method="post">
+						<form action="ServletMenu?accion=irVentanaEmergente" method="post">
+							<button id="button" type="submit">Eliminar</button> 
+               			</form>
+						
+					<!--  	<form action="ServletCliente?accion=eliminarCuenta" method="post">
 							<button id="button" type="submit">Eliminar</button>
-						</form>
+						</form>		-->					
 						</li>
 						<li>
 							<form  action="ServletLogin" method="post">

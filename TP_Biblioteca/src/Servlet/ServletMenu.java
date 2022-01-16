@@ -74,6 +74,10 @@ public class ServletMenu extends HttpServlet {
 		}else if(accion.equalsIgnoreCase("irMenuAdmin")) {
 			request.getRequestDispatcher("WEB-INF/menuAdmin.jsp").forward(request, response);
 			
+		}else if(accion.equalsIgnoreCase("irVentanaEmergente")) {
+			request.getRequestDispatcher("WEB-INF/ventanaEmergente.jsp").forward(request, response);
+			
+			
 		}else if(accion.equalsIgnoreCase("buscarLocalidad")) {
 			request.getRequestDispatcher("WEB-INF/buscaLocalidad.jsp").forward(request, response);
 		}else if(accion.equalsIgnoreCase("anadirLocalidad")) {
