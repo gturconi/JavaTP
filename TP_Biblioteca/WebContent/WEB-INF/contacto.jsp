@@ -18,11 +18,7 @@
                     <h2 class="logo__name">Biblioteca<span class="point">  Entre hojas </span></h2>
                 </div>
                 <div class="links">
-                <form action="ServletLogin?accion=irLogin" method="post">
-                     <button class="button1" type="submit"> Iniciar sesión</button>
-                     <a href="index.jsp"><button class="button2" type="button"><i class="fas fa-home"></i></button> </a> 
-                </form>
-                     
+                    <a href="index.jsp"><button class="button2" type="button"><i class="fas fa-home"></i></button> </a> 
                 </div>
             </div>
         </nav>
