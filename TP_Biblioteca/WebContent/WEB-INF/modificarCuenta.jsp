@@ -61,8 +61,8 @@
                %> <option value='<%=loc.getId()%>'><%=loc.getNombre()%></option><%           
              }%>                                                  
                   </select>
-           <input class="controlr" type="text" name="user" placeholder="Usuario" required >
-           <input class="controlr" type="password" name="pass" placeholder="Contraseña" required >                   
+           <input class="controlr" type="text" name="user" value='<%=c.getUser()%>' required >
+           <input class="controlr" type="password" name="pass" value='<%=c.getPassword()%>' required >                   
            <input class="button1" type="submit" name="send" value="Actualizar datos">                      
         </form>
       </div>

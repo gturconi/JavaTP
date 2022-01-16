@@ -20,7 +20,7 @@ public class DataCliente {
 			ResultSet rs=null;
 			try {
 				stmt=DbHandler.getInstancia().getConn().prepareStatement(
-						"select id,nombre, apellido, domicilio, telefono, email, fechaInscripcion, idLocalidad, isAdmin, estado from cliente where user=? and password=?");
+						"select id,nombre, apellido,user,password,domicilio, telefono, email, fechaInscripcion, idLocalidad, isAdmin, estado from cliente where user=? and password=?");
 				stmt.setString(1, user);
 				stmt.setString(2, pass);
 				rs=stmt.executeQuery();
@@ -30,6 +30,8 @@ public class DataCliente {
 					c.setId(rs.getInt("id"));
 					c.setNombre(rs.getString("nombre"));
 					c.setApellido(rs.getString("apellido"));
+					c.setUser(rs.getString("user"));
+					c.setPassword(rs.getString("password"));
 					c.setDomicilio(rs.getString("domicilio"));
 					c.setTelefono(rs.getString("telefono"));
 					c.setEmail(rs.getString("email"));
