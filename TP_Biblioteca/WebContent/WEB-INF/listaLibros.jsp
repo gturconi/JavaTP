@@ -39,7 +39,6 @@
 <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
-<link rel="stylesheet" href="estilos/slider.css">
 <link rel="stylesheet" href="estilos/slideShow.css">
 </head>
 <body>
@@ -141,25 +140,6 @@
 <br> 
  <script src="js/slideShow.js"></script>
  
- 
- 
- 
- 
- 
- <div class="container-slider">
-  <div class="slider" id="slider">
-   <%for(Libro l : lista){ %>
-		<div class="slider__section">
-          <img src="ServletLibro?id=<%=l.getId()%>" class="slider__img">    
-    </div>
-    <%}%>
-  </div>
-  <div class="slider__btn slider__btn--right" id="btn-right">&#62;</div>
-  <div class="slider__btn slider__btn--left" id="btn-left">&#60;</div>
- </div>
-
-
-<script src="js/slider.js"></script>
  
           
         <table id="myTable" class="table table-striped">

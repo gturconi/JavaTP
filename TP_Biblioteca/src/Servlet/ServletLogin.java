@@ -120,7 +120,7 @@ public class ServletLogin extends HttpServlet {
         	request.getRequestDispatcher("WEB-INF/registro.jsp").forward(request, response);
         }else {
         	request.setAttribute("mensaje", "Usuario registrado con exito!");
-        	request.getRequestDispatcher("index.jsp").forward(request, response);	
+        	request.getRequestDispatcher("WEB-INF/login.jsp").forward(request, response);	
         }                
 	}
 
@@ -152,7 +152,7 @@ public class ServletLogin extends HttpServlet {
         	}        	
         }else{
         	request.setAttribute("mensaje", "Usuario y/o contraseña incorrectos");
-        	request.getRequestDispatcher("index.jsp").forward(request, response);             	
+        	request.getRequestDispatcher("WEB-INF/login.jsp").forward(request, response);             	
         } 		
 	}
 
