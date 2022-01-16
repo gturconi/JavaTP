@@ -44,6 +44,7 @@ public class ServletLogin extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		String accion = request.getParameter("accion");
 		
 		if (request.getParameter("btn1") != null){
 			ingresar(request,response);
@@ -53,7 +54,15 @@ public class ServletLogin extends HttpServlet {
 				altaCliente(request,response);
 	     }else if(request.getParameter("logout") != null) {
 				cerrarSesion(request,response);
-	     }						                                                
+	     }	
+		
+		if(accion.equalsIgnoreCase("irLogin")) {
+			request.getRequestDispatcher("WEB-INF/login.jsp").forward(request, response);
+		}else if(accion.equalsIgnoreCase("irContacto")) {
+			request.getRequestDispatcher("WEB-INF/contacto.jsp").forward(request, response);
+		}else if(accion.equalsIgnoreCase("irIndex")) {
+		request.getRequestDispatcher("index.jsp").forward(request, response);
+	}
 	}
 
 	private void cerrarSesion(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException {
