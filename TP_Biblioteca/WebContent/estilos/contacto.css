@@ -59,7 +59,7 @@ body{
     font-weight: 700;
 }
 
-.button1{
+.botonDerecha{
 	width: 100px;
 	height: 40px;
 	background:#ef8354;
@@ -71,11 +71,10 @@ body{
     font-weight: 400;
     border-radius: 10px;
     cursor: pointer;
-    margin-top: 40px;
-    margin-right: 200px;
+	margin:5px;
 }
 
-.button1:hover{
+.botonDerecha:hover{
     border: 1px solid #411023;
     background-color: #ffab66;
     transform: scale(1.1);

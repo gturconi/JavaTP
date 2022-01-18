@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Biblioteca Entre Hojas</title>
     <link rel="stylesheet" href="estilos/contacto.css">
+    <link rel="stylesheet" type="text/css" href="estilos/mensaje.css">
     <link rel="icon" href="inicio.ico">
     <script src="https://kit.fontawesome.com/cbd6eda0d3.js" crossorigin="anonymous"></script>
 </head>
@@ -32,17 +33,21 @@
                         <p class="footer-textos__p1">¡Gracias por su interés! Complete los datos para contactarnos.</p1>
                         <p class="footer-textos__p2">Estamos aquí para lo que necesite.</p2>
                 </div>
-                <form action="enviarMail.php" class="formulario" method="POST">
+                  <form class="formulario" action="ContactoCorreo" method="post">
                          <input type="text" placeholder="Nombre:" id="nombre" name="nombre" required value="">
                          <input type="text" placeholder="Apellido:" id="apellido" name="apellido" required value="">
                          <input type="email" placeholder="Correo electrónico:" id="correo" name="correo" required value="" class="email">
-                         <textarea name="mensaje" id="mensaje" placeholder="Mensaje:"></textarea>
+                         <textarea name="mensaje"  placeholder="Mensaje:"></textarea>
                     <div class="derecha">
-                        <input class="boton derecha" type="submit" value="Contactar" name="submmit" id="boton">
+                        <button class="botonDerecha" type="submit" name="submmit" ">Contactar</button>
                     </div>
                 </form>
                 </div>
          </section>
     </footer>
+    <%if(null != request.getAttribute("mensaje")){
+	%><p id="mensaje"><%out.println(request.getAttribute("mensaje"));%> </p><%    
+  }	  
+  %>
 </body>
 </html>
