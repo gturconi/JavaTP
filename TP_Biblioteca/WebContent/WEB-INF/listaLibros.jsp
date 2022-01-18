@@ -131,7 +131,8 @@
 <%for(Libro l : lista){%>
 
 <div class="mySlides fade">  
-   <img src="ServletLibro?id=<%=l.getId()%>" style="width:100%" class="imgs">    
+   <img src="ServletLibro?id=<%=l.getId()%>" style="width:100%" class="imgs"> 
+   <h4> Titulo: <%=l.getTitulo()%></h4>   
 </div>
 <%}%>
 <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
