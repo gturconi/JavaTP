@@ -126,7 +126,7 @@ int admin = cl.getisAdmin();
                     <form action="ServletPedido?accion=anularPedido" method="post">
                        <input type="hidden" value=<%=pl.getPed().getNroPedido()%> name="nro">  </input>
                        <input type="hidden" value=<%=pl.getPed().getCliente().getId()%> name="idCl">  </input>
-                       <button id="boton" type="submit">Anular Pedido</button>
+                       <button class="anular" id="boton" type="submit">Anular Pedido</button>
                     </form>
                 <%}%>    
                 </td>

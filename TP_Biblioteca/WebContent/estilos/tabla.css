@@ -5,6 +5,12 @@ body{
 
 /* para botones de habilitar/suspender cliente */
 
+.anular{
+  position:relative;
+  top:8.8px	
+}
+
+
 #boton{
 	width: 100%;
 	height: 40px;
