@@ -29,7 +29,7 @@ Existen dos usuarios: administrador y cliente, ambos registrados.
 |CU "Complejo"(nivel resumen)|1|2|Reserva, prestamo y devolucion de Libro, Calificación/Reseña de libros
 |Listado complejo|1|2|Listado de libros por estado de clientes por estado
 |Nivel de acceso|2|2| Administrador-Cliente
-|Manejo de errores|obligatorio|obligatorio|no requiere detalle|
+|Manejo de errores|obligatorio|obligatorio|No requiere detalle|
 |requerimiento extra obligatorio|0|1|Manejo de archivos, Envio de emails
-|publicar el sitio|olbigatorio|obligatorio|no requiere detalle|
+|publicar el sitio|olbigatorio|obligatorio|No requiere detalle|
 
