@@ -97,7 +97,7 @@ int admin = cl.getisAdmin();
                 <tr>
                     <th>Numero</th><th>Fecha</th><th>Estado</th>
                     <th>Anular Pedido</th>                    
-                    <th>IdCliente</th>   
+                    <th>IdCliente</th><th>Nombre</th><th>Apellido</th>   
                     <th>IdLibro</th><th>Titulo</th>                                                                                                                                     
                 </tr>
             </thead>
@@ -131,7 +131,9 @@ int admin = cl.getisAdmin();
                 <%}%>    
                 </td>
                 
-                <td data-label="Id Cliente"rowspan=<%=c%>> <%=pl.getPed().getCliente().getId()%>             
+                <td data-label="Id Cliente"rowspan=<%=c%>> <%=pl.getPed().getCliente().getId()%>
+                <td data-label="Id Cliente"rowspan=<%=c%>> <%=pl.getPed().getCliente().getNombre()%>
+                <td data-label="Id Cliente"rowspan=<%=c%>> <%=pl.getPed().getCliente().getApellido()%>             
              <%for(int i=0; i<pl.getLibros().size();i++) {%>
                    <%if(i>0){%> <tr> <%}%> 
                    <td data-label="Id libro"> <%=pl.getLibros().get(i).getId()%></td> 
