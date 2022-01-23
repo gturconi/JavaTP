@@ -4,6 +4,7 @@
 <%@page import="entities.Libro" %>
 <%@page import="entities.Editorial" %>
 <%@page import="entities.Categoria" %>
+<%@page import="entities.Cliente" %>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -18,12 +19,15 @@
    LinkedList<Editorial> editoriales = (LinkedList<Editorial>)request.getAttribute("Editoriales");
    LinkedList<Categoria> categorias = (LinkedList<Categoria>)request.getAttribute("Categorias");
    LinkedList<Autor> autores = (LinkedList<Autor>)request.getAttribute("Autores");
+   Cliente cl = (Cliente) (request.getSession().getAttribute("Cliente"));
+   int admin = cl.getisAdmin();
 %>
 <meta charset="ISO-8859-1">
 <link rel="icon" href="icons/libros.ico">
 <title>Editar libro</title>
 <link rel="stylesheet" href="estilos/busqueda.css">
 <link rel="stylesheet" href="estilos/header.css">
+ <script src="https://kit.fontawesome.com/cbd6eda0d3.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -33,10 +37,22 @@
                 <div class="logo">
                     <h2 class="logo__name">Biblioteca<span class="point"> Entre hojas </span></h2>
                 </div>
+                      <div>
+                <% if(admin != 1){ %>  
+                <form action="ServletMenu?accion=irMenuCliente" method="post">
+						<button class="botonAtras" type="submit"><i class="fas fa-arrow-left"></i></button> 
+               	</form>
+                 <%}%>
+                    <% if(admin == 1){ %>
+                 <form action="ServletMenu?accion=irMenuAdmin" method="post">
+						<button class="botonAtras" type="submit"><i class="fas fa-arrow-left"></i></button> 
+               	</form>
+                    <%}%> 
+                	
+				</div>
             </div>
         </nav> 
 </header>
-
 
 <h1>Modificacion de  Libro</h1>
 
@@ -60,9 +76,9 @@
 								 
                 <h3 >Dimensiones</h3>
                   								 
-				<input id="campoTextoLibro" type="number" value=<%=dimensiones[0]%> maxlength="20" name="alto" size=4  required>
+				<input id="campoTextoLibro" type="number" value=<%=dimensiones[0]%> maxlength="20" name="ancho" size=4  required>
 				<h3 id="h3_2" >x</h3>
-				<input id="campoTextoLibro" type="number" value=<%=dimensiones[1]%> name="ancho" size=4 required>
+				<input id="campoTextoLibro" type="number" value=<%=dimensiones[1]%> name="alto" size=4 required>
 				<input id="campoTextoLibro" type="number" value=<%=l.getNroPaginas()%> maxlength="20" name="paginas" required>
 				<input id="campoTextoLibro" type="number" value=<%=l.getExistencia()%> maxlength="20" name="stock" required>
 				<input id="campoTextoLibro" type="number" value=<%=l.getPrecio()%> maxlength="20" name="precio" required>
