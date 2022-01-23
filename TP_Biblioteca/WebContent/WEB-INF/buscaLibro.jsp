@@ -70,7 +70,8 @@
 <%if(null != request.getAttribute("error")){
 	%><p id="mensaje"><%out.println(request.getAttribute("error"));%> </p><%    
   }	  
-  %>	
+  %>
+<%if(l != null){%>  	
 <div id="tabla">
        <table>
             <thead>
@@ -119,11 +120,10 @@
                         <td> <%=l.getAutores().get(i).getNombre()%></td> 
                         <td> <%=l.getAutores().get(i).getApellido()%></td>  
                         </tr>                                                     
-                 <%}%>                                                                                                                     
-          
+                 <%}%>                                                                                                                               
         </table>
        </div>
-
+<%}%>
 
 </body>
 </html>
