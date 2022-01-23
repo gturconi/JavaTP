@@ -113,7 +113,7 @@ public class ServletCliente extends HttpServlet {
 		
 		LogicCliente ctrlcli = new LogicCliente();
         LogicLocalidad ctrlloc = new LogicLocalidad();
-        
+        String oldUser = ((Cliente) request.getSession().getAttribute("Cliente")).getUser();
         
 		String name = request.getParameter("name");				
         String surname = request.getParameter("surname");
@@ -142,11 +142,18 @@ public class ServletCliente extends HttpServlet {
 		
         
         /*VERIFICAR QUE EL USUARIO NO EXISTA*/        
-        if(ctrlcli.validarCliente(user) ==1) {
+        if(ctrlcli.validarCliente(user) ==1 && (!oldUser.equalsIgnoreCase(user))) {
         	request.setAttribute("errorMensaje", "Ya existe un usuario con ese nombre!");
         	request.getRequestDispatcher("WEB-INF/modificarCuenta.jsp").forward(request, response);
         }else {
-        	ctrlcli.modificarCliente(c);        
+        	        	        	
+        	ctrlcli.modificarCliente(c);
+        	
+        	//ACTUALIZAMOS EL CLIENTE EN LA SESION
+        	HttpSession session=request.getSession(false);
+        	session.removeAttribute("Cliente");
+        	request.getSession().setAttribute("Cliente", c);
+        	
             request.setAttribute("exito", "Los datos de la cuenta se han actualizado con exito!");
         	request.getRequestDispatcher("WEB-INF/modificarCuenta.jsp").forward(request, response);	
         }        

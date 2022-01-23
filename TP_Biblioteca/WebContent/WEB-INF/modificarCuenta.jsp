@@ -56,7 +56,7 @@
         <input class="controlr" type="text" name="tel" value='<%=c.getTelefono()%>' required >
         <input class="controlr" type="text" name="email" value='<%=c.getEmail()%>' required >
                   <select name="city" class="controlr" required>
- <option style="display: none;" <%=c.getLocalidad().getNombre()%> selected><%=c.getLocalidad().getNombre()%></option>             
+            <option value='<%=c.getLocalidad().getId()%>' selected><%=c.getLocalidad().getNombre()%></option>  
             <% for(Localidad loc:localidades){            	 
                %> <option value='<%=loc.getId()%>'><%=loc.getNombre()%></option><%           
              }%>                                                  
