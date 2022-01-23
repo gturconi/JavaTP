@@ -64,10 +64,10 @@
     <div class="cardLibro">
       <img src="pictures/modificar.png" alt="">
       <h4> Modificar </h4>
-            <form class="formularioLibro" action="ServletLibro?accion=modificar" method="post">
+            <form class="formularioLibro" action="ServletLibro?accion=modificar" method="post" enctype="multipart/form-data">
                 <input type="hidden" value=<%=l.getId()%> name="id">  </input>
-				<input id="campoTextoLibro" type="text" value='<%=l.getTitulo()%>' maxlength="20" name="titulo"required>
-				<input id="campoTextoLibro" type="text" value='<%=l.getDescripcion()%>' maxlength="20" name="descripcion" required>
+				<input id="campoTextoLibro" type="text" value='<%=l.getTitulo()%>' maxlength="200" name="titulo"required>
+				<input id="campoTextoLibro" type="text" value='<%=l.getDescripcion()%>' maxlength="1000" name="descripcion" required>
 				<input id="campoTextoLibro" type="number" value=<%=l.getNroEdicion()%> maxlength="20" name="edicion" required>
 				
 				 <h3 for="start">Fecha de edicion:</h3>
@@ -84,7 +84,7 @@
 				<input id="campoTextoLibro" type="number" value=<%=l.getPrecio()%> maxlength="20" name="precio" required>
 				
 				<select name="editorial" id="campoTextoEditorial"required>
-				      <option style="display: none;" value='<%=l.getEditorial().getNombre()%>' selected><%=l.getEditorial().getNombre()%></option>
+				      <option style="display: none;" value='<%=l.getEditorial().getId()%>' selected><%=l.getEditorial().getNombre()%></option>
 				      <% 
                              for(Editorial ed:editoriales){
                             	 if(!(l.getEditorial().getNombre().equals(ed.getNombre()))){ 
@@ -94,7 +94,7 @@
                       %>				                                                                                     
                 </select>
                 <select name="categoria" id="campoTextoCategoria" required>
-                   <option style="display: none;" value='<%=l.getCategoria().getDescripcion()%>' selected><%=l.getCategoria().getDescripcion()%></option>
+                   <option style="display: none;" value='<%=l.getCategoria().getId()%>' selected><%=l.getCategoria().getDescripcion()%></option>
                       <%    
                              for(Categoria cat:categorias){
                             	 if(!(l.getCategoria().getDescripcion().equals(cat.getDescripcion()))){ 
@@ -111,7 +111,7 @@
                              for(Autor aut:autores){                            	 
                             	 if(l.getAutores().contains(aut)){                             		 		
             	                %> <label class="contieneAutores"> 
-            	                 <input class="checkbox-inline"  checked="true" type="checkbox" name="autores" value='<%=aut.getNombre() + "/" + aut.getApellido()%>'><%=aut.getNombre() + " " + aut.getApellido()%>
+            	                 <input class="checkbox-inline"  checked="true" type="checkbox" name="autores" value=<%=aut.getId()%>><%=aut.getNombre() + " " + aut.getApellido()%>
             	                </label> 
             	    
                       <%}else{ %>
@@ -123,7 +123,8 @@
                       %>                                                                
                   </label>
                  
-                  
+                     <h3>Subir portada (opcional) </h3><br/><br/>                  
+                     <input type="file" name="imagen"/><br/><br/> 
                                 
 				<button id="botonLibro" type="submit">Modificar Libro</button>
 			</form>

@@ -163,7 +163,7 @@ public class ServletLibro extends HttpServlet {
 		int editorial = Integer.parseInt(request.getParameter("editorial"));
 		int categoria = Integer.parseInt(request.getParameter("categoria"));
 		
-		
+							
 		String[] autores = request.getParameterValues("autores");
 				
 		Libro l = new Libro();
@@ -179,13 +179,21 @@ public class ServletLibro extends HttpServlet {
 		l.setEditorial(ctrled.buscarEditorial(editorial));
 		l.setCategoria(ctrlcat.buscarCategoria(categoria));
 		
+		
+		
+		Part part = request.getPart("imagen");		
+		if(part.getSize()>0) {
+			InputStream is = part.getInputStream();
+		    l.setImagen(is);		    
+		}
+		
+		
+		
 		LinkedList<Autor> ats = new LinkedList<Autor>();
 		
 		for(int i=0; i<autores.length;i++) {
 			ats.add(ctrlaut.buscarAut(Integer.parseInt(autores[i])));
 		}
-		
-		
 		
 		l.setAutores(ats);
 		

@@ -407,12 +407,15 @@ public class DataLibro {
 				stmt.setInt(7, l.getExistencia());
 				stmt.setDouble(8, l.getPrecio());
 				stmt.setInt(9, l.getEditorial().getId());
-				stmt.setInt(10, l.getCategoria().getId());								
-				stmt.setInt(11, l.getId());
-	//			stmt.setBlob(12,l.getImagen());
+				stmt.setInt(10, l.getCategoria().getId());				
+				stmt.setInt(11, l.getId());				
 				stmt.executeUpdate();
 								
 				actualizaAutores(l.getAutores(),l.getId());
+				
+				if(l.getImagen()!=null) {
+					actualizarPortada(l);
+				}
 				
 			}  catch (SQLException e) {
 		        e.printStackTrace();
@@ -425,6 +428,30 @@ public class DataLibro {
 		        }
 			}	
 		}
+
+	private void actualizarPortada(Libro l) {
+		
+		PreparedStatement stmt= null;	
+		try {
+			stmt=DbHandler.getInstancia().getConn().
+					prepareStatement(
+							"update libro set imagen=? where id=?");		
+			stmt.setBlob(1,l.getImagen());
+			stmt.setInt(2, l.getId());				
+			stmt.executeUpdate();		
+			
+		}  catch (SQLException e) {
+	        e.printStackTrace();
+		} finally {
+	        try {            
+	            if(stmt!=null)stmt.close();
+	            DbHandler.getInstancia().releaseConn();
+	        } catch (SQLException e) {
+	        	e.printStackTrace();
+	        }
+		}			
+	}
+
 
 	private void actualizaAutores(LinkedList<Autor> autores, int idLibro) {
 		
