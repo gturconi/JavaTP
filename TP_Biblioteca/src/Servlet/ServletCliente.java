@@ -113,7 +113,9 @@ public class ServletCliente extends HttpServlet {
 		
 		LogicCliente ctrlcli = new LogicCliente();
         LogicLocalidad ctrlloc = new LogicLocalidad();
-        String oldUser = ((Cliente) request.getSession().getAttribute("Cliente")).getUser();
+        
+        Cliente oldUser = ((Cliente) request.getSession().getAttribute("Cliente"));
+        String oldUserName = ((Cliente) request.getSession().getAttribute("Cliente")).getUser();
         
 		String name = request.getParameter("name");				
         String surname = request.getParameter("surname");
@@ -134,6 +136,8 @@ public class ServletCliente extends HttpServlet {
         c.setPassword(pass);
         c.setLocalidad(ctrlloc.buscarLoc(city));
         c.setId(((Cliente) request.getSession().getAttribute("Cliente")).getId());
+        c.setEstado(oldUser.getEstado());
+        c.setisAdmin(oldUser.getisAdmin());
         
         
         LinkedList<Localidad> localidades =  ctrlloc.listadoLoc();
@@ -142,7 +146,7 @@ public class ServletCliente extends HttpServlet {
 		
         
         /*VERIFICAR QUE EL USUARIO NO EXISTA*/        
-        if(ctrlcli.validarCliente(user) ==1 && (!oldUser.equalsIgnoreCase(user))) {
+        if(ctrlcli.validarCliente(user) ==1 && (!oldUserName.equalsIgnoreCase(user))) {
         	request.setAttribute("errorMensaje", "Ya existe un usuario con ese nombre!");
         	request.getRequestDispatcher("WEB-INF/modificarCuenta.jsp").forward(request, response);
         }else {
