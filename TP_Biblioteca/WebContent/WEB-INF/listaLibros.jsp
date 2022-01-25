@@ -20,14 +20,11 @@
 <link rel="icon" href="icons/libros.ico">
 <title>Listado Libros</title>
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
 
 
 <link rel="stylesheet" href="estilos/header.css">
 <link rel="stylesheet" href="estilos/tabla.css">
 <link rel="stylesheet" href="estilos/busqueda.css">
-<link rel="stylesheet" href="estilos/bookCard.css">
   <script src="https://kit.fontawesome.com/cbd6eda0d3.js" crossorigin="anonymous"></script>
 
 
@@ -120,8 +117,6 @@
  <%}%>
  
 
-
-
    <h1>
         Listado de libros
     </h1>
@@ -147,78 +142,8 @@
  <script src="js/slideShow.js"></script>
  
  
-<!-- DESCOMENTAR PARA USAR! 
-<div class="row">
-    <div class="col-sm-11 mb-3 container" style="max-width: 1000px;">
-      <input type="text" id="myFilter" class="form-control" onkeyup="myFunction()" placeholder="Buscar por título...">
-    </div>
-  </div>
-
-
- 
-<div class="row" id="myItems">
-<div class="box">
-<%for(Libro l : lista){ %>
-  <div class="card col-sm-11 mb-3" style="max-width: 1000px;">
-  <div class="row g-0">
-    <div class="col-md-4">
-      <img src="ServletLibro?id=<%=l.getId()%>" class="img-fluid rounded-start"  alt="...">       
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <% if(admin == 1){ %>
-         <div class="actions">         
-             <form class="formularioEliminar" action="ServletLibro?accion=borrar" method="post">
-                  <input type="hidden" value=<%=String.valueOf(l.getId())%> name="id">                     				
-				  <input type="image"  id="botonEliminar" src="icons/trash-fill.png"/>				           
-             </form>         
-             <form action="ServletMenu?accion=modificarLibro" method="post">
-                <input type="hidden" value=<%=String.valueOf(l.getId())%> name="id">				 
-		        <input type="image"  id="button" src="icons/pencil.png"/>									
-			 </form>			 
-         </div>
-        <%}%> 
-        <label data-label="id"><b>Id:</b> <%=l.getId()%></label>
-        <h5 class="card-title"><b>Titulo:</b> <%=l.getTitulo()%></h5>
-        <p class="card-text"><b>Descripcion:</b> <%=l.getDescripcion()%></p>
-        <p class="card-text"><b>Precio:</b> $<%=l.getPrecio()%></p>
-      <div class="buttons"> 
-        <form action="ServletLibro?accion=detalleLibro" method="post">
-           <input type="hidden" value=<%=String.valueOf(l.getId())%> name="id">  </input>
-           <button type="submit" class="btn btn-secondary">Ver detalles</button>            			            
-        </form>
-        
-        
-        <% if(admin != 1){ %>  
-                <td>                   
-                 <% if(!librosPedidos.contains(l) && !librosRetirados.contains(l)){ %>
-                 <form action="ServletPedido?accion=reservaLibro" method="post">
-                 <input type="hidden" value=<%=String.valueOf(l.getId())%> name="id">  </input>			 
-                  <button type="submit" class="btn btn-success">Reservar Libro</button>
-                 </form>
-                 <%}else if (librosPedidos.contains(l)){%>
-                   <form action="ServletPedido?accion=cancelarReserva" method="post">
-                     <input type="hidden" value=<%=String.valueOf(l.getId())%> name="id">  </input>			 
-                    <button type="submit" class="btn btn-danger">Cancelar Reserva</button>
-                   </form>
-                 <%}else{%>
-                    <label>Pendiente de devolución</label> 
-                 <%}%>                  
-                  </td>
-               <%}%>   
-         </div>          
-      </div>
-    </div>
-  </div>
-</div>
-<%}%>
-</div>  
-</div>
-</div>
-
-TERMINA ACÁ -->
-
-         <table id="myTable" class="table table-striped">
+          
+        <table id="myTable" class="table table-striped">
            <thead>
                 <tr>
                     <th>Portada</th> 
@@ -310,23 +235,6 @@ TERMINA ACÁ -->
    </div>  
      
 </body>
-<script>
-function myFunction() {
-    var input, filter, cards, cardContainer, h5, title, i;
-    input = document.getElementById("myFilter");
-    filter = input.value.toUpperCase();
-    cardContainer = document.getElementById("myItems");
-    cards = cardContainer.getElementsByClassName("card");
-    for (i = 0; i < cards.length; i++) {
-        title = cards[i].querySelector(".card-body h5.card-title");
-        if (title.innerText.toUpperCase().indexOf(filter) > -1) {
-            cards[i].style.display = "";
-        } else {
-            cards[i].style.display = "none";
-        }
-    }
-}
-</script>
 <script>
 	$(document).ready(function(){
 	    $('#myTable').dataTable();
