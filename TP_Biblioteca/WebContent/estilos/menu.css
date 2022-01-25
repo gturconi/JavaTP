@@ -204,7 +204,7 @@ ul, ol {
 
 
 
-@media screen and (max-width:500px){
+@media (max-width:1000px){
 	header label{
 		display: block;
 	}

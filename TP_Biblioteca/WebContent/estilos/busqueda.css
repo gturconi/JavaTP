@@ -286,7 +286,7 @@ h3{
 
     }
 */    
-    @media (max-width: 500px){
+    @media (max-width: 1000px){
     .containerLibro .cardLibro{
 	width: 90%;
 	height: auto;
