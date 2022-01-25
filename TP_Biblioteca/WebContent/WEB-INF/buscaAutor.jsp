@@ -82,14 +82,14 @@
                 <td data-label="nombre"> <%=autor.getNombre()%></td>  
                 <td data-label="apellido"> <%=autor.getApellido()%></td>
                 <% if(admin == 1){ %>
-                <td>
+                <td data-label="eliminar">
                       <form class="formularioEliminar" action="ServletAutor?accion=borrar" method="post">				
 				           <input type="image"  id="botonEliminar" src="icons/trash-fill.png"/>
 				           <input type="hidden" value=<%=String.valueOf(autor.getId())%> name="id">  </input>
 			          </form>                                                  
                      </td>
                       
-                     <td>
+                     <td data-label="modificar">
                        <form action="ServletMenu?accion=modificarAutor" method="post">				 
 								<input type="image"  id="button" src="icons/pencil.png"/>
 								 <input type="hidden" value=<%=String.valueOf(autor.getId())%> name="id">  </input>					

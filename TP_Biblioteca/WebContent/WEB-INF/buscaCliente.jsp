@@ -90,17 +90,17 @@
                 <td data-label="domicilio"> <%=cli.getDomicilio()%></td>
                 <td data-label="telefono"> <%=cli.getTelefono()%></td>
                 <td data-label="email"> <%=cli.getEmail()%></td>
-                <td data-label="fechaInscripcion"> <%=cli.getFechaInscripcion()%></td>
-                <td data-label="localidadNombre"> <%=cli.getLocalidad().getNombre()%></td>
+                <td data-label="fecha Inscripcion"> <%=cli.getFechaInscripcion()%></td>
+                <td data-label="localidad"> <%=cli.getLocalidad().getNombre()%></td>
                 <td data-label="admin"> <%=cli.getisAdmin()%></td>
                 <td data-label="estado"> <%=cli.getEstado()%></td>                
-                <td>                
+                <td data-label="eliminar">                
                       <form class="formularioEliminar" action="ServletCliente?accion=eliminarCuenta" method="post">
                            <input type="image"  id="botonEliminar" src="icons/trash-fill.png"/> 								           
 				           <input type="hidden" value=<%=String.valueOf(cli.getId())%> name="id">  </input>
 			          </form>                                                  
                      </td> 
-                     <td>
+                     <td data-label="modificar">
                        <form action="ServletMenu?accion=modificarCliente" method="post">				 
 								<input type="image"  id="button" src="icons/pencil.png"/>
 								 <input type="hidden" value=<%=String.valueOf(cli.getId())%> name="id">  </input>					

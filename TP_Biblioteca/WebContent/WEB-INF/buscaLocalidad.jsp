@@ -75,13 +75,13 @@ int admin = cl.getisAdmin();
             <tr>
                 <td data-label="id"> <%=String.valueOf(localidad.getId())%></td>
                 <td data-label="nombre"> <%=localidad.getNombre()%></td>  
-                <td>
+                <td data-label="eliminar">
                       <form class="formularioEliminar" action="ServletLocalidad?accion=borrar" method="post">				
 				           <input type="image"  id="botonEliminar" src="icons/trash-fill.png"/>
 				           <input type="hidden" value=<%=String.valueOf(localidad.getId())%> name="id">  </input>
 			          </form>                                                  
                      </td> 
-                     <td>
+                     <td data-label="modificar">
                        <form action="ServletMenu?accion=modificarLocalidad" method="post">				 
 								<input type="image"  id="button" src="icons/pencil.png"/>
 								 <input type="hidden" value=<%=String.valueOf(localidad.getId())%> name="id">  </input>					

@@ -75,13 +75,13 @@
                 <td data-label="id"> <%=String.valueOf(editorial.getId())%></td>
                 <td data-label="nombre"> <%=editorial.getNombre()%></td>
                 <% if(admin == 1){ %>
-                <td>                
+                <td data-label="eliminar">                
                 <form class="formularioEliminar" action="ServletEditorial?accion=borrar" method="post">				
 				           <input type="image"  id="botonEliminar" src="icons/trash-fill.png"/>
 				           <input type="hidden" value=<%=String.valueOf(editorial.getId())%> name="id">  </input>
 			          </form>                                                  
                  </td> 
-                 <td>
+                 <td data-label="modificar">
                        <form action="ServletMenu?accion=modificarEditorial" method="post">				 
 								<input type="image"  id="button" src="icons/pencil.png"/>
 								 <input type="hidden" value=<%=String.valueOf(editorial.getId())%> name="id">  </input>					
