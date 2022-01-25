@@ -140,7 +140,8 @@ form{
     color: #fff;
 }
 
-@media (max-width: 858px){
+
+@media (max-width: 500px){
 /*
 .portafoto {
    display: flex;

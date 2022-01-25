@@ -82,7 +82,7 @@ body{
 }
 
 
-@media screen and (max-width:700px){
+@media screen and (max-width:500px){
 	   .item__contact{
         width: 100%;
         height: auto;
@@ -91,3 +91,4 @@ body{
         width: 90%;
     }
 	}
+	

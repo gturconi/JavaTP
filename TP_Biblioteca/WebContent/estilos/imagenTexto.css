@@ -63,7 +63,7 @@
 }
 
 
-@media screen and (max-width:700px){
+@media screen and (max-width:500px){
 
     .principal{
         height: auto;
@@ -116,6 +116,7 @@
 
 }
 
+/*
 @media screen and (max-width:500px){
 	
     .slider__img2{
@@ -129,3 +130,5 @@
         margin: 5px;
     }
 }
+
+*/

@@ -271,8 +271,22 @@ h3{
 }
 
 
-
+/*
 @media (max-width: 858px){
+    .containerLibro .cardLibro{
+	width: 90%;
+	height: auto;
+	border-radius: 8px;
+	overflow: hidden;
+	margin: 20px auto;
+	text-align: center;
+	border: #ef8354 5px solid;
+	background: #4e4d4d ;
+}
+
+    }
+*/    
+    @media (max-width: 500px){
     .containerLibro .cardLibro{
 	width: 90%;
 	height: auto;
