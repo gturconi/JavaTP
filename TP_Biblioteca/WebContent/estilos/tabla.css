@@ -56,7 +56,6 @@ table {
 }
 
    table td img{
-    float:left;
     border-radius:10px;
     width:100px;
     height:auto;
@@ -84,6 +83,7 @@ table th {
     font-family: 18px;
     letter-spacing: 1px;
 }
+
 
 /*//////////////////////////////////////////////*/
 
@@ -122,6 +122,5 @@ table th {
     table thead {
         display: none;
     }
-    
     
 }
