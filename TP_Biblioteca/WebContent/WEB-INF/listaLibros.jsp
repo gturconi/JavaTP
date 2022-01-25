@@ -147,7 +147,7 @@
            <thead>
                 <tr>
                     <th>Portada</th> 
-                    <th>Id</th><th>Titulo</th><th>Descripcion</th>                    
+                    <th>Id</th><th>Titulo</th>                    
                     <th>Precio</th><th>Detalles</th>
                   <% if(admin != 1){ %>  <th>Solicitar</th> <%}%>
                     <% if(admin == 1){ %><th>Eliminar</th><th>Modificar</th><%}%> 
@@ -162,8 +162,7 @@
             <%for(Libro l : lista){ %>                
                 <td data-label="portada"> <img src="ServletLibro?id=<%=l.getId()%>" width="60px" height="60px"/> </td>                                 
                 <td data-label="id"><%=l.getId()%></td>
-                <td data-label="titulo"><%=l.getTitulo()%></td>
-                <td data-label="descripcion"><%=l.getDescripcion()%></td>                     
+                <td data-label="titulo"><%=l.getTitulo()%></td>                 
                 
                 <td data-label="precio"><%=l.getPrecio()%></td>
                
