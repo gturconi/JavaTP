@@ -176,7 +176,7 @@ body {
 	
 	.menu{
 		position: absolute;
-		top: 224px; /* modificar esto cuando se suba a jelastic*/
+		top: 309px; /* este valor es por jelastic que tiene una franja arriba*/
 		left:0;
 		width: 50%;
 		transform: translateX(-100%);
