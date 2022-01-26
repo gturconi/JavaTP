@@ -47,7 +47,7 @@ int admin = cl.getisAdmin();
         </nav> 
 </header>
 
-<section class="container hero__main">  
+<section class="filtro">  
             <div class="hero__textos">
                 <h2 class="title2"> Filtrar por :</h2> 
             </div>
