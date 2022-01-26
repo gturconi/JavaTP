@@ -13,6 +13,9 @@ pageEncoding="ISO-8859-1"%>
 <link rel="stylesheet" type="text/css" href="estilos/botonesListar.css">
 
 <link rel="stylesheet" type="text/css" href="estilos/mensaje.css">
+ <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+ <script src="https://kit.fontawesome.com/cbd6eda0d3.js" crossorigin="anonymous"></script>
+ <script src="http://code.jquery.com/jquery-1.11.3.js"></script>
 <link rel="icon" href="icons/libro.ico">
 <title>Bienvenido Admin</title>
 </head>
@@ -35,13 +38,13 @@ pageEncoding="ISO-8859-1"%>
         </section> 
         
 </header>
-	
 
-<nav class="navegacion">
-	<!--  <input type="checkbox" id="btn_menu">
-			<label for="btn_menu"><img src="pictures/menu.png" alt=""></label> -->
-			<ul class="nav">
-				<li><a href="#">Cuenta</a>
+<div class="contieneMenu">
+<input type="checkbox" id="btn-menu">
+<label for="btn-menu" class="icon-menu"><i class="fas fa-bars"></i></label> 
+<nav class="menu">
+			<ul>
+				<li class="submenu"><a href="#">Cuenta</a>
 					<ul >
 						<li>
 							<form action="ServletMenu?accion=modificarCuenta" method="post">
@@ -52,10 +55,6 @@ pageEncoding="ISO-8859-1"%>
 						<form action="ServletMenu?accion=irVentanaEmergente" method="post">
 							<button id="button" type="submit">Eliminar</button> 
                			</form>
-						
-					<!--  	<form action="ServletCliente?accion=eliminarCuenta" method="post">
-							<button id="button" type="submit">Eliminar</button>
-						</form>		-->					
 						</li>
 						<li>
 							<form  action="ServletLogin" method="post">
@@ -64,7 +63,7 @@ pageEncoding="ISO-8859-1"%>
 						</li>
 					</ul>
 				</li>
-				<li><a href="#">Listados</a>
+				<li class="submenu"><a href="#">Listados</a>
 					<ul>
 					    <li>
 							<form action="ServletCliente?accion=listar" method="post">
@@ -106,7 +105,11 @@ pageEncoding="ISO-8859-1"%>
 				</li>								
 			</ul>
 		</nav>		
-	</header>
+</div>		
+	
+ <script src="js/menu.js"></script>
+
+
 <%if(null != request.getAttribute("mensaje")){
 	%><p id="mensaje"><%out.println(request.getAttribute("mensaje"));%> </p>    
   <%}%> 

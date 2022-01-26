@@ -11,7 +11,9 @@
 <link rel="stylesheet" type="text/css" href="estilos/botonesListar.css">
 <link rel="stylesheet" type="text/css" href="estilos/mensaje.css">
 <link rel="icon" href="icons/libro.ico">
-<script src="https://kit.fontawesome.com/cbd6eda0d3.js" crossorigin="anonymous"></script>
+ <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+ <script src="https://kit.fontawesome.com/cbd6eda0d3.js" crossorigin="anonymous"></script>
+ <script src="http://code.jquery.com/jquery-1.11.3.js"></script>
 <title>Bienvenido Cliente</title>
 </head>
 <body>
@@ -35,43 +37,41 @@
         
 </header>
 
-
-		<nav class="navegacion">
-			<ul class = "nav">
-				<li><a href="#">Mi Cuenta</a>
-					<ul class = "subMenu">
+<div class="contieneMenu">
+<input type="checkbox" id="btn-menu">
+<label for="btn-menu" class="icon-menu"><i class="fas fa-bars"></i></label> 
+<nav class="menu">
+			<ul>
+				<li class="submenu"><a href="#">Cuenta</a>
+					<ul >
 						<li>
-						<form action="ServletMenu?accion=modificarCuenta" method="post">
+							<form action="ServletMenu?accion=modificarCuenta" method="post">
 							<button id="button" type="submit">Editar</button>
-						</form>							
+						    </form>
 						</li>
 						<li>
 						<form action="ServletMenu?accion=irVentanaEmergente" method="post">
 							<button id="button" type="submit">Eliminar</button> 
                			</form>
-						
-					<!--  	<form action="ServletCliente?accion=eliminarCuenta" method="post">
-							<button id="button" type="submit">Eliminar</button>
-						</form>		-->											
 						</li>
-						<li>							   					   						   
+						<li>
 							<form  action="ServletLogin" method="post">
 								<input id="button" type="submit" name="logout" value="Cerrar Sesion">
-							</form>				
+							</form>
 						</li>
 					</ul>
 				</li>
-				<li><a href="#">Listados</a>
+				<li class="submenu"><a href="#">Listados</a>
 					<ul>
 						<li>
 							<form action="ServletAutor?accion=listar" method="post">
-								<button id="button" type="submit">Autores</button>
-							</form>
-						</li></li>
+                                <button id="button" type="submit">Autores</button>
+                            </form>
+						</li>
 						<li>
-						     <form action="ServletCategoria?accion=listar" method="post">
+							<form action="ServletCategoria?accion=listar" method="post">
 								<button id="button" type="submit">Categorias</button>
-							</form>							
+							</form>
 						</li>
 						<li>
 							<form action="ServletEditorial?accion=listar" method="post">
@@ -82,11 +82,15 @@
 							<form action="ServletLibro?accion=listar" method="post">
                                 <button id="button" type="submit">Libros</button>
                             </form>
-						</li>						
+						</li>
 					</ul>
-				</li>				
+				</li>								
 			</ul>
-		</nav>
+		</nav>		
+</div>		
+	
+ <script src="js/menu.js"></script>
+ 
 	<%if(null != request.getAttribute("mensaje")){
 	%><p id="mensaje"><%out.println(request.getAttribute("mensaje"));%> </p>    
   <%}%> 
