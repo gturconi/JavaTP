@@ -47,7 +47,7 @@
 
 <header>
  <nav class="nav__hero">
-            <div class="container nav__container">
+            <div class="contieneLogo">
                 <div class="logo">
                     <h2 class="logo__name">Biblioteca<span class="point"> Entre hojas </span></h2>
                 </div>
@@ -71,7 +71,7 @@
 
 <% if(admin == 1){ %> 
 
- <section class="container hero__main">  
+ <section class="filtro">  
             <div class="hero__textos">
                 <h2 class="title2"> Filtrar por :</h2> 
             </div>
@@ -198,7 +198,7 @@
                     <button type="submit" class="btn btn-danger">Cancelar Reserva</button>
                    </form>
                  <%}else{%>
-                    <label>Pendiente de devolución</label> 
+                    <label>Pendiente de devolucion</label> 
                  <%}%>                  
                   </td>
                <%}%>   
@@ -214,7 +214,7 @@
  
  
  
- 
+ <!--  
  
           
         <table id="myTable" class="table table-striped">
@@ -229,7 +229,7 @@
                                                                                                                     
                 </tr>
             </thead>
-            <%if(lista.size()>0){%> <!--Esta validacion es necesaria ya que de lo contrario lanza una advertencia -->
+            <%if(lista.size()>0){%> <!--Esta validacion es necesaria ya que de lo contrario lanza una advertencia 
             <tr>
             
             
@@ -284,7 +284,7 @@
             <%}%>                                                                   
           </table>
    </div>                                                                     
- 
+ -->
 
      <div class="container">
 		<div class="card">
@@ -298,10 +298,10 @@
     
      <% if(admin == 1){ %>
      <div class="card">
-     	 <img src="pictures/añadir.png" alt="">
-     	 <h4> Añadir </h4>
+     	 <img src="pictures/a�adir.png" alt="">
+     	 <h4> A�adir </h4>
       	<form class="formulario" action="ServletMenu?accion=anadirLibro" method="post">      
-        	 <button id="boton_Añadir" type="submit">Añadir Libro</button>
+        	 <button id="boton_A�adirLibro" type="submit">A�adir Libro</button>
       </form>
     </div>                                     
       <%}%>  
