@@ -7,9 +7,8 @@
 <%
    Cliente cliente = (Cliente)session.getAttribute("Cliente");  
 %>
-<link rel="stylesheet" type="text/css" href="estilos/menu.css">
+<link rel="stylesheet" type="text/css" href="estilos/pruebaMenu.css">
 <link rel="stylesheet" type="text/css" href="estilos/botonesListar.css">
-<link rel="stylesheet" type="text/css" href="estilos/menu2.css">
 <link rel="stylesheet" type="text/css" href="estilos/mensaje.css">
 <link rel="icon" href="icons/libro.ico">
 <script src="https://kit.fontawesome.com/cbd6eda0d3.js" crossorigin="anonymous"></script>

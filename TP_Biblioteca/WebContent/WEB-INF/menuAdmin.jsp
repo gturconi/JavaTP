@@ -9,9 +9,9 @@ pageEncoding="ISO-8859-1"%>
 %>
 
 <meta charset="ISO-8859-1">
-<link rel="stylesheet" type="text/css" href="estilos/menu.css">
+<link rel="stylesheet" type="text/css" href="estilos/pruebaMenu.css">
 <link rel="stylesheet" type="text/css" href="estilos/botonesListar.css">
-<link rel="stylesheet" type="text/css" href="estilos/menu2.css">
+
 <link rel="stylesheet" type="text/css" href="estilos/mensaje.css">
 <link rel="icon" href="icons/libro.ico">
 <title>Bienvenido Admin</title>
