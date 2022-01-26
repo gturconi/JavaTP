@@ -72,8 +72,8 @@ li #button:hover{
         position: fixed;
         width: 140px;
         height: auto;
-        background: #411023;
-        top: 238px;
+        background: #1A1B1F;
+        /*top: 238px;*/ top: 324px; /* esto es porque jelastic tiene una barra amarrilla arriba y me baja el cuerpo de la pag*/
         left: -100%;
         text-align: center;
         transition: all .5s;
