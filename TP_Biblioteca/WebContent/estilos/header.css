@@ -35,6 +35,16 @@ body{
     width: 100%;
 }
 
+.contieneLogo{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: inherit;
+    padding: 0;
+    position:relative;
+    width: 100%;
+}
+
 .logo__name{
     font-size: 24px;
     padding: 20px;
@@ -68,6 +78,12 @@ body{
 
 
 
+.filtro{
+	width:100%;
+    display: flex;
+    padding:0;
+    background: linear-gradient(180deg, #4e4d4d 5%, #1A1B1F 100%);
+}
 
 
 .hero__main{
@@ -156,10 +172,6 @@ body{
     background-color: #ffab66;
     transform: scale(1.1);
 }
-
-
-
-
 
 
 
