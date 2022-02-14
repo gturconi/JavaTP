@@ -284,8 +284,18 @@ public class ServletLibro extends HttpServlet {
 						
 		LogicLibro ctrllib = new LogicLibro();
 		LinkedList<Libro> libros = ctrllib.listadoLib();
+		LogicPedido ctrlped = new LogicPedido();
+		
+		Cliente cliente = (Cliente) request.getSession().getAttribute("Cliente");
+		int idCliente = cliente.getId();
 				
+		
+		LinkedList<Libro> librosPedidos = ctrlped.listadoLibCliente(idCliente,"reservado");
+		LinkedList<Libro> librosRetirados = ctrlped.listadoLibCliente(idCliente,"en curso");
+		
 		request.setAttribute("Libros", libros);
+		request.setAttribute("LibrosPedidos", librosPedidos);
+		request.setAttribute("LibrosRetirados", librosRetirados);
 		request.getRequestDispatcher("WEB-INF/listaLibros.jsp").forward(request, response);
 		
 	}
