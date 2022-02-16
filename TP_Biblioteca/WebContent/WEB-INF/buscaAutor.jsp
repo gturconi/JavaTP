@@ -57,8 +57,8 @@
       <img src="pictures/lupaBusqueda.png" alt="">
       <h4> Buscar </h4>
       <form class="formulario" action="ServletAutor?accion=buscar" method="post">
-        <input id="campoTextoAutor" type="text" placheholder="Nombre" maxlength="20" name="nombre"required>
-	    <input id="campoTextoAutor" type="text" placheholder="Apellido" maxlength="20" name="apellido"required>               
+        <input id="campoTextoAutor" type="text" placeholder="Nombre del autor" maxlength="20" name="nombre" required>
+	    <input id="campoTextoAutor" type="text" placeholder="Apellido del autor" maxlength="20" name="apellido" required>               
         <button id= "boton" type="submit">Buscar Autor</button>
        </form>  
     </div>  
