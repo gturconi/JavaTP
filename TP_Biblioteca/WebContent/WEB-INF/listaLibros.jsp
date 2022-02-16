@@ -214,79 +214,7 @@
  
  
  
- <!--  
- 
-          
-        <table id="myTable" class="table table-striped">
-           <thead>
-                <tr>
-                    <th>Portada</th> 
-                    <th>Id</th><th>Titulo</th>                    
-                    <th>Precio</th><th>Detalles</th>
-                  <% if(admin != 1){ %>  <th>Solicitar</th> <%}%>
-                    <% if(admin == 1){ %><th>Eliminar</th><th>Modificar</th><%}%> 
-                    
-                                                                                                                    
-                </tr>
-            </thead>
-            <%if(lista.size()>0){%> <!--Esta validacion es necesaria ya que de lo contrario lanza una advertencia 
-            <tr>
-            
-            
-            <%for(Libro l : lista){ %>                
-                <td data-label="portada"> <img src="ServletLibro?id=<%=l.getId()%>" width="60px" height="60px"/> </td>                                 
-                <td data-label="id"><%=l.getId()%></td>
-                <td data-label="titulo"><%=l.getTitulo()%></td>                 
-                
-                <td data-label="precio"><%=l.getPrecio()%></td>
-               
-                <td data-label="detalles">
-                    <form action="ServletLibro?accion=detalleLibro" method="post">
-                       <input type="hidden" value=<%=String.valueOf(l.getId())%> name="id">  </input>			 
-                       <button id="boton" type="submit">Ver detalles</button>
-                    </form>                
-                </td>
-                               
-              <% if(admin != 1){ %>  
-                <td>                   
-                 <% if(!librosPedidos.contains(l) && !librosRetirados.contains(l)){ %>
-                 <form action="ServletPedido?accion=reservaLibro" method="post">
-                 <input type="hidden" value=<%=String.valueOf(l.getId())%> name="id">  </input>			 
-                 <button id="boton" type="submit">Reservar Libro</button>
-                 </form>
-                 <%}else if (librosPedidos.contains(l)){%>
-                   <form action="ServletPedido?accion=cancelarReserva" method="post">
-                     <input type="hidden" value=<%=String.valueOf(l.getId())%> name="id">  </input>			 
-                    <button id="boton" type="submit">Cancelar Reserva</button>
-                   </form>
-                 <%}else{%>
-                    <label>Pendiente de devolución</label> 
-                 <%}%>                  
-                  </td>
-               <%}%>   
-                <% if(admin == 1){ %>
-                <td data-label="eliminar">                      
-                      <form class="formularioEliminar" action="ServletLibro?accion=borrar" method="post">				
-				           <input type="image"  id="botonEliminar" src="icons/trash-fill.png"/>
-				           <input type="hidden" value=<%=String.valueOf(l.getId())%> name="id">  </input>
-			          </form>                                                  
-                     </td>
-                      
-                    <td data-label="modificar">
-                       <form action="ServletMenu?accion=modificarLibro" method="post">				 
-								<input type="image"  id="button" src="icons/pencil.png"/>
-								 <input type="hidden" value=<%=String.valueOf(l.getId())%> name="id">  </input>					
-			            </form>			            
-                     </td>                     
-                      <%}%>
-               </tr>
-               <%}%>                                                                                                                 					                                                                                                                                                                                                                
-            <%}%>                                                                   
-          </table>
-   </div>                                                                     
- -->
-
-     <div class="container">
+      <div class="container">
 		<div class="card">
 			<img src="pictures/lupaBusqueda.png" alt="">
 				<h4> Buscar </h4>
@@ -297,14 +225,14 @@
 		</div>
     
      <% if(admin == 1){ %>
-     <div class="card">
-     	 <img src="pictures/a�adir.png" alt="">
-     	 <h4> A�adir </h4>
+    <div class="card">
+     	 <img src="pictures/añadir.png" alt="">
+     	 <h4>Añadir</h4>
       	<form class="formulario" action="ServletMenu?accion=anadirLibro" method="post">      
-        	 <button id="boton_A�adirLibro" type="submit">A�adir Libro</button>
+        	 <button id="boton_AñadirLibro" type="submit">Añadir Libro</button>
       </form>
     </div>                                     
-      <%}%>  
+      <%}%>       
    </div>  
      
 </body>

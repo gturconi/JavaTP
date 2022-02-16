@@ -57,11 +57,11 @@
       <img src="pictures/lupaBusqueda.png" alt="">
       <h4> Buscar </h4>
       <form class="formulario" action="ServletAutor?accion=buscar" method="post">
-        <input id="campoTexto" type="text" placeholder="Ingrese id " maxlength="10" name="id" required> 
+        <input id="campoTextoAutor" type="text" placheholder="Nombre" maxlength="20" name="nombre"required>
+	    <input id="campoTextoAutor" type="text" placheholder="Apellido" maxlength="20" name="apellido"required>               
         <button id= "boton" type="submit">Buscar Autor</button>
        </form>  
     </div>  
-  </div> 
 
 <%if(null != request.getAttribute("error")){
 	%><p id="mensaje"><%out.println(request.getAttribute("error"));%> </p><%    

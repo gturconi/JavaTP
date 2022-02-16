@@ -115,7 +115,7 @@
                     <p class="footer-textos__p1">Escribenos tu opinion acerca de este libro.</p1>
                 </div>
                 <div class="formulario">
-                    <textarea name="comentario" id="comentario" rows="6" cols="60" required></textarea>
+                    <textarea name="comentario" id="comentario" width="60px" rows="200" cols="60" required></textarea>
                     <div class="derecha">
                     	<input type="hidden" value=<%=String.valueOf(l.getId())%> name="id"> 
                     	<button id="button" type="submit">Enviar</button>

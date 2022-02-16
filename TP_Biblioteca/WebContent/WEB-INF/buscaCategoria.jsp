@@ -51,16 +51,15 @@
 
    <h1>Busqueda de Categoria</h1>
 
-     <div class="container">
+<div class="container">
     <div class="card">
       <img src="pictures/lupaBusqueda.png" alt="">
       <h4> Buscar </h4>
       <form class="formulario" action="ServletCategoria?accion=buscar" method="post">
-        <input id="campoTexto" type="text" placeholder="Ingrese id " maxlength="10" name="id" required> 
+        <input id="campoTexto" type="text" placeholder="Nombre de la categoria " maxlength="10" name="nombre" required> 
         <button id= "boton" type="submit">Buscar Categoria</button>
        </form>  
     </div>  
-  </div> 
 
 <%if(null != request.getAttribute("error")){
 	%><p id="mensaje"><%out.println(request.getAttribute("error"));%> </p><%    

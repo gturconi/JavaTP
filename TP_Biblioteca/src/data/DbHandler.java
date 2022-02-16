@@ -8,10 +8,10 @@ public class DbHandler {
 private static DbHandler instancia;
 	
 	private String driver="com.mysql.cj.jdbc.Driver";
-	private String host="localhost"; //localhost //node6847-env-2931782.sp.skdrive.net
+	private String host="localhost"; //localhost //node7295-env-0440537.sp.skdrive.net
 	private String port="3306";
 	private String user="admin";//admin //root
-	private String password="123";//123 //QQUFo6HKY8
+	private String password="123";//123 //uBZrG4F4Wr
 	private String db="biblioteca";
 	private int conectados=0;
 	private Connection conn=null;

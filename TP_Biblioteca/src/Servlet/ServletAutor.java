@@ -96,17 +96,18 @@ public class ServletAutor extends HttpServlet {
 	}
 
 	private void buscar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		LogicAutor ctrlaut = new LogicAutor();
-	    int id = Integer.parseInt(request.getParameter("id"));	    
-	    Autor autor = ctrlaut.buscarAut(id);
-	    if(autor != null) {
+		String nombre = request.getParameter("nombre");
+		String apellido = request.getParameter("apellido");
+		
+		Autor autor = ctrlaut.buscarAutPorNombre(nombre, apellido);
+		if(autor != null) {
 	    	request.setAttribute("Autor", autor);	
 	    }else {
-	    	request.setAttribute("error", "El id no corresponde a ningun autor!");
+	    	request.setAttribute("error", "El nombre y apellido ingresado no corresponde a ningun autor!");
 	    }
-		//response.getWriter().append(String.valueOf(autor.getId()));
-	    
-	    request.getRequestDispatcher("WEB-INF/buscaAutor.jsp").forward(request, response);
+		request.getRequestDispatcher("WEB-INF/buscaAutor.jsp").forward(request, response);		
 	}
 
 	protected void listar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{

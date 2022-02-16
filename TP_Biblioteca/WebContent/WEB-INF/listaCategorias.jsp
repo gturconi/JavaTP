@@ -85,7 +85,7 @@
       <img src="pictures/lupaBusqueda.png" alt="">
       <h4> Buscar </h4>
       <form class="formulario" action="ServletCategoria?accion=buscar" method="post">
-        <input id="campoTexto" type="text" placeholder="Ingrese id " maxlength="10" name="id" required> 
+        <input id="campoTexto" type="text" placeholder="Nombre de la categoria " maxlength="10" name="nombre" required> 
         <button id= "boton" type="submit">Buscar Categoria</button>
        </form>  
     </div>  

@@ -92,8 +92,8 @@ public class ServletCategoria extends HttpServlet {
 
 	private void buscar(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
 		LogicCategoria ctrlcat = new LogicCategoria();
-	    int id = Integer.parseInt(request.getParameter("id"));	    
-	    Categoria categoria = ctrlcat.buscarCategoria(id);
+	    String nombre = request.getParameter("nombre");	    
+	    Categoria categoria = ctrlcat.buscarCatPorNombre(nombre);
 	    if(categoria != null) {
 	    	request.setAttribute("Categoria", categoria);	
 	    }else {
