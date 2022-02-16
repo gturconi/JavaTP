@@ -92,12 +92,12 @@ public class ServletEditorial extends HttpServlet {
 
 	private void buscar(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
 		LogicEditorial ctrled = new LogicEditorial();
-	    int id = Integer.parseInt(request.getParameter("id"));	    
-	    Editorial editorial = ctrled.buscarEditorial(id);
+		 String nombre = request.getParameter("nombre");	    
+		 Editorial editorial = ctrled.buscarEdPorNombre(nombre);
 	    if(editorial != null) {
 	    	request.setAttribute("Editorial", editorial);	
 	    }else {
-	    	request.setAttribute("error", "El id no corresponde a ninguna editorial!");
+	    	request.setAttribute("error", "El nombre no corresponde a ninguna editorial!");
 	    }
 			    
 	    request.getRequestDispatcher("WEB-INF/buscaEditorial.jsp").forward(request, response);		

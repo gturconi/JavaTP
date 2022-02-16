@@ -9,6 +9,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import entities.Editorial;
 import entities.Localidad;
 import logic.LogicLocalidad;
 
@@ -89,14 +91,13 @@ public class ServletLocalidad extends HttpServlet {
 
 	private void buscar(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
 		LogicLocalidad ctrlloc = new LogicLocalidad();
-	    int id = Integer.parseInt(request.getParameter("id"));
-	    
-	    Localidad l = ctrlloc.buscarLoc(id);
+		String nombre = request.getParameter("nombre");	    
+		Localidad localidad = ctrlloc.buscarLocPorNombre(nombre);
 		
-	    if(l != null) {
-	    	request.setAttribute("Localidad",l);	
+	    if(localidad != null) {
+	    	request.setAttribute("Localidad",localidad);	
 	    }else {
-	    	request.setAttribute("error", "El id no corresponde a ninguna localidad!");
+	    	request.setAttribute("error", "El nombre no corresponde a ninguna localidad!");
 	    }
 	    request.getRequestDispatcher("WEB-INF/buscaLocalidad.jsp").forward(request, response);
 	}
