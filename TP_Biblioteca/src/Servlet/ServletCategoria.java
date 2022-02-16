@@ -97,7 +97,7 @@ public class ServletCategoria extends HttpServlet {
 	    if(categoria != null) {
 	    	request.setAttribute("Categoria", categoria);	
 	    }else {
-	    	request.setAttribute("error", "El id no corresponde a ninguna categoria!");
+	    	request.setAttribute("error", "El nombre no corresponde a ninguna categoria!");
 	    }
 			    
 	    request.getRequestDispatcher("WEB-INF/buscaCategoria.jsp").forward(request, response);		
