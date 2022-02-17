@@ -3,6 +3,18 @@ body{
 	background:#E9DAD7;
 }
 
+.container-fluid{	
+    display: flex;
+    align-items: center;
+    justify-content: center;
+	flex-direction:column;
+}
+
+.form-group{
+	width: 10em;
+}
+
+
 h1{
 	font-family: "Times New Roman", Times, serif;
 	font-size: 40px;

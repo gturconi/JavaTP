@@ -116,9 +116,9 @@
                       <h3>Seleccione el/los autores</h3>    
                    </div>
                    <br>
-                   <div class="row justify-content-center align-items-center h-100">
+                   <div class="row h-100">
                       <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3">
-                         <div class="form-group">
+                         <div class="form-group">                           
                             <select name="autores" class="mul-select" multiple="true">
                              <% 
                              for(Autor aut:autores){
@@ -136,7 +136,7 @@
                  </div>
                   
                   
-                 
+                     
                      <h3>Subir portada (opcional) </h3><br/><br/>                  
                      <input type="file" name="imagen"/><br/><br/> 
                                 
