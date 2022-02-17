@@ -12,9 +12,7 @@
 <%
    LinkedList<Editorial> editoriales = (LinkedList<Editorial>)request.getAttribute("Editoriales");
    LinkedList<Categoria> categorias = (LinkedList<Categoria>)request.getAttribute("Categorias");
-   LinkedList<Autor> autores = (LinkedList<Autor>)request.getAttribute("Autores");
-   Cliente cl = (Cliente) (request.getSession().getAttribute("Cliente"));
-   int admin = cl.getisAdmin();
+   LinkedList<Autor> autores = (LinkedList<Autor>)request.getAttribute("Autores");  
 %>
 <meta charset="ISO-8859-1">
 <link rel="icon" href="icons/libros.ico">
@@ -24,6 +22,13 @@
 <link rel="stylesheet" href="estilos/header.css">
 <link rel="stylesheet" type="text/css" href="estilos/mensaje.css">
  <script src="https://kit.fontawesome.com/cbd6eda0d3.js" crossorigin="anonymous"></script>
+ 
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css">
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  
 </head>
 <body>
 
@@ -40,18 +45,10 @@
                 <div class="logo">
                     <h2 class="logo__name">Biblioteca<span class="point"> Entre hojas </span></h2>
                 </div>
-                <div>
-                <% if(admin != 1){ %>  
-                <form action="ServletMenu?accion=irMenuCliente" method="post">
-						<button class="botonAtras" type="submit"><i class="fas fa-arrow-left"></i></button> 
-               	</form>
-                 <%}%>
-                    <% if(admin == 1){ %>
+                <div>                
                  <form action="ServletMenu?accion=irMenuAdmin" method="post">
 						<button class="botonAtras" type="submit"><i class="fas fa-arrow-left"></i></button> 
-               	</form>
-                    <%}%> 
-                	
+               	</form>                	
 				</div>	
             </div>
         </nav> 
@@ -101,18 +98,27 @@
                       %>                                                                                                                
                 </select>
                 
-                  <label>    
-                     <h3>Seleccione el/los autores</h3>                     
-                   <option style="display: none;" value="" selected>Categoria</option>
-                      <% 
-                             for(Autor aut:autores){%>
-                            	 <label class="contieneAutores"> 
-            	                 <input class="checkbox-inline" type="checkbox" name="autores" value='<%=aut.getId()%>'> <%=aut.getNombre() + " " + aut.getApellido()%>
-            	                </label> 
-                      <%
+                  <div class="container-fluid h-100 text-dark">
+                    <div class="row justify-content-center align-items-center">
+                      <h3>Seleccione el/los autores</h3>    
+                   </div>
+                   <br>
+                   <div class="row justify-content-center align-items-center h-100">
+                      <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3">
+                         <div class="form-group">
+                            <select name="autores" class="mul-select" multiple="true">
+                             <% 
+                             for(Autor aut:autores){
+            	                %> <option  value='<%=aut.getId()%>'><%=aut.getNombre() + " " + aut.getApellido()%></option>
+                              <%
                             }          
-                      %>                                                               
-                  </label> 
+                              %>                               
+                             </select>
+                         </div> 
+                      </div>
+                  </div>
+                 </div>
+     
         
          <h3>Subir portada </h3><br/><br/>                  
                      <input type="file" name="imagen" required="required"/><br/><br/>                   
@@ -129,4 +135,13 @@
   }	  
   %>			
 </body>
+<script>
+        $(document).ready(function(){
+            $(".mul-select").select2({
+                    placeholder: "Seleccionar Autor", //placeholder
+                    tags: true,
+                    tokenSeparators: ['/',',',';'," "] 
+                });
+            })
+    </script>
 </html>

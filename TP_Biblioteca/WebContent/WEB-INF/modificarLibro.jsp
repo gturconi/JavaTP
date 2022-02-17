@@ -28,6 +28,13 @@
 <link rel="stylesheet" href="estilos/busqueda.css">
 <link rel="stylesheet" href="estilos/header.css">
  <script src="https://kit.fontawesome.com/cbd6eda0d3.js" crossorigin="anonymous"></script>
+ 
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css">
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+ 
 </head>
 <body>
 
@@ -104,24 +111,31 @@
                       %>                                                                                                                
                 </select>
                 
-                  <label>    
-                     <h3>Seleccione el/los autores</h3> 
-                     <option style="display: none;" value="" selected>Categoria</option>
-                      <% 
-                             for(Autor aut:autores){                            	 
-                            	 if(l.getAutores().contains(aut)){                             		 		
-            	                %> <label class="contieneAutores"> 
-            	                 <input class="checkbox-inline"  checked="true" type="checkbox" name="autores" value=<%=aut.getId()%>><%=aut.getNombre() + " " + aut.getApellido()%>
-            	                </label> 
-            	    
-                      <%}else{ %>
-                      <label class="contieneAutores"> 
-                    	   <input   class="checkbox-inline"  type="checkbox" name="autores" value='<%=aut.getId()%>'><%=aut.getNombre() + " " + aut.getApellido()%>
-                    	   </label> 
-                     <% }
-                            }          
-                      %>                                                                
-                  </label>
+                  <div class="container-fluid h-100 text-dark">
+                    <div class="row justify-content-center align-items-center">
+                      <h3>Seleccione el/los autores</h3>    
+                   </div>
+                   <br>
+                   <div class="row justify-content-center align-items-center h-100">
+                      <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3">
+                         <div class="form-group">
+                            <select name="autores" class="mul-select" multiple="true">
+                             <% 
+                             for(Autor aut:autores){
+                            	 if(l.getAutores().contains(aut)){ %>
+            	                 <option  value='<%=aut.getId()%>' selected><%=aut.getNombre() + " " + aut.getApellido()%></option>
+            	             <%}else{ %> 
+            	                <option  value='<%=aut.getId()%>'><%=aut.getNombre() + " " + aut.getApellido()%></option>
+            	            <% }
+                              }          
+                           %>                                 
+                             </select>
+                         </div> 
+                      </div>
+                  </div>
+                 </div>
+                  
+                  
                  
                      <h3>Subir portada (opcional) </h3><br/><br/>                  
                      <input type="file" name="imagen"/><br/><br/> 
@@ -131,4 +145,13 @@
     </div>  
 </div>
 </body>
+<script>
+        $(document).ready(function(){
+            $(".mul-select").select2({
+                    placeholder: "Seleccionar Autor", //placeholder
+                    tags: true,
+                    tokenSeparators: ['/',',',';'," "] 
+                });
+            })
+    </script>
 </html>

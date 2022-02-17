@@ -3,8 +3,19 @@ body{
     font-family: arial;
 }
 
-/* para botones de habilitar/suspender cliente */
+.form-group{
+	display:flex;
+	justify-content:center
+	
+}
 
+.mul-select{
+  width: 100%;
+}
+
+
+
+/* para botones de habilitar/suspender cliente */
 .anular{
   position:relative;
   top:8.8px	
